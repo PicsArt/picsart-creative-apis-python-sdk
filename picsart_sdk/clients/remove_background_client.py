@@ -12,15 +12,15 @@ class RemoveBackgroundClient(ImageBaseClient):
     def endpoint(self):
         return "removebg"
 
-    def set_payload(self, request: RemoveBackgroundRequest):
-        super().set_payload(request)
-        self._payload.update(request.get_dict())
-
     def remove_background(self, request: RemoveBackgroundRequest) -> ApiResponse:
         return self.post(request=request)
 
     def remove_background_from_path(self, file_path: str) -> ApiResponse:
-        return self.remove_background(RemoveBackgroundRequest(image=PicsartImage(image_path=file_path)))
+        return self.remove_background(
+            RemoveBackgroundRequest(image=PicsartImage(image_path=file_path))
+        )
 
     def remove_background_from_url(self, url: str) -> ApiResponse:
-        return self.remove_background(RemoveBackgroundRequest(image=PicsartImage(image_url=url)))
+        return self.remove_background(
+            RemoveBackgroundRequest(image=PicsartImage(image_url=url))
+        )

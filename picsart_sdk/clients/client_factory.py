@@ -7,6 +7,7 @@ class ClientFactory:
     _clients = {
         "upload": "picsart_sdk.clients.upload_client.UploadClient",
         "removebg": "picsart_sdk.clients.remove_background_client.RemoveBackgroundClient",
+        "upscale": "picsart_sdk.clients.upscale_client.UpscaleClient",
     }
 
     @staticmethod

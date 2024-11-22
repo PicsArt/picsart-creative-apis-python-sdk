@@ -27,3 +27,5 @@ class ImageBaseClient(BaseClient, ABC):
                     open(request.image.image_path, "rb"),
                 ),
             )
+
+        self._payload.update(request.get_dict())
