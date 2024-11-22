@@ -1,3 +1,4 @@
+from picsart_sdk.clients.http_client import HttpClient
 from picsart_sdk.core.session import Session
 
 

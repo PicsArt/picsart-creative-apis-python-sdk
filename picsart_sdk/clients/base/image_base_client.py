@@ -12,3 +12,17 @@ class ImageBaseClient(BaseClient, ABC):
     @property
     def base_url(self):
         return "https://api.picsart.io/tools"
+
+    def set_payload(self, request):
+        if request.image.image_url is not None:
+            self._payload = {
+                "image_url": request.image.image_url,
+            }
+
+        if request.image.image_path:
+            self._files = {
+                "image": (
+                    request.image.image_path,
+                    open(request.image.image_path, "rb"),
+                )
+            }
