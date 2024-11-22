@@ -1,4 +1,4 @@
-from picsart_sdk.api_response import ApiResponse
+from picsart_sdk.api_response import ApiResponse, ApiResponseData
 
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
@@ -13,11 +13,16 @@ class UploadClient(ImageBaseClient):
 
     def upload_image(self, request: UploadRequest) -> ApiResponse:
         self.set_payload(request)
-        return self.session.http_client.post(
+        result = self.session.http_client.post(
             url=self.post_url,
             data=self._payload,
             files=self._files,
             headers=self.headers,
+        )
+
+        return ApiResponse(
+            status=result["status"],
+            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
         )
 
     def upload_from_path(self, file_path: str) -> ApiResponse:
