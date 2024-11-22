@@ -1,5 +1,3 @@
-from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
-
 # PICSART CREATIVE APIS
 
 ## Description
