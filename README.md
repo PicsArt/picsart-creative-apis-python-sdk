@@ -30,6 +30,38 @@ import picsart_sdk
 upload_client = picsart_sdk.client("upload")
 
 upload_client.upload_from_path(file_path="/path/to/image.jpg")
-upload_client.upload_from_url(url="http://domain.com/file.jpg")
+upload_client.upload_from_url(url="https://domain.com/file.jpg")
 ```
 
+## Remove Background
+### Simple remove background using a file or from url
+
+```python
+import picsart_sdk
+client = picsart_sdk.client("removebg")
+
+response1 = client.remove_background_from_path(file_path="./file.jpg")
+response2 = client.remove_background_from_url(url="https://domain.com/image.jpg")
+print(response1.data.url)
+print(response2.data.url)
+```
+
+### More complex case
+
+In case you want to apply different features available for [remove background](https://docs.picsart.io/reference/image-remove-background), it can be used a `RemoveBackgroundRequest`:
+
+```python
+import picsart_sdk
+from picsart_sdk.clients.requests_models.remove_background_request import RemoveBackgroundRequest
+from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
+
+client = picsart_sdk.client("removebg")
+
+removebg_request = RemoveBackgroundRequest(
+    image=PicsartImage(image_url="https://domain.com/image.jpg"),
+    stroke_size=2,
+    stroke_color="red",
+)
+response = client.remove_background(removebg_request)
+print(response.data.url)
+```
