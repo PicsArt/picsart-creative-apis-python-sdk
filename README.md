@@ -1,8 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # PICSART CREATIVE APIS Python SDK
 =======
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
 
+=======
+>>>>>>> d7a079c (update readme)
 # PICSART CREATIVE APIS
 >>>>>>> a16605e (update readme)
 
