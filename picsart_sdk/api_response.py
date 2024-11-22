@@ -2,5 +2,12 @@ from dataclasses import dataclass
 
 
 @dataclass
+class ApiResponseData:
+    id: str
+    url: str
+
+
+@dataclass
 class ApiResponse:
-    pass
+    status: str
+    data: ApiResponseData

@@ -6,7 +6,7 @@ from picsart_sdk.clients.base.base_client import BaseClient
 class ClientFactory:
     _clients = {
         "upload": "picsart_sdk.clients.upload_client.UploadClient",
-        "removebg": "picsart_sdk.clients.removebg_client.RemoveBackgroundClient",
+        "removebg": "picsart_sdk.clients.remove_background_client.RemoveBackgroundClient",
     }
 
     @staticmethod

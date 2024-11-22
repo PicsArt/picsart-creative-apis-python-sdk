@@ -15,14 +15,15 @@ class ImageBaseClient(BaseClient, ABC):
 
     def set_payload(self, request):
         if request.image.image_url is not None:
-            self._payload = {
-                "image_url": request.image.image_url,
-            }
+            self._payload = self._payload or {}
+            self._payload.setdefault("image_url", request.image.image_url)
 
         if request.image.image_path:
-            self._files = {
-                "image": (
+            self._files = self._files or {}
+            self._files.setdefault(
+                "image",
+                (
                     request.image.image_path,
                     open(request.image.image_path, "rb"),
-                )
-            }
+                ),
+            )

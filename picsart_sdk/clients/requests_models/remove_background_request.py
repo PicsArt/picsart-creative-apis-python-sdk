@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
+from picsart_sdk.clients.base.base_request import BaseRequest
 from picsart_sdk.clients.requests_models.picsart_image import (
     PicsartImage,
     PicsartImageFormat,
@@ -32,7 +33,7 @@ class RemoveBackgroundShadow(str, Enum):
 
 
 @dataclass
-class RemoveBackgroundRequest:
+class RemoveBackgroundRequest(BaseRequest):
     image: PicsartImage
     output_type: Optional[RemoveBackgroundOutputType] = (
         RemoveBackgroundOutputType.CUTOUT
@@ -45,7 +46,7 @@ class RemoveBackgroundRequest:
     auto_center: Optional[bool] = False
     stroke_size: Optional[int] = 0
     stroke_color: Optional[str] = "FFFFFF"
-    stroke_opacity: Optional[int] = 0
+    stroke_opacity: Optional[int] = 100
     shadow: Optional[RemoveBackgroundShadow] = RemoveBackgroundShadow.DISABLED
     shadow_opacity: Optional[int] = 20
     shadow_blur: Optional[int] = 50
