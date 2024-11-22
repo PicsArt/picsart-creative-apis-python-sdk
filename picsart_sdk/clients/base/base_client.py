@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from typing import Dict, Union, IO
 
-# from picsart_sdk.core.session import Session
+from picsart_sdk.clients.http_client import HttpClient
 
 
 class BaseClient:
@@ -36,7 +36,6 @@ class BaseClient:
         return self._payload
 
     def get_files(self):
-        print("Get files", self._files)
         return self._files
 
     @property

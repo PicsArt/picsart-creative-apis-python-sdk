@@ -1,6 +1,13 @@
 import os
 from dataclasses import dataclass
-from typing import IO, Optional
+from enum import Enum
+from typing import Optional
+
+
+class PicsartImageFormat(str, Enum):
+    PNG = "png"
+    JPG = "jpg"
+    WEBP = "webp"
 
 
 @dataclass
