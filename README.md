@@ -7,11 +7,14 @@ You can do many actions with your images just by adding a few lines of code to y
 
 ## Usage
 
+Create the client:
+1. Default session. It is shorter if the `PICSART_API_KEY` environment variable is set.
+
 ```python
 import picsart_sdk
 upload_client = picsart_sdk.client("upload")
 ```
-or 
+otherwise you can create the session manually and passing the api key. 
 
 ```python
 import picsart_sdk
@@ -19,9 +22,14 @@ session = picsart_sdk.Session(api_key="API_KEY")
 upload_client = session.client("upload")
 ```
 
-and then use it:
+afterwords, you can use the specific client. 
 
+Example for uploading a file:
 ```python
-upload_client.upload_image("razvan.jpg")
-upload_client.upload_image("http://domain.com/file.jpg")
+import picsart_sdk
+upload_client = picsart_sdk.client("upload")
+
+upload_client.upload_from_path(file_path="/path/to/image.jpg")
+upload_client.upload_from_url(url="http://domain.com/file.jpg")
 ```
+
