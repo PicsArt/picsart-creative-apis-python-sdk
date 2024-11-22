@@ -1,3 +1,5 @@
+from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
+
 # PICSART CREATIVE APIS
 
 ## Description
@@ -63,5 +65,31 @@ removebg_request = RemoveBackgroundRequest(
     stroke_color="red",
 )
 response = client.remove_background(removebg_request)
+print(response.data.url)
+```
+
+## Upscale
+
+```python
+import picsart_sdk
+
+client = picsart_sdk.client("upscale")
+response = client.upscale_from_url(url="https://domain.com/image.jpg", upscale_factor=2)
+print(response.data.url)
+```
+
+or using `UpscaleRequest`
+
+```python
+import picsart_sdk
+from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
+from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
+
+client = picsart_sdk.client("upscale")
+request = UpscaleRequest(
+    image=PicsartImage(image_path="./file.jpg"),
+    upscale_factor=4
+)
+response = client.upscale(request)
 print(response.data.url)
 ```
