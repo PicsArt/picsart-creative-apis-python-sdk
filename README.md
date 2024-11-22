@@ -22,7 +22,7 @@ session = picsart_sdk.Session(api_key="API_KEY")
 upload_client = session.client("upload")
 ```
 
-afterwords, you can use the specific client. 
+afterwards, you can use the specific client. 
 
 Example for uploading a file:
 ```python
