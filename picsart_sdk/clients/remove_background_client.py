@@ -15,13 +15,7 @@ class RemoveBackgroundClient(ImageBaseClient):
         return "removebg"
 
     def remove_background(self, request: RemoveBackgroundRequest) -> ApiResponse:
-        self.set_payload(request)
-        return self.session.http_client.post(
-            url=self.post_url,
-            data=self._payload,
-            files=self._files,
-            headers=self.headers,
-        )
+        return self.post(request=request)
 
     def set_payload(self, request: RemoveBackgroundRequest):
         super().set_payload(request)

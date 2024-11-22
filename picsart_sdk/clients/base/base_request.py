@@ -1,8 +1,7 @@
-from dataclasses import dataclass, asdict, fields
+from dataclasses import asdict, fields
 from enum import Enum
 
 
-@dataclass
 class BaseRequest:
     def get_dict(self):
         data = asdict(self)

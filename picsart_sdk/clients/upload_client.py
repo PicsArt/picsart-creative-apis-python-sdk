@@ -12,18 +12,7 @@ class UploadClient(ImageBaseClient):
         return "upload"
 
     def upload_image(self, request: UploadRequest) -> ApiResponse:
-        self.set_payload(request)
-        result = self.session.http_client.post(
-            url=self.post_url,
-            data=self._payload,
-            files=self._files,
-            headers=self.headers,
-        )
-
-        return ApiResponse(
-            status=result["status"],
-            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
-        )
+        return self.post(request=request)
 
     def upload_from_path(self, file_path: str) -> ApiResponse:
         return self.upload_image(

@@ -1,6 +1,8 @@
 from abc import abstractmethod
 from typing import Dict, Union, IO
 
+from botocore.vendored import requests
+from picsart_sdk.api_response import ApiResponse, ApiResponseData
 from picsart_sdk.clients.http_client import HttpClient
 
 
@@ -41,3 +43,17 @@ class BaseClient:
     @property
     def post_url(self):
         return f"{self.base_url}/{self.session.api_version}/{self.endpoint}"
+
+    def post(self, request):
+        self.set_payload(request)
+        result = self.session.http_client.post(
+            url=self.post_url,
+            data=self._payload,
+            files=self._files,
+            headers=self.headers,
+        )
+
+        return ApiResponse(
+            status=result["status"],
+            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
+        )
