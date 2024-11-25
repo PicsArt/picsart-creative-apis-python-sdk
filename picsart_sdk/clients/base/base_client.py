@@ -1,9 +1,7 @@
 from abc import abstractmethod
 from typing import Dict, Union, IO
 
-from botocore.vendored import requests
 from picsart_sdk.api_response import ApiResponse, ApiResponseData
-from picsart_sdk.clients.http_client import HttpClient
 
 
 class BaseClient:

@@ -19,6 +19,7 @@ class ImageBaseClient(BaseClient, ABC):
             self._payload.setdefault("image_url", request.image.image_url)
 
         if request.image.image_path:
+            self._payload = self._payload or {}
             self._files = self._files or {}
             self._files.setdefault(
                 "image",

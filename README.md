@@ -338,4 +338,13 @@ request = UpscaleRequest(
 response = client.upscale(request)
 print(response.data.url)
 ```
+<<<<<<< HEAD
 >>>>>>> a16605e (update readme)
+=======
+
+
+# Errors
+
+If the API returns a 400 HTTP error, it will be translated into an `ApiError` in the SDK.
+If the pre-validation of the payload fails, the SDK will raise a `ValueError.`
+>>>>>>> 5fbc476 (add apierror)
