@@ -26,3 +26,25 @@ class UpscaleClient(ImageBaseClient):
                 image=PicsartImage(image_url=url), upscale_factor=upscale_factor
             )
         )
+
+
+class AsyncUpscaleClient(UpscaleClient):
+
+    async def upscale(self, request: UpscaleRequest) -> ApiResponse:
+        return await self.async_post(request=request)
+
+    async def upscale_from_path(
+        self, file_path: str, upscale_factor: int = 2
+    ) -> ApiResponse:
+        return await self.upscale(
+            request=UpscaleRequest(
+                image=PicsartImage(image_path=file_path), upscale_factor=upscale_factor
+            )
+        )
+
+    async def upscale_from_url(self, url: str, upscale_factor: int = 2) -> ApiResponse:
+        return await self.upscale(
+            request=UpscaleRequest(
+                image=PicsartImage(image_url=url), upscale_factor=upscale_factor
+            )
+        )
