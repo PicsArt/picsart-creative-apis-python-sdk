@@ -342,6 +342,35 @@ print(response.data.url)
 >>>>>>> a16605e (update readme)
 =======
 
+# Async Client
+The SDK supports also async client, which exposes the same interface:
+
+```python
+import asyncio
+
+import picsart_sdk
+from picsart_sdk.clients.upload_client import AsyncUploadClient
+from picsart_sdk.clients.requests_models.upload_request import UploadRequest
+from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
+
+async def call_upload():
+    client: AsyncUploadClient = picsart_sdk.async_client("upload")
+    response1 = await client.upload_image(
+        request=UploadRequest(
+            PicsartImage(
+                image_path="./file.jpg"
+            )
+        )
+    )
+    # or
+    response2 = await client.upload_from_path(file_path="./file.jpg")
+    
+    print(response1)
+    print(response2)
+
+asyncio.run(call_upload())
+```
+
 
 # Errors
 

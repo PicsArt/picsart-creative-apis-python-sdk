@@ -24,3 +24,19 @@ class RemoveBackgroundClient(ImageBaseClient):
         return self.remove_background(
             RemoveBackgroundRequest(image=PicsartImage(image_url=url))
         )
+
+
+class AsyncRemoveBackgroundClient(RemoveBackgroundClient):
+
+    async def remove_background(self, request: RemoveBackgroundRequest) -> ApiResponse:
+        return await self.post(request=request)
+
+    async def remove_background_from_path(self, file_path: str) -> ApiResponse:
+        return await self.remove_background(
+            RemoveBackgroundRequest(image=PicsartImage(image_path=file_path))
+        )
+
+    async def remove_background_from_url(self, url: str) -> ApiResponse:
+        return await self.remove_background(
+            RemoveBackgroundRequest(image=PicsartImage(image_url=url))
+        )

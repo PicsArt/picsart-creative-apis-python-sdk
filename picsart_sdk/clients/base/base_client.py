@@ -55,3 +55,17 @@ class BaseClient:
             status=result["status"],
             data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
         )
+
+    async def async_post(self, request):
+        self.set_payload(request)
+        result = await self.session.http_client.post(
+            url=self.post_url,
+            data=self._payload,
+            files=self._files,
+            headers=self.headers,
+        )
+
+        return ApiResponse(
+            status=result["status"],
+            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
+        )
