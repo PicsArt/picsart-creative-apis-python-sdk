@@ -13,6 +13,7 @@ def client(client_name: str, is_async: bool = False, *args, **kwargs):
         client_name=client_name, is_async=is_async, *args, **kwargs
     )
 
+
 def async_client(client_name: str, *args, **kwargs):
     """
     Create a low-level async service client by name using the default session.
