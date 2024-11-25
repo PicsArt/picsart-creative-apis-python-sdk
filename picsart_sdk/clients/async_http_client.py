@@ -6,18 +6,18 @@ from httpx import Response
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
 
 
-class HttpClient(BaseHttpClient):
+class AsyncHttpClient(BaseHttpClient):
     def __init__(self):
         pass
 
-    def post(
+    async def post(
         self,
         url: str,
         data: dict[str, any],
         files: dict[str, any],
         headers: dict[str, str],
     ) -> Any:
-        response = self._do_call(
+        response = await self._do_call(
             method="POST",
             url=url,
             data=data,
@@ -29,7 +29,7 @@ class HttpClient(BaseHttpClient):
 
     @classmethod
     @handle_http_errors
-    def _do_call(
+    async def _do_call(
         cls,
         method: str,
         url,
@@ -37,12 +37,13 @@ class HttpClient(BaseHttpClient):
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
     ) -> Response:
+        print("Async client")
         try:
-            with httpx.Client() as client:
-                response = client.request(
+            async with httpx.AsyncClient() as client:
+                response = await client.request(
                     method=method,
                     url=url,
-                    headers={**headers, **cls.default_headers},
+                    headers=headers,
                     data=data,
                     files=files,
                 )

@@ -21,3 +21,17 @@ class UploadClient(ImageBaseClient):
 
     def upload_from_url(self, url: str) -> ApiResponse:
         return self.upload_image(UploadRequest(image=PicsartImage(image_url=url)))
+
+
+class AsyncUploadClient(UploadClient):
+
+    async def upload_image(self, request: UploadRequest) -> ApiResponse:
+        return await self.async_post(request=request)
+
+    async def upload_from_path(self, file_path: str) -> ApiResponse:
+        return await self.upload_image(
+            UploadRequest(image=PicsartImage(image_path=file_path))
+        )
+
+    async def upload_from_url(self, url: str) -> ApiResponse:
+        return await self.upload_image(UploadRequest(image=PicsartImage(image_url=url)))
