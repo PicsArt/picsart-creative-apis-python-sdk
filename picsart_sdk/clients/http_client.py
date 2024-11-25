@@ -3,7 +3,7 @@ from typing import Dict, Any, IO
 import httpx
 from httpx import Response
 
-from picsart_sdk.clients.base.base_http_client import BaseHttpClient
+from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
 
 
 class HttpClient(BaseHttpClient):
@@ -28,6 +28,7 @@ class HttpClient(BaseHttpClient):
         return response.json()
 
     @classmethod
+    @handle_http_errors
     def _do_call(
         cls,
         method: str,
@@ -36,11 +37,10 @@ class HttpClient(BaseHttpClient):
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
     ) -> Response:
-        print(f"{method} {url}: data={data} files={files} headers={headers}")
-
         try:
             with httpx.Client() as client:
-                response = client.post(
+                response = client.request(
+                    method=method,
                     url=url,
                     headers=headers,
                     data=data,
