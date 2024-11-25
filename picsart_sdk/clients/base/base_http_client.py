@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 from functools import wraps
 
 import httpx
-from httpx import __version__
 
+from picsart_sdk.version import __version__
 from picsart_sdk.clients.api_error import ApiError, ApiAuthenticationError
 
 

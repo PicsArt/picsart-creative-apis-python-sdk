@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
@@ -11,3 +12,4 @@ class ApiResponseData:
 class ApiResponse:
     status: str
     data: ApiResponseData
+    transaction_id: Optional[str] = None

@@ -37,7 +37,6 @@ class AsyncHttpClient(BaseHttpClient):
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
     ) -> Response:
-        print("Async client")
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.request(

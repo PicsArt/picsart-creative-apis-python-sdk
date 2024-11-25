@@ -1,13 +1,22 @@
 import importlib
+from enum import Enum
 
 from picsart_sdk.clients.base.base_client import BaseClient
 
 
+class Clients(str, Enum):
+    UPLOAD = "upload"
+    REMOVEBG = "removebg"
+    UPSCALE = "upscale"
+    ULTRA_UPSCALE = "ultra_upscale"
+
+
 class ClientFactory:
     _clients = {
-        "upload": "picsart_sdk.clients.upload_client.UploadClient",
-        "removebg": "picsart_sdk.clients.remove_background_client.RemoveBackgroundClient",
-        "upscale": "picsart_sdk.clients.upscale_client.UpscaleClient",
+        Clients.UPLOAD.value: "picsart_sdk.clients.UploadClient",
+        Clients.REMOVEBG.value: "picsart_sdk.clients.RemoveBackgroundClient",
+        Clients.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",
+        Clients.ULTRA_UPSCALE.value: "picsart_sdk.clients.UltraUpscaleClient",
     }
 
     @staticmethod

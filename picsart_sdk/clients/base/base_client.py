@@ -56,7 +56,7 @@ class BaseClient:
             data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
         )
 
-    async def async_post(self, request):
+    async def async_post(self, request, caller: "BaseClient"):
         self.set_payload(request)
         result = await self.session.http_client.post(
             url=self.post_url,
@@ -65,7 +65,12 @@ class BaseClient:
             headers=self.headers,
         )
 
+        return caller._parse_response(result=result)
+
+    def _parse_response(self, result: dict):
+        data = result["data"] if "data" in result else None
         return ApiResponse(
             status=result["status"],
-            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
+            data=ApiResponseData(url=data["url"], id=data["id"]) if data else None,
+            transaction_id=result.get("transaction_id"),
         )
