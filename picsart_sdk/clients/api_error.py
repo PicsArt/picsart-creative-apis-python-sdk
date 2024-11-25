@@ -1,6 +1,6 @@
-class APIError(Exception):
+class ApiError(Exception):
     """
-    Raised for errors related to API requests.
+    Raise this exception for errors related to API requests.
 
     Attributes:
         detail (str): A detailed error message.
@@ -27,6 +27,12 @@ class APIError(Exception):
         super().__init__(self.__str__())
 
     def __str__(self):
-        return (
-            f"APIError(detail={self.detail}, message={self.message}, code={self.code})"
-        )
+        return f"{self.__class__.__name__}(detail={self.detail}, message={self.message}, code={self.code})"
+
+
+class ApiAuthenticationError(ApiError):
+    """
+    Raise this exception for authentication errors.
+    """
+
+    pass
