@@ -3,7 +3,7 @@ from functools import wraps
 
 import httpx
 
-from picsart_sdk.clients.api_error import APIError
+from picsart_sdk.clients.api_error import ApiError, ApiAuthenticationError
 
 
 def handle_http_errors(func):
@@ -29,7 +29,10 @@ def handle_http_errors(func):
                     "code": e.response.status_code,
                 }
 
-            raise APIError(response_data=error_data) from e
+            if e.response.status_code == 401:
+                raise ApiAuthenticationError(response_data=error_data) from e
+
+            raise ApiError(response_data=error_data) from e
 
     return wrapper
 
