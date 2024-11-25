@@ -28,4 +28,6 @@ class Session:
         return Session()
 
     def client(self, client_name: str, is_async: bool = False):
-        return ClientFactory.get_client(client_name=client_name, session=self, is_async=is_async)
+        return ClientFactory.get_client(
+            client_name=client_name, session=self, is_async=is_async
+        )

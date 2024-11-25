@@ -27,25 +27,13 @@ def handle_error(e: httpx.HTTPStatusError):
 
     raise ApiError(response_data=error_data) from e
 
-# def handle_http_errors(func):
-#     """
-#     Decorator to handle HTTP errors.
-#     """
-#
-#     @wraps(func)
-#     def wrapper(*args, **kwargs):
-#         try:
-#             return func(*args, **kwargs)
-#         except httpx.HTTPStatusError as e:
-#             handle_error(e)
-#
-#     return wrapper
 
 def handle_http_errors(func):
     """
     Decorator to handle HTTP errors for both sync and async functions.
     """
     if inspect.iscoroutinefunction(func):
+
         @wraps(func)
         async def async_wrapper(*args, **kwargs):
             try:
@@ -55,6 +43,7 @@ def handle_http_errors(func):
 
         return async_wrapper
     else:
+
         @wraps(func)
         def sync_wrapper(*args, **kwargs):
             try:
