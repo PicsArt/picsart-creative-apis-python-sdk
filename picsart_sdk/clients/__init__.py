@@ -8,6 +8,10 @@ from picsart_sdk.clients.ultra_upscale_client import (
     UltraUpscaleClient,
     AsyncUltraUpscaleClient,
 )
+from picsart_sdk.clients.ultra_enhance_client import (
+    UltraEnhanceClient,
+    AsyncUltraEnhanceClient,
+)
 
 
 __all__ = [
@@ -19,4 +23,6 @@ __all__ = [
     "AsyncUpscaleClient",
     "UltraUpscaleClient",
     "AsyncUltraUpscaleClient",
+    "UltraEnhanceClient",
+    "AsyncUltraEnhanceClient",
 ]
