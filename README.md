@@ -371,6 +371,39 @@ async def call_upload():
 asyncio.run(call_upload())
 ```
 
+# Async Endpoints
+
+Some Picsart API endpoints support `async` mode, allowing clients to initiate a POST request that creates a transaction 
+identified by a transaction_id. This enables the client to retrieve the results of the requested operation at a later 
+time using that transaction ID. These specific operations also provide a `get_result` method on the client object for 
+fetching the final output. For example, the ultra upscale operation:
+
+```python
+import time
+import picsart_sdk
+from picsart_sdk.clients import UltraUpscaleClient
+from picsart_sdk.clients.client_factory import Clients
+from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
+
+client: UltraUpscaleClient = picsart_sdk.client(Clients.ULTRA_UPSCALE)
+response1 = client.ultra_upscale_from_path(file_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
+print(response1)
+# expect something like: ApiResponse(status='queued', data=None, transaction_id='6862207a-838c-48c6-ba12-cf6083a9d76e')
+
+time.sleep(10)
+response2 = client.get_result(transaction_id=response1.transaction_id)
+print(response2)
+# expect something like: 
+# ApiResponse(
+#   status='success', 
+#   data=ApiResponseData(
+#       id='702eb942-62fb-4c73-834b-db189cca923e.png', 
+#       url='https://cdn.picsart.io/702eb942-62fb-4c73-834b-db189cca923e.png'
+#   ), 
+#   transaction_id=None
+# )
+```
+
 
 # Errors
 

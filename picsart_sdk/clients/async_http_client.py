@@ -27,6 +27,19 @@ class AsyncHttpClient(BaseHttpClient):
 
         return response.json()
 
+    async def get(
+        self,
+        url: str,
+        headers: Dict[str, str] = None,
+    ):
+        response = await self._do_call(
+            method="GET",
+            url=url,
+            headers=headers,
+        )
+
+        return response.json()
+
     @classmethod
     @handle_http_errors
     async def _do_call(
@@ -54,6 +67,3 @@ class AsyncHttpClient(BaseHttpClient):
                 for file in files.values():
                     if isinstance(file, IO):
                         file.close()
-
-    def get(self, url, headers):
-        pass
