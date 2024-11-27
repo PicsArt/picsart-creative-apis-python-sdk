@@ -21,7 +21,14 @@ class ClientFactory:
     }
 
     @staticmethod
-    def get_client(client_name: str, session, http_client: BaseHttpClient, is_async=False, *args, **kwargs):
+    def get_client(
+        client_name: str,
+        session,
+        http_client: BaseHttpClient,
+        is_async=False,
+        *args,
+        **kwargs,
+    ):
         class_path = ClientFactory._clients.get(client_name.lower())
         if not class_path:
             raise ValueError(f"Unknown client name: {client_name}")
