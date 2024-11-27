@@ -2,6 +2,7 @@ import importlib
 from enum import Enum
 
 from picsart_sdk.clients.base.base_client import BaseClient
+from picsart_sdk.clients.base.base_http_client import BaseHttpClient
 
 
 class Clients(str, Enum):
@@ -20,7 +21,7 @@ class ClientFactory:
     }
 
     @staticmethod
-    def get_client(client_name: str, session, is_async=False, *args, **kwargs):
+    def get_client(client_name: str, session, http_client: BaseHttpClient, is_async=False, *args, **kwargs):
         class_path = ClientFactory._clients.get(client_name.lower())
         if not class_path:
             raise ValueError(f"Unknown client name: {client_name}")
@@ -34,7 +35,7 @@ class ClientFactory:
         if not issubclass(client_class, BaseClient):
             raise TypeError(f"{class_name} does not implement BaseClient")
 
-        return client_class(session, *args, **kwargs)
+        return client_class(session=session, http_client=http_client, *args, **kwargs)
 
     @staticmethod
     def add_client(name: str, class_name):

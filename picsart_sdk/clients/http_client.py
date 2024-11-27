@@ -27,6 +27,19 @@ class HttpClient(BaseHttpClient):
 
         return response.json()
 
+    def get(
+        self,
+        url: str,
+        headers: Dict[str, str] = None,
+    ):
+        response = self._do_call(
+            method="GET",
+            url=url,
+            headers=headers,
+        )
+
+        return response.json()
+
     @classmethod
     @handle_http_errors
     def _do_call(
@@ -54,6 +67,3 @@ class HttpClient(BaseHttpClient):
                 for file in files.values():
                     if isinstance(file, IO):
                         file.close()
-
-    def get(self, url, headers):
-        pass

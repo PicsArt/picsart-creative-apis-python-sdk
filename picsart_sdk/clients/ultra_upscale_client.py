@@ -38,11 +38,14 @@ class UltraUpscaleClient(ImageBaseClient):
             )
         )
 
+    def get_result(self, transaction_id: str) -> ApiResponse:
+        return self.get(postfix_url=transaction_id)
+
 
 class AsyncUltraUpscaleClient(UltraUpscaleClient):
 
     async def ultra_upscale(self, request: UltraUpscaleRequest) -> ApiResponse:
-        return await self.async_post(request=request, caller=self)
+        return await self.async_post(request=request)
 
     async def ultra_upscale_from_path(
         self, file_path: str, upscale_factor: int = 2, mode=UltraUpscaleMode.SYNC
@@ -65,3 +68,6 @@ class AsyncUltraUpscaleClient(UltraUpscaleClient):
                 mode=mode,
             )
         )
+
+    async def get_result(self, transaction_id: str):
+        return await self.async_get(postfix_url=transaction_id)
