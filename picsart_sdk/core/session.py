@@ -19,8 +19,6 @@ class Session:
         if self.api_version is None:
             self.api_version = os.environ.get("PICSART_API_VERSION", "1.0")
 
-        # todo, inject somehow else in order to support also async http
-
     @staticmethod
     def get_default_session():
         return Session()
@@ -32,5 +30,8 @@ class Session:
             http_client = HttpClient()
 
         return ClientFactory.get_client(
-            client_name=client_name, session=self, is_async=is_async, http_client=http_client,
+            client_name=client_name,
+            session=self,
+            is_async=is_async,
+            http_client=http_client,
         )
