@@ -31,8 +31,6 @@ class Session:
         else:
             http_client = HttpClient()
 
-        print("in client http_client=", http_client)
-
         return ClientFactory.get_client(
             client_name=client_name, session=self, is_async=is_async, http_client=http_client,
         )
