@@ -10,6 +10,10 @@ from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
 from picsart_sdk.clients.requests_models.ultra_enhance_request import (
     UltraEnhanceRequest,
 )
+from picsart_sdk.clients.requests_models.face_enhancement_request import (
+    FaceEnhancementRequest,
+)
+
 
 __all__ = [
     "PicsartImage",
@@ -18,4 +22,5 @@ __all__ = [
     "UploadRequest",
     "UpscaleRequest",
     "UltraEnhanceRequest",
+    "FaceEnhancementRequest",
 ]
