@@ -11,6 +11,7 @@ class Clients(str, Enum):
     UPSCALE = "upscale"
     ULTRA_UPSCALE = "ultra_upscale"
     ULTRA_ENHANCE = "ultra_enhance"
+    FACE_ENHANCEMENT = "face_enhancement"
 
 
 class ClientFactory:
@@ -20,6 +21,7 @@ class ClientFactory:
         Clients.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",
         Clients.ULTRA_UPSCALE.value: "picsart_sdk.clients.UltraUpscaleClient",
         Clients.ULTRA_ENHANCE.value: "picsart_sdk.clients.UltraEnhanceClient",
+        Clients.FACE_ENHANCEMENT.value: "picsart_sdk.clients.FaceEnhancementClient",
     }
 
     @staticmethod
