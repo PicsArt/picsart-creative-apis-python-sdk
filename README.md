@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # PICSART CREATIVE APIS Python SDK
 =======
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
@@ -273,6 +274,39 @@ This project has some third-party dependencies, each of which may have independe
 If you like Picsart Creative APIs SDK and would like to contribute to this open-source project, please check the [Contribution
 guide](./CONTRIBUTING.md).
 =======
+=======
+# PICSART CREATIVE APIS
+
+## Description
+
+This is a Python SDK of Picsart Programmable Image APIs and Picsart GenAI APIs. 
+You can do many actions with your images just by adding a few lines of code to your Python projects.
+
+## Usage
+
+Create the client:
+1. Default session. It is shorter if the `PICSART_API_KEY` environment variable is set.
+
+```python
+import picsart_sdk
+upload_client = picsart_sdk.client("upload")
+```
+otherwise you can create the session manually and passing the api key. 
+
+```python
+import picsart_sdk
+session = picsart_sdk.Session(api_key="API_KEY")
+upload_client = session.client("upload")
+```
+
+afterwards, you can use the specific client. 
+
+Example for uploading a file:
+```python
+import picsart_sdk
+upload_client = picsart_sdk.client("upload")
+
+>>>>>>> 936ede4 (readd coide)
 upload_client.upload_from_path(file_path="/path/to/image.jpg")
 upload_client.upload_from_url(url="https://domain.com/file.jpg")
 ```
@@ -310,8 +344,11 @@ response = client.remove_background(removebg_request)
 print(response.data.url)
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e83d5f (update readme; sugar syntax for removebg)
 =======
+=======
+>>>>>>> 936ede4 (readd coide)
 
 ## Upscale
 
@@ -339,8 +376,11 @@ response = client.upscale(request)
 print(response.data.url)
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a16605e (update readme)
 =======
+=======
+>>>>>>> 936ede4 (readd coide)
 
 # Async Client
 The SDK supports also async client, which exposes the same interface:
@@ -410,4 +450,7 @@ print(response2)
 If the API returns a 400 HTTP error, it will be translated into an `ApiError` in the SDK.
 If the authentication is not successful it raises `ApiAuthenticationError` error.
 If the pre-validation of the payload fails, the SDK will raise a `ValueError.`
+<<<<<<< HEAD
 >>>>>>> 5fbc476 (add apierror)
+=======
+>>>>>>> 936ede4 (readd coide)
