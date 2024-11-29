@@ -57,7 +57,7 @@ def handle_http_errors(func):
 class BaseHttpClient(ABC):
 
     default_headers = {
-        "User-Agent": f"picsart-sdk-python / {__version__}",
+        "User-Agent": f"picsart-sdk-python/{__version__}",
         "Accept": "application/json",
     }
 

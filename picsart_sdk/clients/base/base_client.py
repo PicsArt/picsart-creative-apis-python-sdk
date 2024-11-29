@@ -54,10 +54,7 @@ class BaseClient:
             headers=self.headers,
         )
 
-        return ApiResponse(
-            status=result["status"],
-            data=ApiResponseData(url=result["data"]["url"], id=result["data"]["id"]),
-        )
+        return self._parse_response(result=result)
 
     async def async_post(self, request) -> ApiResponse:
         self.set_payload(request)

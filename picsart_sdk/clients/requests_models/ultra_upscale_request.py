@@ -18,6 +18,6 @@ class UltraUpscaleMode(str, Enum):
 @dataclass
 class UltraUpscaleRequest(BaseRequest):
     image: PicsartImage
-    upscale_factor: int
+    upscale_factor: int = 2
     format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG
     mode: Optional[UltraUpscaleMode] = UltraUpscaleMode.SYNC

@@ -5,6 +5,9 @@
 This is a Python SDK of Picsart Programmable Image APIs and Picsart GenAI APIs. 
 You can do many actions with your images just by adding a few lines of code to your Python projects.
 
+## Requirements
+Python 3.9+
+
 ## Usage
 
 Create the client:
@@ -29,8 +32,8 @@ Example for uploading a file:
 import picsart_sdk
 upload_client = picsart_sdk.client("upload")
 
-upload_client.upload_from_path(file_path="/path/to/image.jpg")
-upload_client.upload_from_url(url="https://domain.com/file.jpg")
+upload_client.upload_image(image_path="/path/to/image.jpg")
+upload_client.upload_image(image_url="https://domain.com/file.jpg")
 ```
 
 ## Remove Background
@@ -40,29 +43,23 @@ upload_client.upload_from_url(url="https://domain.com/file.jpg")
 import picsart_sdk
 client = picsart_sdk.client("removebg")
 
-response1 = client.remove_background_from_path(file_path="./file.jpg")
-response2 = client.remove_background_from_url(url="https://domain.com/image.jpg")
+response1 = client.remove_background(image_path="./file.jpg")
+response2 = client.remove_background(image_url="https://domain.com/image.jpg")
 print(response1.data.url)
 print(response2.data.url)
 ```
 
 ### More complex case
 
-In case you want to apply different features available for [remove background](https://docs.picsart.io/reference/image-remove-background), it can be used a `RemoveBackgroundRequest`:
+In case you want to apply different features available for [remove background](https://docs.picsart.io/reference/image-remove-background), 
+you can pass them as parameters, having the same names.
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients.requests_models.remove_background_request import RemoveBackgroundRequest
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
 
 client = picsart_sdk.client("removebg")
 
-removebg_request = RemoveBackgroundRequest(
-    image=PicsartImage(image_url="https://domain.com/image.jpg"),
-    stroke_size=2,
-    stroke_color="red",
-)
-response = client.remove_background(removebg_request)
+response = client.remove_background(image_url="https://domain.com/image.jpg", stroke_size=2, stroke_color="red")
 print(response.data.url)
 ```
 
@@ -72,48 +69,24 @@ print(response.data.url)
 import picsart_sdk
 
 client = picsart_sdk.client("upscale")
-response = client.upscale_from_url(url="https://domain.com/image.jpg", upscale_factor=2)
-print(response.data.url)
-```
-
-or using `UpscaleRequest`
-
-```python
-import picsart_sdk
-from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
-
-client = picsart_sdk.client("upscale")
-request = UpscaleRequest(
-    image=PicsartImage(image_path="./file.jpg"),
-    upscale_factor=4
-)
-response = client.upscale(request)
+response = client.upscale(url="https://domain.com/image.jpg", upscale_factor=2)
 print(response.data.url)
 ```
 
 # Async Client
-The SDK supports also async client, which exposes the same interface:
+The SDK supports also an async client, which exposes the same interface:
 
 ```python
 import asyncio
 
 import picsart_sdk
 from picsart_sdk.clients.upload_client import AsyncUploadClient
-from picsart_sdk.clients.requests_models.upload_request import UploadRequest
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
 
 async def call_upload():
     client: AsyncUploadClient = picsart_sdk.async_client("upload")
-    response1 = await client.upload_image(
-        request=UploadRequest(
-            PicsartImage(
-                image_path="./file.jpg"
-            )
-        )
-    )
+    response1 = await client.upload_image(image_path="./file.jpg")
     # or
-    response2 = await client.upload_from_path(file_path="./file.jpg")
+    response2 = await client.upload_image(image_url="https://domain.com/image.jpg")
     
     print(response1)
     print(response2)
@@ -136,7 +109,7 @@ from picsart_sdk.clients.client_factory import Clients
 from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
 
 client: UltraUpscaleClient = picsart_sdk.client(Clients.ULTRA_UPSCALE)
-response1 = client.ultra_upscale_from_path(file_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
+response1 = client.ultra_upscale(file_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
 print(response1)
 # expect something like: ApiResponse(status='queued', data=None, transaction_id='6862207a-838c-48c6-ba12-cf6083a9d76e')
 

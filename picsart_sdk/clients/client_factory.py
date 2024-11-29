@@ -5,9 +5,9 @@ from picsart_sdk.clients.base.base_client import BaseClient
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient
 
 
-class Clients(str, Enum):
+class ApiClient(str, Enum):
     UPLOAD = "upload"
-    REMOVEBG = "removebg"
+    REMOVE_BACKGROUND = "remove_background"
     UPSCALE = "upscale"
     ULTRA_UPSCALE = "ultra_upscale"
     ULTRA_ENHANCE = "ultra_enhance"
@@ -16,12 +16,12 @@ class Clients(str, Enum):
 
 class ClientFactory:
     _clients = {
-        Clients.UPLOAD.value: "picsart_sdk.clients.UploadClient",
-        Clients.REMOVEBG.value: "picsart_sdk.clients.RemoveBackgroundClient",
-        Clients.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",
-        Clients.ULTRA_UPSCALE.value: "picsart_sdk.clients.UltraUpscaleClient",
-        Clients.ULTRA_ENHANCE.value: "picsart_sdk.clients.UltraEnhanceClient",
-        Clients.FACE_ENHANCEMENT.value: "picsart_sdk.clients.FaceEnhancementClient",
+        ApiClient.UPLOAD.value: "picsart_sdk.clients.UploadClient",
+        ApiClient.REMOVE_BACKGROUND.value: "picsart_sdk.clients.RemoveBackgroundClient",
+        ApiClient.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",
+        ApiClient.ULTRA_UPSCALE.value: "picsart_sdk.clients.UltraUpscaleClient",
+        ApiClient.ULTRA_ENHANCE.value: "picsart_sdk.clients.UltraEnhanceClient",
+        ApiClient.FACE_ENHANCEMENT.value: "picsart_sdk.clients.FaceEnhancementClient",
     }
 
     @staticmethod

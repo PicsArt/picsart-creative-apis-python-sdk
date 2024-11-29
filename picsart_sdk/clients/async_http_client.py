@@ -7,8 +7,8 @@ from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_htt
 
 
 class AsyncHttpClient(BaseHttpClient):
-    def __init__(self):
-        pass
+    _raw_response = None
+    _json_response = None
 
     async def post(
         self,
@@ -31,6 +31,7 @@ class AsyncHttpClient(BaseHttpClient):
         self,
         url: str,
         headers: Dict[str, str] = None,
+        as_json: bool = True,
     ):
         response = await self._do_call(
             method="GET",
@@ -38,7 +39,21 @@ class AsyncHttpClient(BaseHttpClient):
             headers=headers,
         )
 
-        return response.json()
+        self._raw_response = response
+        self._json_response = response.json()
+
+        if as_json:
+            return self._json_response
+
+        return self._raw_response
+
+    @property
+    def json(self):
+        return self._json_response
+
+    @property
+    def raw_response(self):
+        return self._raw_response
 
     @classmethod
     @handle_http_errors
