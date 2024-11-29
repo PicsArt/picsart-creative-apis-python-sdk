@@ -41,7 +41,13 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             None,
         ),
-        ("ultra_upscale", "ultra_upscale", "../resources/image1.jpeg", None, None, ),
+        (
+            "ultra_upscale",
+            "ultra_upscale",
+            "../resources/image1.jpeg",
+            None,
+            None,
+        ),
         (
             "ultra_upscale",
             "ultra_upscale",
@@ -49,7 +55,13 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             None,
         ),
-        ("ultra_enhance", "ultra_enhance", "../resources/image1.jpeg", None, None, ),
+        (
+            "ultra_enhance",
+            "ultra_enhance",
+            "../resources/image1.jpeg",
+            None,
+            None,
+        ),
         (
             "ultra_enhance",
             "ultra_enhance",
@@ -57,7 +69,13 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             None,
         ),
-        ("face_enhancement", "face_enhancement", "../resources/image1.jpeg", None, None, ),
+        (
+            "face_enhancement",
+            "face_enhancement",
+            "../resources/image1.jpeg",
+            None,
+            None,
+        ),
         (
             "face_enhancement",
             "face_enhancement",
@@ -65,7 +83,13 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             None,
         ),
-        ("upload", "upload_image", "../resources/image1.jpeg", None, None, ),
+        (
+            "upload",
+            "upload_image",
+            "../resources/image1.jpeg",
+            None,
+            None,
+        ),
         (
             "upload",
             "upload_image",
