@@ -32,16 +32,11 @@ class EffectsClient(ImageBaseClient):
         return self.post(request=request)
 
     def get_available_effects(self) -> EffectsList:
-        return self.get()
-
-    def _parse_response(self, result: dict) -> Union[ApiResponse, EffectsList]:
-        if isinstance(result.get("data"), list):
-            return EffectsList(
-                effects=[item.get("name") for item in result.get("data", [])]
-            )
-
-        return super()._parse_response(result)
-
+        result = self.http_client.get(
+            url=self._get_url(),
+            headers=self.headers,
+        )
+        return EffectsList(effects=[item.get("name") for item in result.get("data", [])])
 
 class AsyncEffectsClient(ImageBaseClient):
     @property
