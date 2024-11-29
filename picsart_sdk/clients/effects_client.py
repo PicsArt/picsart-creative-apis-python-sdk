@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from picsart_sdk.api_responses import ApiResponse
 
@@ -34,9 +34,13 @@ class EffectsClient(ImageBaseClient):
     def get_available_effects(self) -> EffectsList:
         return self.get()
 
+    def _parse_response(self, result: dict) -> Union[ApiResponse, EffectsList]:
+        if isinstance(result.get("data"), list):
+            return EffectsList(
+                effects=[item.get("name") for item in result.get("data", [])]
+            )
 
-    def _parse_response(self, result: dict) -> EffectsList:
-        return EffectsList(effects=[item.get("name") for item in result.get("data", [])])
+        return super()._parse_response(result)
 
 
 class AsyncEffectsClient(ImageBaseClient):
