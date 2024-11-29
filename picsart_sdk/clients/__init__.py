@@ -1,3 +1,7 @@
+from picsart_sdk.clients.effects_previews_client import (
+    EffectsPreviewsClient,
+    AsyncEffectsPreviewsClient,
+)
 from picsart_sdk.clients.upload_client import UploadClient, AsyncUploadClient
 from picsart_sdk.clients.remove_background_client import (
     RemoveBackgroundClient,
@@ -34,4 +38,6 @@ __all__ = [
     "AsyncFaceEnhancementClient",
     "EffectsClient",
     "AsyncEffectsClient",
+    "EffectsPreviewsClient",
+    "AsyncEffectsPreviewsClient",
 ]

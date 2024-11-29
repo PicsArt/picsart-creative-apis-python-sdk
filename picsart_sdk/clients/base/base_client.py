@@ -54,8 +54,6 @@ class BaseClient:
             headers=self.headers,
         )
 
-        print(result)
-
         return self._parse_response(result=result)
 
     async def async_post(self, request) -> ApiResponse:

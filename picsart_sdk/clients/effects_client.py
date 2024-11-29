@@ -36,7 +36,10 @@ class EffectsClient(ImageBaseClient):
             url=self._get_url(),
             headers=self.headers,
         )
-        return EffectsList(effects=[item.get("name") for item in result.get("data", [])])
+        return EffectsList(
+            effects=[item.get("name") for item in result.get("data", [])]
+        )
+
 
 class AsyncEffectsClient(ImageBaseClient):
     @property
@@ -45,9 +48,9 @@ class AsyncEffectsClient(ImageBaseClient):
 
     async def effects(
         self,
+        effect_name,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-        effect_name: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
         request = EffectsRequest(
@@ -56,3 +59,12 @@ class AsyncEffectsClient(ImageBaseClient):
             format=output_format,
         )
         return await self.async_post(request=request)
+
+    async def get_available_effects(self) -> EffectsList:
+        result = await self.http_client.get(
+            url=self._get_url(),
+            headers=self.headers,
+        )
+        return EffectsList(
+            effects=[item.get("name") for item in result.get("data", [])]
+        )
