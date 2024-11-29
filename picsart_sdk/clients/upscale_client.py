@@ -1,6 +1,11 @@
+from typing import Optional
+
 from picsart_sdk.api_response import ApiResponse
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
+from picsart_sdk.clients.requests_models.picsart_image import (
+    PicsartImage,
+    PicsartImageFormat,
+)
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
 
 
@@ -10,41 +15,32 @@ class UpscaleClient(ImageBaseClient):
     def endpoint(self):
         return "upscale"
 
-    def upscale(self, request: UpscaleRequest) -> ApiResponse:
+    def upscale(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        upscale_factor: int = 2,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
+    ) -> ApiResponse:
+        request = UpscaleRequest(
+            image=PicsartImage(image_path=image_path, image_url=image_url),
+            upscale_factor=upscale_factor,
+            format=output_format,
+        )
         return self.post(request=request)
-
-    def upscale_from_path(self, file_path: str, upscale_factor: int = 2) -> ApiResponse:
-        return self.upscale(
-            request=UpscaleRequest(
-                image=PicsartImage(image_path=file_path), upscale_factor=upscale_factor
-            )
-        )
-
-    def upscale_from_url(self, url: str, upscale_factor: int = 2) -> ApiResponse:
-        return self.upscale(
-            request=UpscaleRequest(
-                image=PicsartImage(image_url=url), upscale_factor=upscale_factor
-            )
-        )
 
 
 class AsyncUpscaleClient(UpscaleClient):
 
-    async def upscale(self, request: UpscaleRequest) -> ApiResponse:
-        return await self.async_post(request=request)
-
-    async def upscale_from_path(
-        self, file_path: str, upscale_factor: int = 2
+    async def upscale(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        upscale_factor: int = 2,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
-        return await self.upscale(
-            request=UpscaleRequest(
-                image=PicsartImage(image_path=file_path), upscale_factor=upscale_factor
-            )
+        request = UpscaleRequest(
+            image=PicsartImage(image_path=image_path, image_url=image_url),
+            upscale_factor=upscale_factor,
         )
-
-    async def upscale_from_url(self, url: str, upscale_factor: int = 2) -> ApiResponse:
-        return await self.upscale(
-            request=UpscaleRequest(
-                image=PicsartImage(image_url=url), upscale_factor=upscale_factor
-            )
-        )
+        return await self.async_post(request=request)

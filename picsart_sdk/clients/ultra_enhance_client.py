@@ -1,7 +1,10 @@
+from typing import Optional
+
 from picsart_sdk.api_response import ApiResponse
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import PicsartImage
 from picsart_sdk.clients.requests_models import UltraEnhanceRequest
+from picsart_sdk.clients.requests_models.picsart_image import PicsartImageFormat
 
 
 class UltraEnhanceClient(ImageBaseClient):
@@ -10,45 +13,36 @@ class UltraEnhanceClient(ImageBaseClient):
     def endpoint(self):
         return "upscale/enhance"
 
-    def ultra_enhance(self, request: UltraEnhanceRequest) -> ApiResponse:
+    def ultra_enhance(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        upscale_factor: int = 2,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
+    ) -> ApiResponse:
+        request = UltraEnhanceRequest(
+            image=PicsartImage(image_url=image_url, image_path=image_path),
+            upscale_factor=upscale_factor,
+            format=output_format,
+        )
         return self.post(request=request)
 
-    def ultra_enhance_from_path(
-        self, file_path: str, upscale_factor: int = 2
+
+class AsyncUltraEnhanceClient(ImageBaseClient):
+    @property
+    def endpoint(self):
+        return "upscale/enhance"
+
+    async def ultra_enhance(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        upscale_factor: int = 2,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
-        return self.ultra_enhance(
-            request=UltraEnhanceRequest(
-                image=PicsartImage(image_path=file_path), upscale_factor=upscale_factor
-            )
+        request = UltraEnhanceRequest(
+            image=PicsartImage(image_url=image_url, image_path=image_path),
+            upscale_factor=upscale_factor,
+            format=output_format,
         )
-
-    def ultra_enhance_from_url(self, url: str, upscale_factor: int = 2) -> ApiResponse:
-        return self.ultra_enhance(
-            request=UltraEnhanceRequest(
-                image=PicsartImage(image_url=url), upscale_factor=upscale_factor
-            )
-        )
-
-
-class AsyncUltraEnhanceClient(UltraEnhanceClient):
-
-    async def ultra_enhance(self, request: UltraEnhanceRequest) -> ApiResponse:
         return await self.async_post(request=request)
-
-    async def ultra_enhance_from_path(
-        self, file_path: str, upscale_factor: int = 2
-    ) -> ApiResponse:
-        return await self.ultra_enhance(
-            request=UltraEnhanceRequest(
-                image=PicsartImage(image_path=file_path), upscale_factor=upscale_factor
-            )
-        )
-
-    async def ultra_enhance_from_url(
-        self, url: str, upscale_factor: int = 2
-    ) -> ApiResponse:
-        return await self.ultra_enhance(
-            request=UltraEnhanceRequest(
-                image=PicsartImage(image_url=url), upscale_factor=upscale_factor
-            )
-        )
