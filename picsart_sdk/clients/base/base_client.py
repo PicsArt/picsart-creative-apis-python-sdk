@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import Dict, Union, IO
 from urllib.parse import urlencode
 
-from picsart_sdk.api_response import ApiResponse, ApiResponseData
+from picsart_sdk.api_responses import ApiResponse, ApiResponseData
 
 
 class BaseClient:

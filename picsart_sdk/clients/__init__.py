@@ -16,6 +16,7 @@ from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
+from picsart_sdk.clients.effects_client import EffectsClient, AsyncEffectsClient
 
 
 __all__ = [
@@ -31,4 +32,6 @@ __all__ = [
     "AsyncUltraEnhanceClient",
     "FaceEnhancementClient",
     "AsyncFaceEnhancementClient",
+    "EffectsClient",
+    "AsyncEffectsClient",
 ]

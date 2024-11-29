@@ -292,14 +292,16 @@ Create the client:
 
 ```python
 import picsart_sdk
-upload_client = picsart_sdk.client("upload")
+from picsart_sdk.clients.client_factory import ApiClient
+upload_client = picsart_sdk.client(ApiClient.UPLOAD)
 ```
 otherwise you can create the session manually and passing the api key. 
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients.client_factory import ApiClient
 session = picsart_sdk.Session(api_key="API_KEY")
-upload_client = session.client("upload")
+upload_client = session.client(ApiClient.UPLOAD)
 ```
 
 afterwards, you can use the specific client. 
@@ -324,7 +326,9 @@ upload_client.upload_image(image_url="https://domain.com/file.jpg")
 
 ```python
 import picsart_sdk
-client = picsart_sdk.client("removebg")
+from picsart_sdk.clients.client_factory import ApiClient
+
+client = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
 
 response1 = client.remove_background(image_path="./file.jpg")
 response2 = client.remove_background(image_url="https://domain.com/image.jpg")
@@ -339,8 +343,9 @@ you can pass them as parameters, having the same names.
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients.client_factory import ApiClient
 
-client = picsart_sdk.client("removebg")
+client = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
 
 response = client.remove_background(image_url="https://domain.com/image.jpg", stroke_size=2, stroke_color="red")
 print(response.data.url)
@@ -356,8 +361,9 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients.client_factory import ApiClient
 
-client = picsart_sdk.client("upscale")
+client = picsart_sdk.client(ApiClient.UPSCALE)
 response = client.upscale(url="https://domain.com/image.jpg", upscale_factor=2)
 print(response.data.url)
 ```
@@ -376,9 +382,10 @@ import asyncio
 
 import picsart_sdk
 from picsart_sdk.clients.upload_client import AsyncUploadClient
+from picsart_sdk.clients.client_factory import ApiClient
 
 async def call_upload():
-    client: AsyncUploadClient = picsart_sdk.async_client("upload")
+    client: AsyncUploadClient = picsart_sdk.async_client(ApiClient.UPLOAD)
     response1 = await client.upload_image(image_path="./file.jpg")
     # or
     response2 = await client.upload_image(image_url="https://domain.com/image.jpg")
@@ -400,11 +407,11 @@ fetching the final output. For example, the ultra upscale operation:
 import time
 import picsart_sdk
 from picsart_sdk.clients import UltraUpscaleClient
-from picsart_sdk.clients.client_factory import Clients
+from picsart_sdk.clients.client_factory import ApiClient
 from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
 
-client: UltraUpscaleClient = picsart_sdk.client(Clients.ULTRA_UPSCALE)
-response1 = client.ultra_upscale(file_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
+response1 = client.ultra_upscale(image_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
 print(response1)
 # expect something like: ApiResponse(status='queued', data=None, transaction_id='6862207a-838c-48c6-ba12-cf6083a9d76e')
 
@@ -422,6 +429,13 @@ print(response2)
 # )
 ```
 
+# Supported APIs
+- Upload
+- Remove Background
+- Upscale
+- Ultra Upscale
+- Face Enhancement
+- Effects
 
 # Errors
 
