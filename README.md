@@ -141,6 +141,7 @@ print(response2)
 - Ultra Upscale
 - Face Enhancement
 - Effects
+- Effects Previews
 
 # Errors
 
