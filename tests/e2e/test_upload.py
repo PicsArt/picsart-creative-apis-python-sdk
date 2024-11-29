@@ -3,7 +3,7 @@ import os
 import pytest
 
 import picsart_sdk
-from picsart_sdk.api_response import ApiResponse, ApiResponseData
+from picsart_sdk.api_responses import ApiResponse, ApiResponseData
 from picsart_sdk.clients.upload_client import UploadClient
 
 

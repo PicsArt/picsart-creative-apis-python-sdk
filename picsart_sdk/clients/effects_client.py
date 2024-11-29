@@ -1,9 +1,13 @@
-from picsart_sdk.api_response import ApiResponse
+from typing import Optional
+
+from picsart_sdk.api_responses import ApiResponse
+
+from picsart_sdk.api_responses.effects_responses import EffectsList
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
-from picsart_sdk.clients.requests_models.ultra_upscale_request import (
-    UltraUpscaleRequest,
-    UltraUpscaleMode,
+from picsart_sdk.clients.requests_models import (
+    EffectsRequest,
+    PicsartImage,
+    PicsartImageFormat,
 )
 
 
@@ -11,63 +15,45 @@ class EffectsClient(ImageBaseClient):
 
     @property
     def endpoint(self):
-        return "upscale/ultra"
+        return "effects"
 
-    def ultra_upscale(self, request: UltraUpscaleRequest) -> ApiResponse:
+    def effects(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        effect_name: Optional[str] = None,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
+    ) -> ApiResponse:
+        request = EffectsRequest(
+            image=PicsartImage(image_url=image_url, image_path=image_path),
+            effect_name=effect_name,
+            format=output_format,
+        )
         return self.post(request=request)
 
-    def ultra_upscale_from_path(
-        self, file_path: str, upscale_factor: int = 2, mode=UltraUpscaleMode.SYNC
+    def get_available_effects(self) -> EffectsList:
+        return self.get()
+
+
+    def _parse_response(self, result: dict) -> EffectsList:
+        return EffectsList(effects=[item.get("name") for item in result.get("data", [])])
+
+
+class AsyncEffectsClient(ImageBaseClient):
+    @property
+    def endpoint(self):
+        return "effects"
+
+    async def effects(
+        self,
+        image_url: Optional[str] = None,
+        image_path: Optional[str] = None,
+        effect_name: Optional[str] = None,
+        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
-        return self.ultra_upscale(
-            request=UltraUpscaleRequest(
-                image=PicsartImage(image_path=file_path),
-                upscale_factor=upscale_factor,
-                mode=mode,
-            )
+        request = EffectsRequest(
+            image=PicsartImage(image_url=image_url, image_path=image_path),
+            effect_name=effect_name,
+            format=output_format,
         )
-
-    def ultra_upscale_from_url(
-        self, url: str, upscale_factor: int = 2, mode=UltraUpscaleMode.SYNC
-    ) -> ApiResponse:
-        return self.ultra_upscale(
-            request=UltraUpscaleRequest(
-                image=PicsartImage(image_url=url),
-                upscale_factor=upscale_factor,
-                mode=mode,
-            )
-        )
-
-    def get_result(self, transaction_id: str) -> ApiResponse:
-        return self.get(postfix_url=transaction_id)
-
-
-class AsyncUltraUpscaleClient(UltraUpscaleClient):
-
-    async def ultra_upscale(self, request: UltraUpscaleRequest) -> ApiResponse:
         return await self.async_post(request=request)
-
-    async def ultra_upscale_from_path(
-        self, file_path: str, upscale_factor: int = 2, mode=UltraUpscaleMode.SYNC
-    ) -> ApiResponse:
-        return await self.ultra_upscale(
-            request=UltraUpscaleRequest(
-                image=PicsartImage(image_path=file_path),
-                upscale_factor=upscale_factor,
-                mode=mode,
-            )
-        )
-
-    async def ultra_upscale_from_url(
-        self, url: str, upscale_factor: int = 2, mode=UltraUpscaleMode.SYNC
-    ) -> ApiResponse:
-        return await self.ultra_upscale(
-            request=UltraUpscaleRequest(
-                image=PicsartImage(image_url=url),
-                upscale_factor=upscale_factor,
-                mode=mode,
-            )
-        )
-
-    async def get_result(self, transaction_id: str):
-        return await self.async_get(postfix_url=transaction_id)
