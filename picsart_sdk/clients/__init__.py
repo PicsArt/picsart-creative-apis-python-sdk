@@ -1,4 +1,8 @@
 from picsart_sdk.clients.balance_client import BalanceClient, AsyncBalanceClient
+from picsart_sdk.clients.color_transfer_client import (
+    ColorTransferClient,
+    AsyncColorTransferClient,
+)
 from picsart_sdk.clients.effects_previews_client import (
     EffectsPreviewsClient,
     AsyncEffectsPreviewsClient,
@@ -46,4 +50,6 @@ __all__ = [
     "AsyncEffectsPreviewsClient",
     "BalanceClient",
     "AsyncBalanceClient",
+    "ColorTransferClient",
+    "AsyncColorTransferClient",
 ]

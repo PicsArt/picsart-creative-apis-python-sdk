@@ -22,6 +22,9 @@ from picsart_sdk.clients.requests_models.effects_request import EffectsRequest
 from picsart_sdk.clients.requests_models.effects_previews_request import (
     EffectsPreviewsRequest,
 )
+from picsart_sdk.clients.requests_models.color_transfer_request import (
+    ColorTransferRequest,
+)
 
 
 __all__ = [
@@ -35,4 +38,5 @@ __all__ = [
     "FaceEnhancementRequest",
     "EffectsRequest",
     "EffectsPreviewsRequest",
+    "ColorTransferRequest",
 ]
