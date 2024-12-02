@@ -14,10 +14,12 @@ class ApiClient(str, Enum):
     FACE_ENHANCEMENT = "face_enhancement"
     EFFECTS = "effects"
     EFFECTS_PREVIEWS = "effects_previews"
+    BALANCE = "balance"
 
 
 class ClientFactory:
     _clients = {
+        ApiClient.BALANCE.value: "picsart_sdk.clients.BalanceClient",
         ApiClient.UPLOAD.value: "picsart_sdk.clients.UploadClient",
         ApiClient.REMOVE_BACKGROUND.value: "picsart_sdk.clients.RemoveBackgroundClient",
         ApiClient.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",

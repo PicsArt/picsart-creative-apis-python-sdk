@@ -142,6 +142,7 @@ print(response2)
 - Face Enhancement
 - Effects
 - Effects Previews
+- Balance (for Image APIs)
 
 # Errors
 
