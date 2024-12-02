@@ -13,6 +13,7 @@ class ApiClient(str, Enum):
     ULTRA_ENHANCE = "ultra_enhance"
     FACE_ENHANCEMENT = "face_enhancement"
     EFFECTS = "effects"
+    AI_EFFECTS = "ai_effects"
     EFFECTS_PREVIEWS = "effects_previews"
     BALANCE = "balance"
 
@@ -27,6 +28,7 @@ class ClientFactory:
         ApiClient.ULTRA_ENHANCE.value: "picsart_sdk.clients.UltraEnhanceClient",
         ApiClient.FACE_ENHANCEMENT.value: "picsart_sdk.clients.FaceEnhancementClient",
         ApiClient.EFFECTS.value: "picsart_sdk.clients.EffectsClient",
+        ApiClient.AI_EFFECTS.value: "picsart_sdk.clients.AiEffectsClient",
         ApiClient.EFFECTS_PREVIEWS.value: "picsart_sdk.clients.EffectsPreviewsClient",
     }
 
