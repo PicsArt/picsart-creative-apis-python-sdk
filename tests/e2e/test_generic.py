@@ -125,6 +125,24 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             {"effect_name": "winterblues"},
         ),
+        (
+            "color_transfer",
+            "color_transfer",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/e8a93f25-ea57-4a6c-aaf9-4032cac5ed2b.jpg",  # image2.jpg
+            {
+                "reference_image_url": "https://pastatic.picsart.com/cms-pastatic/d68aa804-0d8b-412c-9507-32df9f167da4.jpg"  # image3.jpg
+            },
+        ),
+        (
+            "color_transfer",
+            "color_transfer",
+            "../resources/image2.jpg",
+            None,
+            {
+                "reference_image_path": "../resources/image3.jpg"
+            },
+        ),
     ],
 )
 def test_generic(client_name, method_name, image_path, image_url, extra_params):
@@ -135,11 +153,16 @@ def test_generic(client_name, method_name, image_path, image_url, extra_params):
 
     params = {"image_url": image_url}
     if image_path:
-        current_dir = os.path.dirname(__file__)
-        params = {"image_path": os.path.abspath(os.path.join(current_dir, image_path))}
+        params = {"image_path": os.path.abspath(os.path.join(os.path.dirname(__file__), image_path))}
+
+    reference_image_path = extra_params.get("reference_image_path")
+    if reference_image_path:
+        params["reference_image_path"] = os.path.abspath(os.path.join(os.path.dirname(__file__), reference_image_path))
+        del extra_params["reference_image_path"]
 
     function = getattr(client, method_name)
-    result = function(**{**params, **extra_params})
+    data = {**params, **extra_params}
+    result = function(**data)
 
     assert isinstance(result, ApiResponse)
     assert isinstance(result.data, ApiResponseData)
