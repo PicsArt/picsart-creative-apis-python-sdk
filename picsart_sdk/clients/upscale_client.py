@@ -30,7 +30,11 @@ class UpscaleClient(ImageBaseClient):
         return self.post(request=request)
 
 
-class AsyncUpscaleClient(UpscaleClient):
+class AsyncUpscaleClient(ImageBaseClient):
+
+    @property
+    def endpoint(self):
+        return "upscale"
 
     async def upscale(
         self,
@@ -42,5 +46,6 @@ class AsyncUpscaleClient(UpscaleClient):
         request = UpscaleRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             upscale_factor=upscale_factor,
+            format=output_format,
         )
         return await self.async_post(request=request)
