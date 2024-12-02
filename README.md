@@ -438,6 +438,7 @@ print(response2)
 - Effects
 - Effects Previews
 - Balance (for Image APIs)
+- Color Transfer
 
 # Errors
 
