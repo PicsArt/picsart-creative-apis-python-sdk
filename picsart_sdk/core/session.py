@@ -1,6 +1,6 @@
 import os
 
-from picsart_sdk import HttpClient, AsyncHttpClient
+from picsart_sdk import AsyncHttpClient, HttpClient
 from picsart_sdk.clients.client_factory import ClientFactory
 from picsart_sdk.version import __version__
 

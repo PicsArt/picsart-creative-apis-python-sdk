@@ -7,8 +7,8 @@ from picsart_sdk.clients.requests_models.picsart_image import (
     PicsartImageFormat,
 )
 from picsart_sdk.clients.requests_models.ultra_upscale_request import (
-    UltraUpscaleRequest,
     UltraUpscaleMode,
+    UltraUpscaleRequest,
 )
 
 

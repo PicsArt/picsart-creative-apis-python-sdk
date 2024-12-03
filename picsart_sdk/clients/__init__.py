@@ -1,33 +1,36 @@
-from picsart_sdk.clients.balance_client import BalanceClient, AsyncBalanceClient
+from picsart_sdk.clients.ai_effects_client import AiEffectsClient, AsyncAiEffectsClient
+from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
 from picsart_sdk.clients.color_transfer_client import (
-    ColorTransferClient,
     AsyncColorTransferClient,
+    ColorTransferClient,
 )
+from picsart_sdk.clients.effects_client import AsyncEffectsClient, EffectsClient
 from picsart_sdk.clients.effects_previews_client import (
-    EffectsPreviewsClient,
     AsyncEffectsPreviewsClient,
-)
-from picsart_sdk.clients.ai_effects_client import AsyncAiEffectsClient, AiEffectsClient
-from picsart_sdk.clients.upload_client import UploadClient, AsyncUploadClient
-from picsart_sdk.clients.remove_background_client import (
-    RemoveBackgroundClient,
-    AsyncRemoveBackgroundClient,
-)
-from picsart_sdk.clients.upscale_client import UpscaleClient, AsyncUpscaleClient
-from picsart_sdk.clients.ultra_upscale_client import (
-    UltraUpscaleClient,
-    AsyncUltraUpscaleClient,
-)
-from picsart_sdk.clients.ultra_enhance_client import (
-    UltraEnhanceClient,
-    AsyncUltraEnhanceClient,
+    EffectsPreviewsClient,
 )
 from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
-from picsart_sdk.clients.effects_client import EffectsClient, AsyncEffectsClient
-
+from picsart_sdk.clients.remove_background_client import (
+    AsyncRemoveBackgroundClient,
+    RemoveBackgroundClient,
+)
+from picsart_sdk.clients.style_transfer_client import (
+    AsyncStyleTransferClient,
+    StyleTransferClient,
+)
+from picsart_sdk.clients.ultra_enhance_client import (
+    AsyncUltraEnhanceClient,
+    UltraEnhanceClient,
+)
+from picsart_sdk.clients.ultra_upscale_client import (
+    AsyncUltraUpscaleClient,
+    UltraUpscaleClient,
+)
+from picsart_sdk.clients.upload_client import AsyncUploadClient, UploadClient
+from picsart_sdk.clients.upscale_client import AsyncUpscaleClient, UpscaleClient
 
 __all__ = [
     "UploadClient",
@@ -52,4 +55,6 @@ __all__ = [
     "AsyncBalanceClient",
     "ColorTransferClient",
     "AsyncColorTransferClient",
+    "StyleTransferClient",
+    "AsyncStyleTransferClient",
 ]

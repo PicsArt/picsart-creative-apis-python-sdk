@@ -2,7 +2,7 @@ from typing import Optional
 
 from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
-from picsart_sdk.clients.requests_models import PicsartImage, FaceEnhancementRequest
+from picsart_sdk.clients.requests_models import FaceEnhancementRequest, PicsartImage
 from picsart_sdk.clients.requests_models.picsart_image import PicsartImageFormat
 
 

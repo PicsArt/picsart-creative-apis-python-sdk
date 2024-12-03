@@ -1,16 +1,19 @@
 import os
-from typing import Dict, Any, IO
+from typing import IO, Any, Dict
 
 import httpx
 from httpx import Response
 
-from picsart_sdk.core.logger import get_logger
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
+from picsart_sdk.core.logger import get_logger
 
 PICSART_LOG_HTTP_CALLS = os.environ.get("PICSART_LOG_HTTP_CALLS", "false") == "true"
-PICSART_LOG_HTTP_CALLS_HEADERS = os.environ.get("PICSART_LOG_HTTP_CALLS_HEADERS", "false") == "true"
+PICSART_LOG_HTTP_CALLS_HEADERS = (
+    os.environ.get("PICSART_LOG_HTTP_CALLS_HEADERS", "false") == "true"
+)
 
 logger = get_logger()
+
 
 class HttpClient(BaseHttpClient):
     def __init__(self):

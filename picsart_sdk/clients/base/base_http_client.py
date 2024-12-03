@@ -4,8 +4,8 @@ from functools import wraps
 
 import httpx
 
+from picsart_sdk.clients.api_error import ApiAuthenticationError, ApiError
 from picsart_sdk.version import __version__
-from picsart_sdk.clients.api_error import ApiError, ApiAuthenticationError
 
 
 def handle_error(e: httpx.HTTPStatusError):

@@ -1,4 +1,4 @@
-from dataclasses import dataclass, fields
+from dataclasses import asdict, dataclass, fields
 from enum import Enum
 from typing import Optional
 
@@ -10,9 +10,10 @@ from picsart_sdk.clients.requests_models.picsart_image import (
 
 
 @dataclass
-class ColorTransferRequest(BaseRequest):
+class StyleTransferRequest(BaseRequest):
     image: PicsartImage
     reference_image: PicsartImage
+    level: str = "l1"
     format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG
 
     def get_dict(self):

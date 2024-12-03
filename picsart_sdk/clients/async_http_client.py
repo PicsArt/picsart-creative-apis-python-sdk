@@ -1,4 +1,4 @@
-from typing import Dict, Any, IO
+from typing import IO, Any, Dict
 
 import httpx
 from httpx import Response
