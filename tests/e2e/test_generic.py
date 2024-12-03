@@ -139,9 +139,7 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "color_transfer",
             "../resources/image2.jpg",
             None,
-            {
-                "reference_image_path": "../resources/image3.jpg"
-            },
+            {"reference_image_path": "../resources/image3.jpg"},
         ),
     ],
 )
@@ -153,11 +151,17 @@ def test_generic(client_name, method_name, image_path, image_url, extra_params):
 
     params = {"image_url": image_url}
     if image_path:
-        params = {"image_path": os.path.abspath(os.path.join(os.path.dirname(__file__), image_path))}
+        params = {
+            "image_path": os.path.abspath(
+                os.path.join(os.path.dirname(__file__), image_path)
+            )
+        }
 
     reference_image_path = extra_params.get("reference_image_path")
     if reference_image_path:
-        params["reference_image_path"] = os.path.abspath(os.path.join(os.path.dirname(__file__), reference_image_path))
+        params["reference_image_path"] = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), reference_image_path)
+        )
         del extra_params["reference_image_path"]
 
     function = getattr(client, method_name)

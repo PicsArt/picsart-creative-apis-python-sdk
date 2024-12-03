@@ -7,7 +7,7 @@ from picsart_sdk.api_responses.effects_responses import (
     EffectsPreviewsApiResponse,
     EffectsPreviewsApiResponseData,
 )
-from picsart_sdk.clients import EffectsPreviewsClient, AsyncEffectsPreviewsClient
+from picsart_sdk.clients import AsyncEffectsPreviewsClient, EffectsPreviewsClient
 
 
 def common_assertion(result, effect_names):
