@@ -2,7 +2,7 @@ import pytest
 
 import picsart_sdk
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
-from picsart_sdk.clients.balance_client import BalanceClient, AsyncBalanceClient
+from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
 
 
 def assert_balance(result):
