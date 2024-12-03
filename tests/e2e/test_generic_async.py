@@ -150,15 +150,26 @@ async def test_generic_async(
     if extra_params is None:
         extra_params = {}
 
-    client = picsart_sdk.client(client_name)
+    client = picsart_sdk.async_client(client_name)
 
     params = {"image_url": image_url}
     if image_path:
-        current_dir = os.path.dirname(__file__)
-        params = {"image_path": os.path.abspath(os.path.join(current_dir, image_path))}
+        params = {
+            "image_path": os.path.abspath(
+                os.path.join(os.path.dirname(__file__), image_path)
+            )
+        }
+
+    reference_image_path = extra_params.get("reference_image_path")
+    if reference_image_path:
+        params["reference_image_path"] = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), reference_image_path)
+        )
+        del extra_params["reference_image_path"]
 
     function = getattr(client, method_name)
-    result = function(**{**params, **extra_params})
+    data = {**params, **extra_params}
+    result = await function(**data)
 
     assert isinstance(result, ApiResponse)
     assert isinstance(result.data, ApiResponseData)
