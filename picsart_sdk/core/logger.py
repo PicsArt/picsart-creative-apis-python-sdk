@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 from threading import Lock
 
 LOGGER_NAME = os.environ.get(
@@ -32,7 +32,7 @@ def _create_new_logger():
     if not logger.hasHandlers():
         handler = logging.StreamHandler()  # Default to console output
         handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
         )
         logger.addHandler(handler)
 

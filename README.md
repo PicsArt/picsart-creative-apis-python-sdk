@@ -446,6 +446,20 @@ If the API returns a 400 HTTP error, it will be translated into an `ApiError` in
 If the authentication is not successful it raises `ApiAuthenticationError` error.
 If the pre-validation of the payload fails, the SDK will raise a `ValueError.`
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 5fbc476 (add apierror)
 =======
 >>>>>>> 936ede4 (readd coide)
+=======
+
+
+## For developers
+To develop this SDK purposes only:
+
+Install poetry and pre-commit hook:
+```bash
+poetry install
+poetry run pre-commit install
+```
+
+>>>>>>> 7053359 (style transfer, pre-commit hook, isort)

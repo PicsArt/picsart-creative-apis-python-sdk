@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from typing import Dict, Union, IO
+from typing import IO, Dict, Union
 from urllib.parse import urlencode
 
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData

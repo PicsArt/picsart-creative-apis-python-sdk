@@ -1,7 +1,6 @@
 from typing import Optional
 
 from picsart_sdk.api_responses import ApiResponse
-
 from picsart_sdk.api_responses.effects_responses import EffectsList
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import (

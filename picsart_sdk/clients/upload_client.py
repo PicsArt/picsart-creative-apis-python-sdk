@@ -1,10 +1,9 @@
 from typing import Optional
 
 from picsart_sdk.api_responses import ApiResponse
-
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
-from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
 from picsart_sdk.clients.requests_models import UploadRequest
+from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
 
 
 class UploadClient(ImageBaseClient):
