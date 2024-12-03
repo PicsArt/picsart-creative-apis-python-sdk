@@ -33,10 +33,7 @@ class CommonColorTransfer(ImageBaseClient):
                 ),
             )
 
-        request_dict = request.get_dict()
-        self._payload.update(request_dict)
-
-        del self._payload["reference_image"]
+        self._payload.update(request.get_dict())
 
 
 class ColorTransferClient(CommonColorTransfer):
