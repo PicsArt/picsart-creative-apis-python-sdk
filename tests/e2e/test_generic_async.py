@@ -112,6 +112,36 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             {"effect_name": "apr1"},
         ),
+        (
+            "ai_effects",
+            "ai_effects",
+            "../resources/image1.jpeg",
+            None,
+            {"effect_name": "winterblues"},
+        ),
+        (
+            "ai_effects",
+            "ai_effects",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
+            {"effect_name": "winterblues"},
+        ),
+        (
+            "color_transfer",
+            "color_transfer",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/e8a93f25-ea57-4a6c-aaf9-4032cac5ed2b.jpg",  # image2.jpg
+            {
+                "reference_image_url": "https://pastatic.picsart.com/cms-pastatic/d68aa804-0d8b-412c-9507-32df9f167da4.jpg"  # image3.jpg
+            },
+        ),
+        (
+            "color_transfer",
+            "color_transfer",
+            "../resources/image2.jpg",
+            None,
+            {"reference_image_path": "../resources/image3.jpg"},
+        ),
     ],
 )
 async def test_generic_async(
