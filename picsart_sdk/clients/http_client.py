@@ -1,10 +1,16 @@
+import os
 from typing import Dict, Any, IO
 
 import httpx
 from httpx import Response
 
+from picsart_sdk.core.logger import get_logger
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
 
+PICSART_LOG_HTTP_CALLS = os.environ.get("PICSART_LOG_HTTP_CALLS", "false") == "true"
+PICSART_LOG_HTTP_CALLS_HEADERS = os.environ.get("PICSART_LOG_HTTP_CALLS_HEADERS", "false") == "true"
+
+logger = get_logger()
 
 class HttpClient(BaseHttpClient):
     def __init__(self):
@@ -50,6 +56,12 @@ class HttpClient(BaseHttpClient):
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
     ) -> Response:
+        if PICSART_LOG_HTTP_CALLS:
+            if PICSART_LOG_HTTP_CALLS_HEADERS:
+                logger.debug(f"{method} {url} {data} {files} {headers}")
+            else:
+                logger.debug(f"{method} {url} {data} {files}")
+
         try:
             with httpx.Client() as client:
                 response = client.request(
