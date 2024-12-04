@@ -440,6 +440,8 @@ print(response2)
 - Balance (for Image APIs)
 - Color Transfer
 - Style Transfer
+- Masks
+- Masks Previews
 
 # Errors
 
