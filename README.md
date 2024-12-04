@@ -442,6 +442,7 @@ print(response2)
 - Style Transfer
 - Masks
 - Masks Previews
+- Adjust
 
 # Errors
 

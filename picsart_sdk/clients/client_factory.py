@@ -20,6 +20,7 @@ class ApiClient(str, Enum):
     STYLE_TRANSFER = "style_transfer"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
+    ADJUST = "adjust"
 
 
 class ClientFactory:
@@ -38,6 +39,7 @@ class ClientFactory:
         ApiClient.STYLE_TRANSFER.value: "picsart_sdk.clients.StyleTransferClient",
         ApiClient.MASKS.value: "picsart_sdk.clients.MasksClient",
         ApiClient.MASKS_PREVIEWS.value: "picsart_sdk.clients.MasksPreviewsClient",
+        ApiClient.ADJUST.value: "picsart_sdk.clients.AdjustClient",
     }
 
     @staticmethod

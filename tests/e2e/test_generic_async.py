@@ -172,6 +172,20 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             None,
         ),
+        (
+            "adjust",
+            "adjust",
+            "../resources/image1.jpeg",
+            None,
+            {"brightness": 50},
+        ),
+        (
+            "adjust",
+            "adjust",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
+            {"brightness": 50},
+        ),
     ],
 )
 async def test_generic_async(

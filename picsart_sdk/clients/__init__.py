@@ -1,3 +1,4 @@
+from picsart_sdk.clients.adjust_client import AdjustClient, AsyncAdjustClient
 from picsart_sdk.clients.ai_effects_client import AiEffectsClient, AsyncAiEffectsClient
 from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
 from picsart_sdk.clients.color_transfer_client import (
@@ -66,4 +67,6 @@ __all__ = [
     "AsyncMasksClient",
     "MasksPreviewsClient",
     "AsyncMasksPreviewsClient",
+    "AdjustClient",
+    "AsyncAdjustClient",
 ]
