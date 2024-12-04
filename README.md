@@ -150,6 +150,8 @@ print(response2)
 - Adjust
 - Basic Edit
 - Texture Generator
+- Vectorizer
+- Surfacemap
 
 # Errors
 

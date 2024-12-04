@@ -18,6 +18,7 @@ class ApiClient(str, Enum):
     MASKS_PREVIEWS = "masks_previews"
     REMOVE_BACKGROUND = "remove_background"
     STYLE_TRANSFER = "style_transfer"
+    SURFACEMAP = "surfacemap"
     TEXTURE_GENERATOR = "texture_generator"
     ULTRA_ENHANCE = "ultra_enhance"
     ULTRA_UPSCALE = "ultra_upscale"
@@ -46,6 +47,7 @@ class ClientFactory:
         ApiClient.EDIT.value: "picsart_sdk.clients.EditClient",
         ApiClient.TEXTURE_GENERATOR.value: "picsart_sdk.clients.TextureGeneratorClient",
         ApiClient.VECTORIZER.value: "picsart_sdk.clients.VectorizerClient",
+        ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
     }
 
     @staticmethod
