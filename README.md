@@ -447,6 +447,7 @@ print(response2)
 - Texture Generator
 - Vectorizer
 - Surfacemap
+- Image Tagging (TODO: e2e tests)
 
 # Errors
 

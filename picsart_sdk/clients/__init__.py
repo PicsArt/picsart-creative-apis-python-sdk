@@ -15,6 +15,10 @@ from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
+from picsart_sdk.clients.image_tagging_client import (
+    AsyncImageTaggingClient,
+    ImageTaggingClient,
+)
 from picsart_sdk.clients.masks_client import AsyncMasksClient, MasksClient
 from picsart_sdk.clients.masks_previews_client import (
     AsyncMasksPreviewsClient,
@@ -90,4 +94,6 @@ __all__ = [
     "AsyncVectorizerClient",
     "SurfacemapClient",
     "AsyncSurfacemapClient",
+    "ImageTaggingClient",
+    "AsyncImageTaggingClient",
 ]
