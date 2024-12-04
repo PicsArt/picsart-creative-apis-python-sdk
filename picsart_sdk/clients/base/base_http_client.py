@@ -61,6 +61,11 @@ class BaseHttpClient(ABC):
         "Accept": "application/json",
     }
 
+    default_timeout_seconds = 30
+
+    def __init__(self, timeout=default_timeout_seconds):
+        self.timeout = timeout
+
     @abstractmethod
     def post(self, url, payload, files, headers): ...
 

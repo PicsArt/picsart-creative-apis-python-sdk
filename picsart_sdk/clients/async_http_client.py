@@ -1,14 +1,22 @@
+import os
 from typing import IO, Any, Dict
 
 import httpx
 from httpx import Response
 
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
+from picsart_sdk.core.logger import get_logger
+from picsart_sdk.settings import PICSART_LOG_HTTP_CALLS, PICSART_LOG_HTTP_CALLS_HEADERS
+
+logger = get_logger()
 
 
 class AsyncHttpClient(BaseHttpClient):
     _raw_response = None
     _json_response = None
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
     async def post(
         self,
@@ -55,22 +63,27 @@ class AsyncHttpClient(BaseHttpClient):
     def raw_response(self):
         return self._raw_response
 
-    @classmethod
     @handle_http_errors
     async def _do_call(
-        cls,
+        self,
         method: str,
         url,
         data: Dict[str, Any] = None,
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
     ) -> Response:
+        if PICSART_LOG_HTTP_CALLS:
+            if PICSART_LOG_HTTP_CALLS_HEADERS:
+                logger.debug(f"{method} {url} {data} {files} {headers}")
+            else:
+                logger.debug(f"{method} {url} {data} {files}")
+
         try:
-            async with httpx.AsyncClient() as client:
+            async with httpx.AsyncClient(timeout=self.timeout) as client:
                 response = await client.request(
                     method=method,
                     url=url,
-                    headers=headers,
+                    headers={**headers, **self.default_headers},
                     data=data,
                     files=files,
                 )

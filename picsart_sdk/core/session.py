@@ -2,6 +2,7 @@ import os
 
 from picsart_sdk import AsyncHttpClient, HttpClient
 from picsart_sdk.clients.client_factory import ClientFactory
+from picsart_sdk.settings import DEFAULT_HTTP_TIMEOUT_SECONDS
 from picsart_sdk.version import __version__
 
 
@@ -23,11 +24,11 @@ class Session:
     def get_default_session():
         return Session()
 
-    def client(self, client_name: str, is_async: bool = False):
+    def client(self, client_name: str, is_async: bool = False, timeout: float = 10.0):
         if is_async:
-            http_client = AsyncHttpClient()
+            http_client = AsyncHttpClient(timeout=DEFAULT_HTTP_TIMEOUT_SECONDS)
         else:
-            http_client = HttpClient()
+            http_client = HttpClient(timeout=DEFAULT_HTTP_TIMEOUT_SECONDS)
 
         return ClientFactory.get_client(
             client_name=client_name,
