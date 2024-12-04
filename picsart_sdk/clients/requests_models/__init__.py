@@ -24,6 +24,7 @@ from picsart_sdk.clients.requests_models.remove_background_request import (
 from picsart_sdk.clients.requests_models.style_transfer_request import (
     StyleTransferRequest,
 )
+from picsart_sdk.clients.requests_models.surfacemap_request import SurfacemapRequest
 from picsart_sdk.clients.requests_models.texture_generator_request import (
     TextureGeneratorRequest,
 )
@@ -35,6 +36,7 @@ from picsart_sdk.clients.requests_models.ultra_upscale_request import (
 )
 from picsart_sdk.clients.requests_models.upload_request import UploadRequest
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
+from picsart_sdk.clients.requests_models.vectorizer_request import VectorizerRequest
 
 __all__ = [
     "PicsartImage",
@@ -55,6 +57,5 @@ __all__ = [
     "EditRequest",
     "TextureGeneratorRequest",
     "VectorizerRequest",
+    "SurfacemapRequest",
 ]
-
-from picsart_sdk.clients.requests_models.vectorizer_request import VectorizerRequest

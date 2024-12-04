@@ -28,6 +28,10 @@ from picsart_sdk.clients.style_transfer_client import (
     AsyncStyleTransferClient,
     StyleTransferClient,
 )
+from picsart_sdk.clients.surfacemap_client import (
+    AsyncSurfacemapClient,
+    SurfacemapClient,
+)
 from picsart_sdk.clients.texture_generator_client import (
     AsyncTextureGeneratorClient,
     TextureGeneratorClient,
@@ -84,4 +88,6 @@ __all__ = [
     "AsyncTextureGeneratorClient",
     "VectorizerClient",
     "AsyncVectorizerClient",
+    "SurfacemapClient",
+    "AsyncSurfacemapClient",
 ]

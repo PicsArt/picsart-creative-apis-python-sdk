@@ -20,7 +20,9 @@ class CommonColorTransfer(ImageBaseClient):
 
         if request.reference_image.image_url is not None:
             self._payload = self._payload or {}
-            self._payload.setdefault("reference_image_url", request.image.image_url)
+            self._payload.setdefault(
+                "reference_image_url", request.reference_image.image_url
+            )
 
         if request.reference_image.image_path:
             self._payload = self._payload or {}
@@ -68,12 +70,13 @@ class AsyncColorTransferClient(CommonColorTransfer):
         reference_image_url: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
-        return await self.async_post(
-            request=ColorTransferRequest(
-                image=PicsartImage(image_path=image_path, image_url=image_url),
-                reference_image=PicsartImage(
-                    image_path=reference_image_path, image_url=reference_image_url
-                ),
-                format=output_format,
-            )
+        request = ColorTransferRequest(
+            image=PicsartImage(image_path=image_path, image_url=image_url),
+            reference_image=PicsartImage(
+                image_path=reference_image_path, image_url=reference_image_url
+            ),
+            format=output_format,
         )
+
+        self.set_payload(request)
+        return await self.async_post(request=request)
