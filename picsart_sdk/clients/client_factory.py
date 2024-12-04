@@ -18,6 +18,7 @@ class ApiClient(str, Enum):
     BALANCE = "balance"
     COLOR_TRANSFER = "color_transfer"
     STYLE_TRANSFER = "style_transfer"
+    MASKS = "masks"
 
 
 class ClientFactory:
@@ -34,6 +35,7 @@ class ClientFactory:
         ApiClient.EFFECTS_PREVIEWS.value: "picsart_sdk.clients.EffectsPreviewsClient",
         ApiClient.COLOR_TRANSFER.value: "picsart_sdk.clients.ColorTransferClient",
         ApiClient.STYLE_TRANSFER.value: "picsart_sdk.clients.StyleTransferClient",
+        ApiClient.MASKS.value: "picsart_sdk.clients.MasksClient",
     }
 
     @staticmethod

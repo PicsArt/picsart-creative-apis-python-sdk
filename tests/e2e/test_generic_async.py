@@ -158,6 +158,20 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             None,
             {"reference_image_path": "../resources/image3.jpg"},
         ),
+        (
+            "masks",
+            "masks",
+            "../resources/image1.jpeg",
+            None,
+            None,
+        ),
+        (
+            "masks",
+            "masks",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
+            None,
+        ),
     ],
 )
 async def test_generic_async(

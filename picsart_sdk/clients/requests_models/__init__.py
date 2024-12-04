@@ -8,6 +8,7 @@ from picsart_sdk.clients.requests_models.effects_request import EffectsRequest
 from picsart_sdk.clients.requests_models.face_enhancement_request import (
     FaceEnhancementRequest,
 )
+from picsart_sdk.clients.requests_models.masks_request import MasksRequest
 from picsart_sdk.clients.requests_models.picsart_image import (
     PicsartImage,
     PicsartImageFormat,
@@ -40,4 +41,5 @@ __all__ = [
     "EffectsPreviewsRequest",
     "ColorTransferRequest",
     "StyleTransferRequest",
+    "MasksRequest",
 ]
