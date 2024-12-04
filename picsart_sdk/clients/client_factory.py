@@ -23,6 +23,7 @@ class ApiClient(str, Enum):
     ULTRA_UPSCALE = "ultra_upscale"
     UPLOAD = "upload"
     UPSCALE = "upscale"
+    VECTORIZER = "vectorizer"
 
 
 class ClientFactory:
@@ -44,6 +45,7 @@ class ClientFactory:
         ApiClient.ADJUST.value: "picsart_sdk.clients.AdjustClient",
         ApiClient.EDIT.value: "picsart_sdk.clients.EditClient",
         ApiClient.TEXTURE_GENERATOR.value: "picsart_sdk.clients.TextureGeneratorClient",
+        ApiClient.VECTORIZER.value: "picsart_sdk.clients.VectorizerClient",
     }
 
     @staticmethod

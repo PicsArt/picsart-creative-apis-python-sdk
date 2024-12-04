@@ -54,4 +54,7 @@ __all__ = [
     "AdjustRequest",
     "EditRequest",
     "TextureGeneratorRequest",
+    "VectorizerRequest",
 ]
+
+from picsart_sdk.clients.requests_models.vectorizer_request import VectorizerRequest
