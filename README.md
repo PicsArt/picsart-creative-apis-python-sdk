@@ -937,6 +937,7 @@ poetry run pre-commit install
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7053359 (style transfer, pre-commit hook, isort)
 =======
 ### Run Tests
@@ -955,3 +956,7 @@ PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
 To enable detailed logging of HTTP calls, set the environment variables `PICSART_LOG_HTTP_CALLS=true` and 
 `PICSART_LOG_HTTP_CALLS_HEADERS=true`. This will log information about the HTTP calls made, including their headers.
 >>>>>>> 831d50b (readme)
+=======
+Install packages necessary for generating `docs`:
+`poetry install --with docs`
+>>>>>>> e3c5f00 (docs)
