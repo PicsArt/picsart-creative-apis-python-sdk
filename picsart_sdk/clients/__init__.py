@@ -42,6 +42,10 @@ from picsart_sdk.clients.ultra_upscale_client import (
 )
 from picsart_sdk.clients.upload_client import AsyncUploadClient, UploadClient
 from picsart_sdk.clients.upscale_client import AsyncUpscaleClient, UpscaleClient
+from picsart_sdk.clients.vectorizer_client import (
+    AsyncVectorizerClient,
+    VectorizerClient,
+)
 
 __all__ = [
     "UploadClient",
@@ -78,4 +82,6 @@ __all__ = [
     "AsyncEditClient",
     "TextureGeneratorClient",
     "AsyncTextureGeneratorClient",
+    "VectorizerClient",
+    "AsyncVectorizerClient",
 ]
