@@ -185,6 +185,20 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             {"brightness": 50},
         ),
+        (
+            "edit",
+            "edit",
+            "../resources/image1.jpeg",
+            None,
+            {"flip": "horizontal"},
+        ),
+        (
+            "edit",
+            "edit",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
+            {"flip": "horizontal"},
+        ),
     ],
 )
 def test_generic(client_name, method_name, image_path, image_url, extra_params):

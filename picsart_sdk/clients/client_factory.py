@@ -21,6 +21,7 @@ class ApiClient(str, Enum):
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
     ADJUST = "adjust"
+    EDIT = "edit"
 
 
 class ClientFactory:
@@ -40,6 +41,7 @@ class ClientFactory:
         ApiClient.MASKS.value: "picsart_sdk.clients.MasksClient",
         ApiClient.MASKS_PREVIEWS.value: "picsart_sdk.clients.MasksPreviewsClient",
         ApiClient.ADJUST.value: "picsart_sdk.clients.AdjustClient",
+        ApiClient.EDIT.value: "picsart_sdk.clients.EditClient",
     }
 
     @staticmethod
