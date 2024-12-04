@@ -443,6 +443,7 @@ print(response2)
 - Masks
 - Masks Previews
 - Adjust
+- Basic Edit
 
 # Errors
 

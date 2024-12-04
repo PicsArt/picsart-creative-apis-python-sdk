@@ -5,6 +5,7 @@ from picsart_sdk.clients.color_transfer_client import (
     AsyncColorTransferClient,
     ColorTransferClient,
 )
+from picsart_sdk.clients.edit_client import AsyncEditClient, EditClient
 from picsart_sdk.clients.effects_client import AsyncEffectsClient, EffectsClient
 from picsart_sdk.clients.effects_previews_client import (
     AsyncEffectsPreviewsClient,
@@ -69,4 +70,6 @@ __all__ = [
     "AsyncMasksPreviewsClient",
     "AdjustClient",
     "AsyncAdjustClient",
+    "EditClient",
+    "AsyncEditClient",
 ]
