@@ -444,6 +444,7 @@ print(response2)
 - Masks Previews
 - Adjust
 - Basic Edit
+- Texture Generator
 
 # Errors
 
