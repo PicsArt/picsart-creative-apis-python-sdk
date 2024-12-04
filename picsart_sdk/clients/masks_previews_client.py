@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Optional
 
-from picsart_sdk.api_responses.masks_previews_responses import (
+from picsart_sdk.api_responses.masks_previews_response import (
     MasksPreviewsApiResponse,
     MasksPreviewsApiResponseData,
 )
@@ -32,9 +32,7 @@ class MasksPreviewsClientCommon(ImageBaseClient):
 
         return ["lace1"]
 
-    def _parse_response(self, result: dict) -> MasksPreviewsApiResponse:
-        print(result)
-
+    def parse_response(self, result: dict) -> MasksPreviewsApiResponse:
         data = result.get("data")
         if isinstance(data, dict):
             return MasksPreviewsApiResponse(

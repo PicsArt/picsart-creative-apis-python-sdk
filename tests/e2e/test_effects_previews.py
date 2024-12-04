@@ -3,7 +3,7 @@ import os
 import pytest
 
 import picsart_sdk
-from picsart_sdk.api_responses.effects_responses import (
+from picsart_sdk.api_responses.effects_response import (
     EffectsPreviewsApiResponse,
     EffectsPreviewsApiResponseData,
 )

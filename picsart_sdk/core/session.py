@@ -8,7 +8,7 @@ from picsart_sdk.version import __version__
 
 class Session:
 
-    def __init__(self, api_key=None, api_version: str = "1.0"):
+    def __init__(self, api_key=None):
         self.user_agent_name = "picsart-sdk-python"
         self.user_agent_version = __version__
 
@@ -16,23 +16,26 @@ class Session:
         if self.api_key is None:
             self.api_key = os.environ.get("PICSART_API_KEY", "")
 
-        self.api_version = api_version
-        if self.api_version is None:
-            self.api_version = os.environ.get("PICSART_API_VERSION", "1.0")
-
     @staticmethod
     def get_default_session():
         return Session()
 
-    def client(self, client_name: str, is_async: bool = False, timeout: float = 10.0):
+    def client(
+        self,
+        client_name: str,
+        is_async: bool = False,
+        timeout: int = DEFAULT_HTTP_TIMEOUT_SECONDS,
+        version=None,
+    ):
         if is_async:
-            http_client = AsyncHttpClient(timeout=DEFAULT_HTTP_TIMEOUT_SECONDS)
+            http_client = AsyncHttpClient(timeout=timeout)
         else:
-            http_client = HttpClient(timeout=DEFAULT_HTTP_TIMEOUT_SECONDS)
+            http_client = HttpClient(timeout=timeout)
 
         return ClientFactory.get_client(
             client_name=client_name,
             session=self,
             is_async=is_async,
             http_client=http_client,
+            version=version,
         )

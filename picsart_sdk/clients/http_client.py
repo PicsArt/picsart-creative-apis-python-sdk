@@ -21,6 +21,7 @@ class HttpClient(BaseHttpClient):
         data: dict[str, any],
         files: dict[str, any],
         headers: dict[str, str],
+        as_json: bool = False,
     ) -> Any:
         response = self._do_call(
             method="POST",
@@ -28,6 +29,7 @@ class HttpClient(BaseHttpClient):
             data=data,
             files=files,
             headers=headers,
+            as_json=as_json,
         )
 
         return response.json()
@@ -53,22 +55,38 @@ class HttpClient(BaseHttpClient):
         data: Dict[str, Any] = None,
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
+        as_json: bool = False,
     ) -> Response:
-        if PICSART_LOG_HTTP_CALLS:
-            if PICSART_LOG_HTTP_CALLS_HEADERS:
-                logger.debug(f"{method} {url} {data} {files} {headers}")
-            else:
-                logger.debug(f"{method} {url} {data} {files}")
-
         try:
+            request_params = {
+                "method": method,
+                "url": url,
+                "headers": {
+                    **headers,
+                    **self.default_headers,
+                    "content-type": "application/json",
+                },
+            }
+
+            if files:
+                request_params["files"] = files
+
+            if as_json:
+                request_params["json"] = data
+            else:
+                request_params["data"] = data
+
+            if PICSART_LOG_HTTP_CALLS:
+                log_message = f"{request_params}"
+                if not PICSART_LOG_HTTP_CALLS_HEADERS:
+                    filtered_dict = request_params.copy()
+                    filtered_dict.pop("headers", None)
+                    log_message = f"{filtered_dict}"
+
+                logger.debug(log_message)
+
             with httpx.Client(timeout=self.timeout) as client:
-                response = client.request(
-                    method=method,
-                    url=url,
-                    headers={**headers, **self.default_headers},
-                    data=data,
-                    files=files,
-                )
+                response = client.request(**request_params)
             response.raise_for_status()
             return response
         finally:

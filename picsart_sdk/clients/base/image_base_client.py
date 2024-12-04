@@ -1,6 +1,8 @@
 from abc import ABC
 
+from picsart_sdk.api_responses import ApiResponse, ApiResponseData
 from picsart_sdk.clients.base.base_client import BaseClient
+from picsart_sdk.settings import PICSART_IMAGE_API_VERSION
 
 
 class ImageBaseClient(BaseClient, ABC):
@@ -12,6 +14,10 @@ class ImageBaseClient(BaseClient, ABC):
     @property
     def base_url(self):
         return "https://api.picsart.io/tools"
+
+    @property
+    def version(self):
+        return self._version or PICSART_IMAGE_API_VERSION
 
     def set_payload(self, request):
         if request.image.image_url is not None:
@@ -30,3 +36,11 @@ class ImageBaseClient(BaseClient, ABC):
             )
 
         self._payload.update(request.get_dict())
+
+    def parse_response(self, result: dict) -> ApiResponse:
+        data = result["data"] if "data" in result else None
+        return ApiResponse(
+            status=result["status"],
+            data=ApiResponseData(url=data["url"], id=data["id"]) if data else None,
+            transaction_id=result.get("transaction_id"),
+        )

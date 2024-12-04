@@ -11,3 +11,8 @@ try:
     )
 except (ValueError, TypeError):
     DEFAULT_HTTP_TIMEOUT_SECONDS = 99
+
+PICSART_IMAGE_API_VERSION = os.environ.get("PICSART_IMAGE_API_VERSION_ON", "1.0")
+PICSART_IMAGE_GENAI_API_VERSION = os.environ.get(
+    "PICSART_IMAGE_GENAI_API_VERSION", "v1"
+)

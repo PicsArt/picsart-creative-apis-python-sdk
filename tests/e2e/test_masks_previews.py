@@ -3,7 +3,7 @@ import os
 import pytest
 
 import picsart_sdk
-from picsart_sdk.api_responses.masks_previews_responses import (
+from picsart_sdk.api_responses.masks_previews_response import (
     MasksPreviewsApiResponse,
     MasksPreviewsApiResponseData,
 )

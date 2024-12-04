@@ -1,6 +1,6 @@
 from typing import Optional
 
-from picsart_sdk.api_responses.effects_responses import (
+from picsart_sdk.api_responses.effects_response import (
     EffectsPreviewsApiResponse,
     EffectsPreviewsApiResponseData,
 )
@@ -32,7 +32,7 @@ class EffectsPreviewsClient(ImageBaseClient):
         )
         return self.post(request=request)
 
-    def _parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
+    def parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
 
         return EffectsPreviewsApiResponse(
             status=result.get("status"),
@@ -67,7 +67,7 @@ class AsyncEffectsPreviewsClient(ImageBaseClient):
         )
         return await self.async_post(request=request)
 
-    def _parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
+    def parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
 
         return EffectsPreviewsApiResponse(
             status=result.get("status"),
