@@ -1,3 +1,4 @@
+from picsart_sdk.clients.requests_models.adjust_request import AdjustRequest
 from picsart_sdk.clients.requests_models.color_transfer_request import (
     ColorTransferRequest,
 )
@@ -46,4 +47,5 @@ __all__ = [
     "StyleTransferRequest",
     "MasksRequest",
     "MasksPreviewsRequest",
+    "AdjustRequest",
 ]
