@@ -14,6 +14,7 @@ class ApiClient(str, Enum):
     EFFECTS = "effects"
     EFFECTS_PREVIEWS = "effects_previews"
     FACE_ENHANCEMENT = "face_enhancement"
+    IMAGE_TAGGING = "image_tagging"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
     REMOVE_BACKGROUND = "remove_background"
@@ -48,6 +49,7 @@ class ClientFactory:
         ApiClient.TEXTURE_GENERATOR.value: "picsart_sdk.clients.TextureGeneratorClient",
         ApiClient.VECTORIZER.value: "picsart_sdk.clients.VectorizerClient",
         ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
+        ApiClient.IMAGE_TAGGING.value: "picsart_sdk.clients.ImageTaggingClient",
     }
 
     @staticmethod
