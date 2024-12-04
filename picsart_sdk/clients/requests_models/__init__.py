@@ -24,6 +24,9 @@ from picsart_sdk.clients.requests_models.remove_background_request import (
 from picsart_sdk.clients.requests_models.style_transfer_request import (
     StyleTransferRequest,
 )
+from picsart_sdk.clients.requests_models.texture_generator_request import (
+    TextureGeneratorRequest,
+)
 from picsart_sdk.clients.requests_models.ultra_enhance_request import (
     UltraEnhanceRequest,
 )
@@ -50,4 +53,5 @@ __all__ = [
     "MasksPreviewsRequest",
     "AdjustRequest",
     "EditRequest",
+    "TextureGeneratorRequest",
 ]

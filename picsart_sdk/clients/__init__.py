@@ -28,6 +28,10 @@ from picsart_sdk.clients.style_transfer_client import (
     AsyncStyleTransferClient,
     StyleTransferClient,
 )
+from picsart_sdk.clients.texture_generator_client import (
+    AsyncTextureGeneratorClient,
+    TextureGeneratorClient,
+)
 from picsart_sdk.clients.ultra_enhance_client import (
     AsyncUltraEnhanceClient,
     UltraEnhanceClient,
@@ -72,4 +76,6 @@ __all__ = [
     "AsyncAdjustClient",
     "EditClient",
     "AsyncEditClient",
+    "TextureGeneratorClient",
+    "AsyncTextureGeneratorClient",
 ]

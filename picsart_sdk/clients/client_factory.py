@@ -6,22 +6,23 @@ from picsart_sdk.clients.base.base_http_client import BaseHttpClient
 
 
 class ApiClient(str, Enum):
-    UPLOAD = "upload"
-    REMOVE_BACKGROUND = "remove_background"
-    UPSCALE = "upscale"
-    ULTRA_UPSCALE = "ultra_upscale"
-    ULTRA_ENHANCE = "ultra_enhance"
-    FACE_ENHANCEMENT = "face_enhancement"
-    EFFECTS = "effects"
     AI_EFFECTS = "ai_effects"
-    EFFECTS_PREVIEWS = "effects_previews"
+    ADJUST = "adjust"
     BALANCE = "balance"
     COLOR_TRANSFER = "color_transfer"
-    STYLE_TRANSFER = "style_transfer"
+    EDIT = "edit"
+    EFFECTS = "effects"
+    EFFECTS_PREVIEWS = "effects_previews"
+    FACE_ENHANCEMENT = "face_enhancement"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
-    ADJUST = "adjust"
-    EDIT = "edit"
+    REMOVE_BACKGROUND = "remove_background"
+    STYLE_TRANSFER = "style_transfer"
+    TEXTURE_GENERATOR = "texture_generator"
+    ULTRA_ENHANCE = "ultra_enhance"
+    ULTRA_UPSCALE = "ultra_upscale"
+    UPLOAD = "upload"
+    UPSCALE = "upscale"
 
 
 class ClientFactory:
@@ -42,6 +43,7 @@ class ClientFactory:
         ApiClient.MASKS_PREVIEWS.value: "picsart_sdk.clients.MasksPreviewsClient",
         ApiClient.ADJUST.value: "picsart_sdk.clients.AdjustClient",
         ApiClient.EDIT.value: "picsart_sdk.clients.EditClient",
+        ApiClient.TEXTURE_GENERATOR.value: "picsart_sdk.clients.TextureGeneratorClient",
     }
 
     @staticmethod
