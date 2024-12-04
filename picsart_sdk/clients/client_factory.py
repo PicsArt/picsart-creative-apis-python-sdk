@@ -32,6 +32,16 @@ class ApiClient(str, Enum):
 
 
 class ClientFactory:
+    """
+    Factory class to create instances of API clients in the Picsart SDK.
+
+    This class provides a centralized way to retrieve instances of specific
+    API clients based on their names.
+
+    Attributes:
+        _clients (dict): A mapping of client names to their class paths.
+    """
+
     _clients = {
         ApiClient.BALANCE.value: "picsart_sdk.clients.BalanceClient",
         ApiClient.UPLOAD.value: "picsart_sdk.clients.UploadClient",

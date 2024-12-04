@@ -172,3 +172,5 @@ poetry install
 poetry run pre-commit install
 ```
 
+Install packages necessary for generating `docs`:
+`poetry install --with docs`
