@@ -15,6 +15,10 @@ from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
+from picsart_sdk.clients.image_description_client import (
+    AsyncImageDescriptionClient,
+    ImageDescriptionClient,
+)
 from picsart_sdk.clients.image_tagging_client import (
     AsyncImageTaggingClient,
     ImageTaggingClient,
@@ -96,4 +100,6 @@ __all__ = [
     "AsyncSurfacemapClient",
     "ImageTaggingClient",
     "AsyncImageTaggingClient",
+    "ImageDescriptionClient",
+    "AsyncImageDescriptionClient",
 ]

@@ -153,6 +153,7 @@ print(response2)
 - Vectorizer
 - Surfacemap
 - Image Tagging (TODO: e2e tests)
+- Image Description (TODO: e2e tests)
 
 # Errors
 
