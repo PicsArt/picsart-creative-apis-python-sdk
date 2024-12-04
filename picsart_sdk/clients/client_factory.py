@@ -26,6 +26,7 @@ class ApiClient(str, Enum):
     UPLOAD = "upload"
     UPSCALE = "upscale"
     VECTORIZER = "vectorizer"
+    IMAGE_DESCRIPTION = "image_description"
 
 
 class ClientFactory:
@@ -50,6 +51,7 @@ class ClientFactory:
         ApiClient.VECTORIZER.value: "picsart_sdk.clients.VectorizerClient",
         ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
         ApiClient.IMAGE_TAGGING.value: "picsart_sdk.clients.ImageTaggingClient",
+        ApiClient.IMAGE_DESCRIPTION.value: "picsart_sdk.clients.ImageDescriptionClient",
     }
 
     @staticmethod

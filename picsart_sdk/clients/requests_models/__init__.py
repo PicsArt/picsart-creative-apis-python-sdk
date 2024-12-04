@@ -10,6 +10,9 @@ from picsart_sdk.clients.requests_models.effects_request import EffectsRequest
 from picsart_sdk.clients.requests_models.face_enhancement_request import (
     FaceEnhancementRequest,
 )
+from picsart_sdk.clients.requests_models.image_description_request import (
+    ImageDescriptionRequest,
+)
 from picsart_sdk.clients.requests_models.image_tagging_request import (
     ImageTaggingRequest,
 )
@@ -62,4 +65,5 @@ __all__ = [
     "VectorizerRequest",
     "SurfacemapRequest",
     "ImageTaggingRequest",
+    "ImageDescriptionRequest",
 ]
