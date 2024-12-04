@@ -14,6 +14,10 @@ from picsart_sdk.clients.face_enhancement_client import (
     FaceEnhancementClient,
 )
 from picsart_sdk.clients.masks_client import AsyncMasksClient, MasksClient
+from picsart_sdk.clients.masks_previews_client import (
+    AsyncMasksPreviewsClient,
+    MasksPreviewsClient,
+)
 from picsart_sdk.clients.remove_background_client import (
     AsyncRemoveBackgroundClient,
     RemoveBackgroundClient,
@@ -60,4 +64,6 @@ __all__ = [
     "AsyncStyleTransferClient",
     "MasksClient",
     "AsyncMasksClient",
+    "MasksPreviewsClient",
+    "AsyncMasksPreviewsClient",
 ]
