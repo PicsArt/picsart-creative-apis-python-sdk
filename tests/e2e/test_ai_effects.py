@@ -1,7 +1,7 @@
 import pytest
 
 import picsart_sdk
-from picsart_sdk.api_responses.effects_responses import EffectsList
+from picsart_sdk.api_responses.effects_response import EffectsList
 from picsart_sdk.clients import AiEffectsClient, AsyncAiEffectsClient
 
 

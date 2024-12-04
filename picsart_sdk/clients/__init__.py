@@ -40,6 +40,7 @@ from picsart_sdk.clients.surfacemap_client import (
     AsyncSurfacemapClient,
     SurfacemapClient,
 )
+from picsart_sdk.clients.text2image_client import Text2ImageClient
 from picsart_sdk.clients.texture_generator_client import (
     AsyncTextureGeneratorClient,
     TextureGeneratorClient,
@@ -102,4 +103,5 @@ __all__ = [
     "AsyncImageTaggingClient",
     "ImageDescriptionClient",
     "AsyncImageDescriptionClient",
+    "Text2ImageClient",
 ]

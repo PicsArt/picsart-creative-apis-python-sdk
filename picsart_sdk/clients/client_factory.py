@@ -1,5 +1,6 @@
 import importlib
 from enum import Enum
+from typing import Optional
 
 from picsart_sdk.clients.base.base_client import BaseClient
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient
@@ -14,19 +15,20 @@ class ApiClient(str, Enum):
     EFFECTS = "effects"
     EFFECTS_PREVIEWS = "effects_previews"
     FACE_ENHANCEMENT = "face_enhancement"
+    IMAGE_DESCRIPTION = "image_description"
     IMAGE_TAGGING = "image_tagging"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
     REMOVE_BACKGROUND = "remove_background"
     STYLE_TRANSFER = "style_transfer"
     SURFACEMAP = "surfacemap"
+    TEXT2IMAGE = "text2image"
     TEXTURE_GENERATOR = "texture_generator"
     ULTRA_ENHANCE = "ultra_enhance"
     ULTRA_UPSCALE = "ultra_upscale"
     UPLOAD = "upload"
     UPSCALE = "upscale"
     VECTORIZER = "vectorizer"
-    IMAGE_DESCRIPTION = "image_description"
 
 
 class ClientFactory:
@@ -52,6 +54,7 @@ class ClientFactory:
         ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
         ApiClient.IMAGE_TAGGING.value: "picsart_sdk.clients.ImageTaggingClient",
         ApiClient.IMAGE_DESCRIPTION.value: "picsart_sdk.clients.ImageDescriptionClient",
+        ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",
     }
 
     @staticmethod
@@ -59,7 +62,8 @@ class ClientFactory:
         client_name: str,
         session,
         http_client: BaseHttpClient,
-        is_async=False,
+        is_async: Optional[bool] = False,
+        version: Optional[str] = None,
         *args,
         **kwargs,
     ):
@@ -76,7 +80,9 @@ class ClientFactory:
         if not issubclass(client_class, BaseClient):
             raise TypeError(f"{class_name} does not implement BaseClient")
 
-        return client_class(session=session, http_client=http_client, *args, **kwargs)
+        return client_class(
+            session=session, http_client=http_client, version=version, *args, **kwargs
+        )
 
     @staticmethod
     def add_client(name: str, class_name):
