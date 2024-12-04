@@ -6,18 +6,14 @@ from httpx import Response
 
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
 from picsart_sdk.core.logger import get_logger
-
-PICSART_LOG_HTTP_CALLS = os.environ.get("PICSART_LOG_HTTP_CALLS", "false") == "true"
-PICSART_LOG_HTTP_CALLS_HEADERS = (
-    os.environ.get("PICSART_LOG_HTTP_CALLS_HEADERS", "false") == "true"
-)
+from picsart_sdk.settings import PICSART_LOG_HTTP_CALLS, PICSART_LOG_HTTP_CALLS_HEADERS
 
 logger = get_logger()
 
 
 class HttpClient(BaseHttpClient):
-    def __init__(self):
-        pass
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
 
     def post(
         self,
@@ -49,10 +45,9 @@ class HttpClient(BaseHttpClient):
 
         return response.json()
 
-    @classmethod
     @handle_http_errors
     def _do_call(
-        cls,
+        self,
         method: str,
         url,
         data: Dict[str, Any] = None,
@@ -66,11 +61,11 @@ class HttpClient(BaseHttpClient):
                 logger.debug(f"{method} {url} {data} {files}")
 
         try:
-            with httpx.Client() as client:
+            with httpx.Client(timeout=self.timeout) as client:
                 response = client.request(
                     method=method,
                     url=url,
-                    headers={**headers, **cls.default_headers},
+                    headers={**headers, **self.default_headers},
                     data=data,
                     files=files,
                 )

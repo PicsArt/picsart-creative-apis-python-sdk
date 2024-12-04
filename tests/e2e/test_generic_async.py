@@ -142,6 +142,22 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             None,
             {"reference_image_path": "../resources/image3.jpg"},
         ),
+        (
+            "style_transfer",
+            "style_transfer",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/e8a93f25-ea57-4a6c-aaf9-4032cac5ed2b.jpg",  # image2.jpg
+            {
+                "reference_image_url": "https://pastatic.picsart.com/cms-pastatic/d68aa804-0d8b-412c-9507-32df9f167da4.jpg"  # image3.jpg
+            },
+        ),
+        (
+            "style_transfer",
+            "style_transfer",
+            "../resources/image2.jpg",
+            None,
+            {"reference_image_path": "../resources/image3.jpg"},
+        ),
     ],
 )
 async def test_generic_async(
