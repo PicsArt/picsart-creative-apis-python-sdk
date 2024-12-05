@@ -15,6 +15,7 @@ class ApiClient(str, Enum):
     EFFECTS = "effects"
     EFFECTS_PREVIEWS = "effects_previews"
     FACE_ENHANCEMENT = "face_enhancement"
+    GEN_AI_BALANCE = "gen_ai_balance"
     IMAGE_DESCRIPTION = "image_description"
     IMAGE_TAGGING = "image_tagging"
     MASKS = "masks"
@@ -35,6 +36,7 @@ class ApiClient(str, Enum):
 class ClientFactory:
     _clients = {
         ApiClient.BALANCE.value: "picsart_sdk.clients.BalanceClient",
+        ApiClient.GEN_AI_BALANCE.value: "picsart_sdk.clients.GenAiBalanceClient",
         ApiClient.UPLOAD.value: "picsart_sdk.clients.UploadClient",
         ApiClient.REMOVE_BACKGROUND.value: "picsart_sdk.clients.RemoveBackgroundClient",
         ApiClient.UPSCALE.value: "picsart_sdk.clients.UpscaleClient",

@@ -15,6 +15,10 @@ from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
+from picsart_sdk.clients.gen_ai_balance_client import (
+    AsyncGenAiBalanceClient,
+    GenAiBalanceClient,
+)
 from picsart_sdk.clients.image_description_client import (
     AsyncImageDescriptionClient,
     ImageDescriptionClient,
@@ -85,6 +89,8 @@ __all__ = [
     "AsyncEffectsPreviewsClient",
     "BalanceClient",
     "AsyncBalanceClient",
+    "GenAiBalanceClient",
+    "AsyncGenAiBalanceClient",
     "ColorTransferClient",
     "AsyncColorTransferClient",
     "StyleTransferClient",
