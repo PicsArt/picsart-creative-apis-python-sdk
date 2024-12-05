@@ -33,6 +33,7 @@ class UpscaleClient(ImageBaseClient):
     ) -> ApiResponse:
         """
         Upscale an image.
+        Can provide either a file path or an image URL.
 
         Args:
             image_url (str, optional): URL of the image to upscale.
