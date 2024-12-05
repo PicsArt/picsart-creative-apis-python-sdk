@@ -35,4 +35,3 @@ docs/source/.vs
 source/_build
 poetry.lock
 docs/_build
-docs/_static

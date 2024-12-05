@@ -30,9 +30,13 @@ pre-commit = "^4.0.1"
 [tool.isort]
 profile = "black"
 
+[tool.black]
+exclude = '''
+/(
+    docs
+)/
+'''
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-#[tool.poetry.extras]
-#docs = ["sphinx", "furo", "sphinx_copybutton", "sphinx-remove-toctrees"]
