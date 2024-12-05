@@ -1,7 +1,10 @@
-from typing import Optional
+from typing import Optional, Union
 
-from picsart_sdk.api_responses import ApiResponse
-from picsart_sdk.api_responses.text2image_response import Text2ImageApiResponse
+from picsart_sdk.api_responses.text2image_response import (
+    Text2ImageApiResponse,
+    Text2ImageApiResponseData,
+    Text2ImageCreateApiResponse,
+)
 from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
 from picsart_sdk.clients.requests_models.text2image_request import Text2ImageRequest
 
@@ -18,7 +21,7 @@ class Text2ImageClient(GenAiBaseClient):
         width: Optional[int] = 1024,
         height: Optional[int] = 1024,
         count: Optional[int] = 2,
-    ) -> Text2ImageApiResponse:
+    ) -> Text2ImageCreateApiResponse:
         request = Text2ImageRequest(
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -28,5 +31,19 @@ class Text2ImageClient(GenAiBaseClient):
         )
         return self.post(request=request, as_json=True)
 
-    def parse_response(self, result) -> Text2ImageApiResponse:
-        return Text2ImageApiResponse(**result)
+    def get_text2image_result(self, inference_id: str) -> Text2ImageApiResponse:
+        return self.get(postfix_url=f"inferences/{inference_id}")
+
+    def parse_response(
+        self, result
+    ) -> Union[Text2ImageCreateApiResponse, Text2ImageApiResponse]:
+        if result.get("inference_id") and result.get("status") == "ACCEPTED":
+            return Text2ImageCreateApiResponse(**result)
+
+        data = None
+        if result.get("data") and result.get("status") == "FINISHED":
+            data = [
+                Text2ImageApiResponseData(**item) for item in result.get("data", [])
+            ]
+
+        return Text2ImageApiResponse(status=result.get("status"), data=data)

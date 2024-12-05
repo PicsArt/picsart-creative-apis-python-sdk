@@ -449,7 +449,7 @@ print(response2)
 - Surfacemap
 - Image Tagging (TODO: e2e tests)
 - Image Description (TODO: e2e tests)
-- Text2Image (TODO: e2e tests)
+- Text2Image
 
 # Errors
 
