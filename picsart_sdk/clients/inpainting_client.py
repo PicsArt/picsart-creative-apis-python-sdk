@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
+from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import PicsartImage, PicsartImageFormat
 from picsart_sdk.clients.requests_models.painting_request import (
     InpaintingRequest,
@@ -23,25 +24,12 @@ class PaintingApiResponse:
     inference_id: str
 
 
-class CommonPaintingClient(GenAiBaseClient, ABC):
+class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
     def parse_response(self, result):
         return PaintingApiResponse(**result)
 
     def set_payload(self, request: InpaintingRequest):
-        if request.image.image_url is not None:
-            self._payload = self._payload or {}
-            self._payload.setdefault("image_url", request.image.image_url)
-
-        if request.image.image_path:
-            self._payload = self._payload or {}
-            self._files = self._files or {}
-            self._files.setdefault(
-                "image",
-                (
-                    request.image.image_path,
-                    open(request.image.image_path, "rb"),
-                ),
-            )
+        ImageBaseClient.set_payload(self, request)
 
         if request.mask.image_url is not None:
             self._payload = self._payload or {}
@@ -88,3 +76,10 @@ class InpaintingClient(CommonPaintingClient):
             format=output_format.value.upper(),
         )
         return self.post(request=request)
+
+    def get_results(self, inference_id: str) -> PaintingApiResponse:
+        return self.get(postfix_url=inference_id)
+
+    def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
+        url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
+        return url.replace("inpaint/", "")

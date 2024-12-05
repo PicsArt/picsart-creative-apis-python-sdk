@@ -10,7 +10,7 @@ class BalanceClient(ImageBaseClient):
 
     def get_balance(self) -> BalanceApiResponse:
         result = self.http_client.get(
-            url=self._get_url(),
+            url=self.get_url(),
             headers=self.headers,
         )
         return BalanceApiResponse(credits=result.get("credits"))
@@ -23,7 +23,7 @@ class AsyncBalanceClient(ImageBaseClient):
 
     async def get_balance(self) -> BalanceApiResponse:
         result = await self.http_client.get(
-            url=self._get_url(),
+            url=self.get_url(),
             headers=self.headers,
         )
 

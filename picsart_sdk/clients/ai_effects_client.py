@@ -32,7 +32,7 @@ class AiEffectsClient(ImageBaseClient):
 
     def get_available_ai_effects(self) -> EffectsList:
         result = self.http_client.get(
-            url=self._get_url(),
+            url=self.get_url(),
             headers=self.headers,
         )
         return EffectsList(
@@ -61,7 +61,7 @@ class AsyncAiEffectsClient(ImageBaseClient):
 
     async def get_available_ai_effects(self) -> EffectsList:
         result = await self.http_client.get(
-            url=self._get_url(),
+            url=self.get_url(),
             headers=self.headers,
         )
         return EffectsList(
