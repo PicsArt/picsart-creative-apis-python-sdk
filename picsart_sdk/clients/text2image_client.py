@@ -6,7 +6,7 @@ from picsart_sdk.api_responses.text2image_response import (
     Text2ImageCreateApiResponse,
 )
 from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
-from picsart_sdk.clients.requests_models.text2image_request import Text2ImageRequest
+from picsart_sdk.clients.requests_models import Text2ImageRequest
 
 
 class Text2ImageClient(GenAiBaseClient):
