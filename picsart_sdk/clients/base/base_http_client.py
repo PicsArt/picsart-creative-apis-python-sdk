@@ -94,7 +94,6 @@ class BaseHttpClient(ABC):
             "headers": {
                 **headers,
                 **self.default_headers,
-                "content-type": "application/json",
             },
         }
 
@@ -103,6 +102,7 @@ class BaseHttpClient(ABC):
 
         if as_json:
             request_params["json"] = data
+            request_params["headers"]["Content-Type"] = "application/json"
         else:
             request_params["data"] = data
 
