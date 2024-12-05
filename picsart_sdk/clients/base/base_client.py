@@ -92,7 +92,7 @@ class BaseClient:
 
         return url
 
-    def get(self, postfix_url: str = "", query_params: dict = None) -> ApiResponse:
+    def get(self, postfix_url: str = "", query_params: dict = None):
         result = self.http_client.get(
             url=self._get_url(postfix_url, query_params),
             headers=self.headers,
