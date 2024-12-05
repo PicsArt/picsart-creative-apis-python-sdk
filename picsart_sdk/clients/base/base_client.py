@@ -72,13 +72,14 @@ class BaseClient:
 
         return self.parse_response(result=result)
 
-    async def async_post(self, request):
+    async def async_post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)
         result = await self.http_client.post(
             url=self.endpoint_url,
             data=self._payload,
             files=self._files,
             headers=self.headers,
+            as_json=as_json,
         )
 
         return self.parse_response(result=result)
@@ -100,9 +101,7 @@ class BaseClient:
 
         return self.parse_response(result=result)
 
-    async def async_get(
-        self, postfix_url: str = "", query_params: dict = None
-    ) -> ApiResponse:
+    async def async_get(self, postfix_url: str = "", query_params: dict = None):
         result = await self.http_client.get(
             url=self._get_url(postfix_url, query_params),
             headers=self.headers,

@@ -154,7 +154,8 @@ print(response2)
 - Surfacemap
 - Image Tagging (TODO: e2e tests)
 - Image Description (TODO: e2e tests)
-- Text2Image
+- Text2Image (TODO: test async)
+- Text2Text (TODO: test async)
 
 # Errors
 
