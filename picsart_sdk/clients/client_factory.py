@@ -18,6 +18,7 @@ class ApiClient(str, Enum):
     GEN_AI_BALANCE = "gen_ai_balance"
     IMAGE_DESCRIPTION = "image_description"
     IMAGE_TAGGING = "image_tagging"
+    INPAINTING = "inpainting"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
     REMOVE_BACKGROUND = "remove_background"
@@ -57,8 +58,9 @@ class ClientFactory:
         ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
         ApiClient.IMAGE_TAGGING.value: "picsart_sdk.clients.ImageTaggingClient",
         ApiClient.IMAGE_DESCRIPTION.value: "picsart_sdk.clients.ImageDescriptionClient",
-        ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",  # TODO: do the Async client
-        ApiClient.TEXT2TEXT.value: "picsart_sdk.clients.Text2TextClient",  # TODO: do the Async client
+        ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",
+        ApiClient.TEXT2TEXT.value: "picsart_sdk.clients.Text2TextClient",
+        ApiClient.INPAINTING.value: "picsart_sdk.clients.InpaintingClient",
     }
 
     @staticmethod

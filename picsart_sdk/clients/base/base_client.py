@@ -10,7 +10,7 @@ class BaseClient:
     _files = None
     _version = None
     headers = {
-        "accept": "application/json",
+        "Accept": "application/json",
     }
 
     files: Dict[str, Union[str, IO]] = {}
