@@ -31,6 +31,8 @@ from picsart_sdk.clients.requests_models.style_transfer_request import (
     StyleTransferRequest,
 )
 from picsart_sdk.clients.requests_models.surfacemap_request import SurfacemapRequest
+from picsart_sdk.clients.requests_models.text2image_request import Text2ImageRequest
+from picsart_sdk.clients.requests_models.text2text_request import Text2TextRequest
 from picsart_sdk.clients.requests_models.texture_generator_request import (
     TextureGeneratorRequest,
 )
@@ -66,4 +68,6 @@ __all__ = [
     "SurfacemapRequest",
     "ImageTaggingRequest",
     "ImageDescriptionRequest",
+    "Text2ImageRequest",
+    "Text2TextRequest",
 ]

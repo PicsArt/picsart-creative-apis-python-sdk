@@ -23,6 +23,7 @@ class ApiClient(str, Enum):
     STYLE_TRANSFER = "style_transfer"
     SURFACEMAP = "surfacemap"
     TEXT2IMAGE = "text2image"
+    TEXT2TEXT = "text2text"
     TEXTURE_GENERATOR = "texture_generator"
     ULTRA_ENHANCE = "ultra_enhance"
     ULTRA_UPSCALE = "ultra_upscale"
@@ -54,7 +55,8 @@ class ClientFactory:
         ApiClient.SURFACEMAP.value: "picsart_sdk.clients.SurfacemapClient",
         ApiClient.IMAGE_TAGGING.value: "picsart_sdk.clients.ImageTaggingClient",
         ApiClient.IMAGE_DESCRIPTION.value: "picsart_sdk.clients.ImageDescriptionClient",
-        ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",
+        ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",  # TODO: do the Async client
+        ApiClient.TEXT2TEXT.value: "picsart_sdk.clients.Text2TextClient",  # TODO: do the Async client
     }
 
     @staticmethod
