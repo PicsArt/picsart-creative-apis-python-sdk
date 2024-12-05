@@ -1,7 +1,7 @@
-UpscaleRequest
+UpscaleClients
 ==============
 
-.. automodule:: upscale_request
+.. automodule:: picsart_sdk.clients.upscale_client
     :members:
     :undoc-members:
     :show-inheritance:
