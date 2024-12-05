@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import IO, Dict, Optional, Union
 from urllib.parse import urlencode
 
-from picsart_sdk.api_responses import ApiResponse, ApiResponseData
+from picsart_sdk.clients.http_clients import AsyncHttpClient, HttpClient
 
 
 class BaseClient:
@@ -62,7 +62,8 @@ class BaseClient:
 
     def post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)
-        result = self.http_client.post(
+        http_client: HttpClient = self.http_client
+        result = http_client.post(
             url=self.endpoint_url,
             data=self._payload,
             files=self._files,
@@ -74,7 +75,8 @@ class BaseClient:
 
     async def async_post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)
-        result = await self.http_client.post(
+        http_client: AsyncHttpClient = self.http_client
+        result = await http_client.post(
             url=self.endpoint_url,
             data=self._payload,
             files=self._files,

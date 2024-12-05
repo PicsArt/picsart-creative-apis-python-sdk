@@ -1,5 +1,4 @@
-from picsart_sdk.clients.async_http_client import AsyncHttpClient
-from picsart_sdk.clients.http_client import HttpClient
+from picsart_sdk.clients.http_clients import AsyncHttpClient, HttpClient
 from picsart_sdk.core.session import Session
 
 

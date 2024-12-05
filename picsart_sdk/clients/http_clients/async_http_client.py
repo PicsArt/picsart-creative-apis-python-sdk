@@ -1,29 +1,19 @@
-import os
-from typing import IO, Any, Dict
+from typing import IO, Any, Dict, Optional
 
 import httpx
 from httpx import Response
 
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
-from picsart_sdk.core.logger import get_logger
-from picsart_sdk.settings import PICSART_LOG_HTTP_CALLS, PICSART_LOG_HTTP_CALLS_HEADERS
-
-logger = get_logger()
 
 
 class AsyncHttpClient(BaseHttpClient):
-    _raw_response = None
-    _json_response = None
-
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
     async def post(
         self,
         url: str,
         data: dict[str, any],
         files: dict[str, any],
         headers: dict[str, str],
+        as_json: bool = False,
     ) -> Any:
         response = await self._do_call(
             method="POST",
@@ -31,6 +21,7 @@ class AsyncHttpClient(BaseHttpClient):
             data=data,
             files=files,
             headers=headers,
+            as_json=as_json,
         )
 
         return response.json()
@@ -55,14 +46,6 @@ class AsyncHttpClient(BaseHttpClient):
 
         return self._raw_response
 
-    @property
-    def json(self):
-        return self._json_response
-
-    @property
-    def raw_response(self):
-        return self._raw_response
-
     @handle_http_errors
     async def _do_call(
         self,
@@ -71,22 +54,20 @@ class AsyncHttpClient(BaseHttpClient):
         data: Dict[str, Any] = None,
         files: Dict[str, Any] = None,
         headers: Dict[str, str] = None,
+        as_json: Optional[bool] = False,
     ) -> Response:
-        if PICSART_LOG_HTTP_CALLS:
-            if PICSART_LOG_HTTP_CALLS_HEADERS:
-                logger.debug(f"{method} {url} {data} {files} {headers}")
-            else:
-                logger.debug(f"{method} {url} {data} {files}")
+        request_params = self.prepare_request_params(
+            method=method,
+            url=url,
+            data=data,
+            files=files,
+            headers=headers,
+            as_json=as_json,
+        )
 
         try:
             async with httpx.AsyncClient(timeout=self.timeout) as client:
-                response = await client.request(
-                    method=method,
-                    url=url,
-                    headers={**headers, **self.default_headers},
-                    data=data,
-                    files=files,
-                )
+                response = await client.request(**request_params)
             response.raise_for_status()
             return response
         finally:
