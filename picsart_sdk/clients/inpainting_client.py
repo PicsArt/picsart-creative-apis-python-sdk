@@ -1,7 +1,10 @@
 from abc import ABC
-from dataclasses import dataclass
 from typing import Optional
 
+from picsart_sdk.api_responses.painting_response import (
+    PaintingApiResponse,
+    PaintingDataItemApiResponse,
+)
 from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import PicsartImage, PicsartImageFormat
@@ -9,19 +12,6 @@ from picsart_sdk.clients.requests_models.painting_request import (
     InpaintingRequest,
     PaintingMode,
 )
-
-
-@dataclass
-class PaintingDataItemApiResponse:
-    id: str
-    url: str
-
-
-@dataclass
-class PaintingApiResponse:
-    status: str
-    data: list[PaintingDataItemApiResponse]
-    inference_id: Optional[str] = None
 
 
 class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
