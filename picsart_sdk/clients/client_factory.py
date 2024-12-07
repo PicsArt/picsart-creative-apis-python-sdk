@@ -21,6 +21,7 @@ class ApiClient(str, Enum):
     INPAINTING = "inpainting"
     MASKS = "masks"
     MASKS_PREVIEWS = "masks_previews"
+    OUTPAINTING = "outpainting"
     REMOVE_BACKGROUND = "remove_background"
     STYLE_TRANSFER = "style_transfer"
     SURFACEMAP = "surfacemap"
@@ -61,6 +62,7 @@ class ClientFactory:
         ApiClient.TEXT2IMAGE.value: "picsart_sdk.clients.Text2ImageClient",
         ApiClient.TEXT2TEXT.value: "picsart_sdk.clients.Text2TextClient",
         ApiClient.INPAINTING.value: "picsart_sdk.clients.InpaintingClient",
+        ApiClient.OUTPAINTING.value: "picsart_sdk.clients.OutpaintingClient",
     }
 
     @staticmethod
