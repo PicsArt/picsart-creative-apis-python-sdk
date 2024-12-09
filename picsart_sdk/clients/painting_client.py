@@ -10,7 +10,7 @@ from picsart_sdk.clients.requests_models.painting_request import PaintingMode
 
 
 class InpaintingClient(InpaintingCommon):
-    def get_results(self, inference_id: str) -> PaintingApiResponse:
+    def get_result(self, inference_id: str) -> PaintingApiResponse:
         return self.get(postfix_url=inference_id)
 
     def inpainting(
@@ -40,7 +40,7 @@ class InpaintingClient(InpaintingCommon):
 
 class AsyncInpaintingClient(InpaintingCommon):
 
-    async def get_results(self, inference_id: str) -> PaintingApiResponse:
+    async def get_result(self, inference_id: str) -> PaintingApiResponse:
         return await self.async_get(postfix_url=inference_id)
 
     async def inpainting(
@@ -70,7 +70,7 @@ class AsyncInpaintingClient(InpaintingCommon):
 
 class OutpaintingClient(OutpaintingCommon):
 
-    def get_results(self, inference_id: str) -> PaintingApiResponse:
+    def get_result(self, inference_id: str) -> PaintingApiResponse:
         return self.get(postfix_url=inference_id)
 
     def outpainting(
@@ -99,7 +99,7 @@ class OutpaintingClient(OutpaintingCommon):
 
 
 class AsyncOutpaintingClient(OutpaintingCommon):
-    async def get_results(self, inference_id: str) -> PaintingApiResponse:
+    async def get_result(self, inference_id: str) -> PaintingApiResponse:
         return await self.async_get(postfix_url=inference_id)
 
     async def outpainting(

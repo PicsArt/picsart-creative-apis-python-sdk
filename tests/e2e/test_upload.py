@@ -4,6 +4,7 @@ import pytest
 
 import picsart_sdk
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData
+from picsart_sdk.clients.client_factory import ApiClient
 from picsart_sdk.clients.upload_client import UploadClient
 
 
@@ -22,7 +23,7 @@ from picsart_sdk.clients.upload_client import UploadClient
     ],
 )
 def test_upload(image_path, image_url):
-    client: UploadClient = picsart_sdk.client("upload")
+    client: UploadClient = picsart_sdk.client(ApiClient.UPLOAD)
 
     if image_path:
         current_dir = os.path.dirname(__file__)

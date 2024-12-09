@@ -2,29 +2,20 @@ from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 
 
-class BalanceClient(ImageBaseClient):
-
+class CommonBalanceClient(ImageBaseClient):
     @property
     def endpoint(self):
         return "balance"
 
+    def parse_response(self, result):
+        return BalanceApiResponse(credits=result.get("credits"))
+
+
+class BalanceClient(CommonBalanceClient):
     def get_balance(self) -> BalanceApiResponse:
-        result = self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-        return BalanceApiResponse(credits=result.get("credits"))
+        return super().get()
 
 
-class AsyncBalanceClient(ImageBaseClient):
-    @property
-    def endpoint(self):
-        return "balance"
-
+class AsyncBalanceClient(CommonBalanceClient):
     async def get_balance(self) -> BalanceApiResponse:
-        result = await self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-
-        return BalanceApiResponse(credits=result.get("credits"))
+        return await super().async_get()

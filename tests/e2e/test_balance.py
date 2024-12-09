@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 import picsart_sdk
@@ -12,6 +14,10 @@ def assert_balance(result):
     assert int(result.credits) >= 0
 
 
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 @pytest.mark.parametrize(
     "client_name",
     [
@@ -26,6 +32,10 @@ def test_get_balance(client_name):
     assert_balance(result)
 
 
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "client_name",
