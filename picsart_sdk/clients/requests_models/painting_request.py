@@ -30,3 +30,13 @@ class InpaintingRequest(BaseRequest):
                 data[field.name] = getattr(self, field.name).value
 
         return data
+
+
+@dataclass
+class ReplaceBackgroundRequest(BaseRequest):
+    image: PicsartImage
+    prompt: str
+    negative_prompt: Optional[str] = ""
+    count: Optional[int] = 4
+    format: Optional[PicsartImageFormat] = PicsartImageFormat.JPG
+    mode: Optional[PaintingMode] = PaintingMode.SYNC

@@ -66,7 +66,7 @@ class BaseClient:
         result = http_client.post(
             url=self.endpoint_url,
             data=self._payload,
-            files=self._files,
+            files=self.get_files(),
             headers=self.headers,
             as_json=as_json,
         )
