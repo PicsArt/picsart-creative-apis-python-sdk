@@ -31,11 +31,15 @@ class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
     def set_payload(self, request: InpaintingRequest):
         ImageBaseClient.set_payload(self, request)
 
-        if request.mask.image_url is not None:
+        if (
+            hasattr(request, "mask")
+            and request.mask
+            and request.mask.image_url is not None
+        ):
             self._payload = self._payload or {}
             self._payload.setdefault("mask_url", request.mask.image_url)
 
-        if request.mask.image_path:
+        if hasattr(request, "mask") and request.mask and request.mask.image_path:
             self._payload = self._payload or {}
             self._files = self._files or {}
             self._files.setdefault(
@@ -119,109 +123,3 @@ class OutpaintingCommon(CommonPaintingClient):
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
         url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
         return url.replace("outpaint/", "")
-
-
-class InpaintingClient(InpaintingCommon):
-    def inpainting(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        image_path: Optional[str] = None,
-        mask_url: Optional[str] = None,
-        mask_path: Optional[str] = None,
-        negative_prompt: Optional[str] = None,
-        count: Optional[int] = 4,
-        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
-        return super().sync_inpainting_request(
-            prompt=prompt,
-            image_url=image_url,
-            image_path=image_path,
-            mask_url=mask_url,
-            mask_path=mask_path,
-            negative_prompt=negative_prompt,
-            count=count,
-            output_format=output_format,
-            mode=mode,
-        )
-
-
-class AsyncInpaintingClient(InpaintingCommon):
-
-    async def inpainting(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        image_path: Optional[str] = None,
-        mask_url: Optional[str] = None,
-        mask_path: Optional[str] = None,
-        negative_prompt: Optional[str] = None,
-        count: Optional[int] = 4,
-        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
-        return await super().async_inpainting_request(
-            prompt=prompt,
-            image_url=image_url,
-            image_path=image_path,
-            mask_url=mask_url,
-            mask_path=mask_path,
-            negative_prompt=negative_prompt,
-            count=count,
-            output_format=output_format,
-            mode=mode,
-        )
-
-
-class OutpaintingClient(OutpaintingCommon):
-
-    def outpainting(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        image_path: Optional[str] = None,
-        mask_url: Optional[str] = None,
-        mask_path: Optional[str] = None,
-        negative_prompt: Optional[str] = None,
-        count: Optional[int] = 4,
-        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
-        return super().sync_inpainting_request(
-            prompt=prompt,
-            image_url=image_url,
-            image_path=image_path,
-            mask_url=mask_url,
-            mask_path=mask_path,
-            negative_prompt=negative_prompt,
-            count=count,
-            output_format=output_format,
-            mode=mode,
-        )
-
-
-class AsyncOutpaintingClient(OutpaintingCommon):
-    async def outpainting(
-        self,
-        prompt: str,
-        image_url: Optional[str] = None,
-        image_path: Optional[str] = None,
-        mask_url: Optional[str] = None,
-        mask_path: Optional[str] = None,
-        negative_prompt: Optional[str] = None,
-        count: Optional[int] = 4,
-        output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
-        return await super().async_inpainting_request(
-            prompt=prompt,
-            image_url=image_url,
-            image_path=image_path,
-            mask_url=mask_url,
-            mask_path=mask_path,
-            negative_prompt=negative_prompt,
-            count=count,
-            output_format=output_format,
-            mode=mode,
-        )

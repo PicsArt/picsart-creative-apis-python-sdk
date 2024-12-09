@@ -27,16 +27,19 @@ from picsart_sdk.clients.image_tagging_client import (
     AsyncImageTaggingClient,
     ImageTaggingClient,
 )
-from picsart_sdk.clients.inpainting_client import (
+from picsart_sdk.clients.masks_client import AsyncMasksClient, MasksClient
+from picsart_sdk.clients.masks_previews_client import (
+    AsyncMasksPreviewsClient,
+    MasksPreviewsClient,
+)
+from picsart_sdk.clients.painting_client import (
     AsyncInpaintingClient,
     AsyncOutpaintingClient,
     InpaintingClient,
     OutpaintingClient,
 )
-from picsart_sdk.clients.masks_client import AsyncMasksClient, MasksClient
-from picsart_sdk.clients.masks_previews_client import (
-    AsyncMasksPreviewsClient,
-    MasksPreviewsClient,
+from picsart_sdk.clients.painting_replace_background_client import (
+    ReplaceBackgroundClient,
 )
 from picsart_sdk.clients.remove_background_client import (
     AsyncRemoveBackgroundClient,
@@ -127,4 +130,5 @@ __all__ = [
     "AsyncInpaintingClient",
     "OutpaintingClient",
     "AsyncOutpaintingClient",
+    "ReplaceBackgroundClient",
 ]
