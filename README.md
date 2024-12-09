@@ -157,6 +157,10 @@ print(response2)
 - GenAI Text2Image
 - GenAI Text2Text
 - GenAI Balance
+- Inpainting / outpainting
+- Replace Background
+- Expand
+- Bleed
 
 # Errors
 

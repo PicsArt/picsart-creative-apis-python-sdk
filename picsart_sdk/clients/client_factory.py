@@ -10,6 +10,7 @@ class ApiClient(str, Enum):
     AI_EFFECTS = "ai_effects"
     ADJUST = "adjust"
     BALANCE = "balance"
+    BLEED = "bleed"
     COLOR_TRANSFER = "color_transfer"
     EDIT = "edit"
     EFFECTS = "effects"
@@ -67,6 +68,7 @@ class ClientFactory:
         ApiClient.OUTPAINTING: "picsart_sdk.clients.OutpaintingClient",
         ApiClient.REPLACE_BACKGROUND: "picsart_sdk.clients.PaintingReplaceBackgroundClient",
         ApiClient.EXPAND: "picsart_sdk.clients.PaintingExpandClient",
+        ApiClient.BLEED: "picsart_sdk.clients.BleedClient",
     }
 
     @staticmethod

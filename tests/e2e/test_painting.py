@@ -205,7 +205,6 @@ async def wait_for_result_async(
             "async",
             {
                 "image_path": "../resources/painting/inpainting_image.jpeg",
-                "mask_path": None,
                 "prompt": "a green field",
                 "mode": "sync",
             },
@@ -216,7 +215,6 @@ async def wait_for_result_async(
             "async",
             {
                 "image_path": "../resources/painting/inpainting_image.jpeg",
-                "mask_path": None,
                 "prompt": "a green field",
                 "mode": "async",
             },
@@ -227,7 +225,6 @@ async def wait_for_result_async(
             "async",
             {
                 "image_path": "../resources/painting/inpainting_image.jpeg",
-                "mask_path": None,
                 "prompt": "a green field",
                 "width": 1600,
                 "height": 1600,
@@ -240,7 +237,6 @@ async def wait_for_result_async(
             "async",
             {
                 "image_path": "../resources/painting/inpainting_image.jpeg",
-                "mask_path": None,
                 "prompt": "a green field",
                 "width": 1600,
                 "height": 1600,
@@ -260,12 +256,12 @@ async def test_painting_async_client(method_name, client_name, client_type, para
     params["image_path"] = os.path.abspath(
         os.path.join(os.path.dirname(__file__), params["image_path"])
     )
-    if params.get("mask_path") is not None:
+    if params.get("mask_path") is None:
+        params.pop("mask_path", None)
+    else:
         params["mask_path"] = os.path.abspath(
             os.path.join(os.path.dirname(__file__), params.get("mask_path"))
         )
-    else:
-        del params["mask_path"]
 
     params["count"] = 2
     params["output_format"] = PicsartImageFormat.PNG
@@ -276,7 +272,7 @@ async def test_painting_async_client(method_name, client_name, client_type, para
     else:
         result: PaintingApiResponse = function(**params)
 
-    if params["mode"] == "async":
+    if params.get("mode") == "async":
         assert result.status == "success"
         assert result.data == []
         assert result.inference_id is not None

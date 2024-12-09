@@ -228,6 +228,24 @@ from picsart_sdk.api_responses import ApiResponse, ApiResponseData
             "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
             {"downscale_to": 500},
         ),
+        (
+            "bleed",
+            "bleed",
+            "../resources/image1.jpeg",
+            None,
+            {
+                "bleed_size": 10,
+            },
+        ),
+        (
+            "bleed",
+            "bleed",
+            None,
+            "https://pastatic.picsart.com/cms-pastatic/49a41b68-a0c9-42c0-aed5-58296b4c5379.jpeg",
+            {
+                "bleed_size": 10,
+            },
+        ),
     ],
 )
 async def test_generic_async(
