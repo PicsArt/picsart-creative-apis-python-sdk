@@ -14,6 +14,7 @@ class ApiClient(str, Enum):
     EDIT = "edit"
     EFFECTS = "effects"
     EFFECTS_PREVIEWS = "effects_previews"
+    EXPAND = "expand"
     FACE_ENHANCEMENT = "face_enhancement"
     GEN_AI_BALANCE = "gen_ai_balance"
     IMAGE_DESCRIPTION = "image_description"
@@ -64,7 +65,8 @@ class ClientFactory:
         ApiClient.TEXT2TEXT: "picsart_sdk.clients.Text2TextClient",
         ApiClient.INPAINTING: "picsart_sdk.clients.InpaintingClient",
         ApiClient.OUTPAINTING: "picsart_sdk.clients.OutpaintingClient",
-        ApiClient.REPLACE_BACKGROUND: "picsart_sdk.clients.ReplaceBackgroundClient",
+        ApiClient.REPLACE_BACKGROUND: "picsart_sdk.clients.PaintingReplaceBackgroundClient",
+        ApiClient.EXPAND: "picsart_sdk.clients.PaintingExpandClient",
     }
 
     @staticmethod
