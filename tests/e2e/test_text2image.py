@@ -1,4 +1,5 @@
 import asyncio
+import os
 import time
 
 import pytest
@@ -57,6 +58,10 @@ def common_assertion(result1, result2, total):
     assert len(result2.data) == total
 
 
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 def test_create_text2image():
     client: Text2ImageClient = picsart_sdk.client(ApiClient.TEXT2IMAGE)
     total = 2
@@ -69,6 +74,10 @@ def test_create_text2image():
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 async def test_create_text2image_async():
     client: AsyncText2ImageClient = picsart_sdk.async_client(ApiClient.TEXT2IMAGE)
     total = 2

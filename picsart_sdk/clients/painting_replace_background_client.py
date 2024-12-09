@@ -21,7 +21,7 @@ class CommonReplaceBackgroundClient(CommonPaintingClient):
 
 class PaintingReplaceBackgroundClient(CommonReplaceBackgroundClient):
 
-    def get_results(self, inference_id: str) -> PaintingApiResponse:
+    def get_result(self, inference_id: str) -> PaintingApiResponse:
         return self.get(postfix_url=inference_id)
 
     def replace_background(
@@ -47,7 +47,7 @@ class PaintingReplaceBackgroundClient(CommonReplaceBackgroundClient):
 
 
 class AsyncPaintingReplaceBackgroundClient(CommonReplaceBackgroundClient):
-    async def get_results(self, inference_id: str) -> PaintingApiResponse:
+    async def get_result(self, inference_id: str) -> PaintingApiResponse:
         return await self.async_get(postfix_url=inference_id)
 
     async def replace_background(

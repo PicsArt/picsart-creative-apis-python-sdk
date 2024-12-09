@@ -32,7 +32,7 @@ def wait_for_result(
     """
     result = None
     for _ in range(max_retries):
-        result = client.get_results(inference_id=inference_id)
+        result = client.get_result(inference_id=inference_id)
         if result.status != "processing":
             return result
         time.sleep(retry_delay)
@@ -49,7 +49,7 @@ async def wait_for_result_async(
     """
     result = None
     for _ in range(max_retries):
-        result = await client.get_results(inference_id=inference_id)
+        result = await client.get_result(inference_id=inference_id)
         if result.status != "processing":
             return result
         await asyncio.sleep(retry_delay)
@@ -59,6 +59,10 @@ async def wait_for_result_async(
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 @pytest.mark.parametrize(
     "method_name, client_name, client_type, params",
     [
