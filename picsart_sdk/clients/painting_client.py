@@ -1,5 +1,6 @@
 from typing import Optional
 
+from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 from picsart_sdk.clients.common_painting_client import (
     InpaintingCommon,
     OutpaintingCommon,
@@ -9,6 +10,9 @@ from picsart_sdk.clients.requests_models.painting_request import PaintingMode
 
 
 class InpaintingClient(InpaintingCommon):
+    def get_results(self, inference_id: str) -> PaintingApiResponse:
+        return self.get(postfix_url=inference_id)
+
     def inpainting(
         self,
         prompt: str,
@@ -35,6 +39,9 @@ class InpaintingClient(InpaintingCommon):
 
 
 class AsyncInpaintingClient(InpaintingCommon):
+
+    async def get_results(self, inference_id: str) -> PaintingApiResponse:
+        return await self.async_get(postfix_url=inference_id)
 
     async def inpainting(
         self,
@@ -63,6 +70,9 @@ class AsyncInpaintingClient(InpaintingCommon):
 
 class OutpaintingClient(OutpaintingCommon):
 
+    def get_results(self, inference_id: str) -> PaintingApiResponse:
+        return self.get(postfix_url=inference_id)
+
     def outpainting(
         self,
         prompt: str,
@@ -89,6 +99,9 @@ class OutpaintingClient(OutpaintingCommon):
 
 
 class AsyncOutpaintingClient(OutpaintingCommon):
+    async def get_results(self, inference_id: str) -> PaintingApiResponse:
+        return await self.async_get(postfix_url=inference_id)
+
     async def outpainting(
         self,
         prompt: str,
