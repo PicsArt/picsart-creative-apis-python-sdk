@@ -1,6 +1,7 @@
 from picsart_sdk.clients.adjust_client import AdjustClient, AsyncAdjustClient
 from picsart_sdk.clients.ai_effects_client import AiEffectsClient, AsyncAiEffectsClient
 from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
+from picsart_sdk.clients.bleed_client import AsyncBleedClient, BleedClient
 from picsart_sdk.clients.color_transfer_client import (
     AsyncColorTransferClient,
     ColorTransferClient,
@@ -139,4 +140,6 @@ __all__ = [
     "AsyncPaintingReplaceBackgroundClient",
     "PaintingExpandClient",
     "AsyncPaintingExpandClient",
+    "BleedClient",
+    "AsyncBleedClient",
 ]

@@ -1,4 +1,5 @@
 from picsart_sdk.clients.requests_models.adjust_request import AdjustRequest
+from picsart_sdk.clients.requests_models.bleed_request import BleedRequest
 from picsart_sdk.clients.requests_models.color_transfer_request import (
     ColorTransferRequest,
 )
@@ -70,4 +71,5 @@ __all__ = [
     "ImageDescriptionRequest",
     "Text2ImageRequest",
     "Text2TextRequest",
+    "BleedRequest",
 ]
