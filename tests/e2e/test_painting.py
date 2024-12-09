@@ -58,184 +58,241 @@ async def wait_for_result_async(
     )
 
 
-@pytest.mark.parametrize(
-    "method_name, client_name, image_path, mask_path, prompt, response_mode",
-    [
-        (
-            "inpainting",
-            "inpainting",
-            "../resources/painting/inpainting_image.jpeg",
-            "../resources/painting/inpainting_mask.png",
-            "a black cat",
-            "sync",
-        ),
-        (
-            "inpainting",
-            "inpainting",
-            "../resources/painting/inpainting_image.jpeg",
-            "../resources/painting/inpainting_mask.png",
-            "a black cat",
-            "async",
-        ),
-        (
-            "outpainting",
-            "outpainting",
-            "../resources/painting/outpainting_image.jpeg",
-            "../resources/painting/outpainting_mask.png",
-            "a green field",
-            "sync",
-        ),
-        (
-            "outpainting",
-            "outpainting",
-            "../resources/painting/outpainting_image.jpeg",
-            "../resources/painting/outpainting_mask.png",
-            "a green field",
-            "async",
-        ),
-        (
-            "replace_background",
-            "replace_background",
-            "../resources/painting/inpainting_image.jpeg",
-            None,
-            "a green field",
-            "sync",
-        ),
-        (
-            "replace_background",
-            "replace_background",
-            "../resources/painting/inpainting_image.jpeg",
-            None,
-            "a green field",
-            "async",
-        ),
-    ],
-)
-def test_painting(
-    method_name, client_name, image_path, mask_path, prompt, response_mode
-):
-    client: InpaintingClient = picsart_sdk.client(client_name)  # get SYNC client
-    image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), image_path))
-    if mask_path is not None:
-        mask_path = os.path.abspath(os.path.join(os.path.dirname(__file__), mask_path))
-
-    count = 2
-
-    params = {
-        "prompt": prompt,
-        "image_path": image_path,
-        "count": count,
-        "output_format": PicsartImageFormat.PNG,
-        "mode": response_mode,
-    }
-
-    if mask_path:
-        params["mask_path"] = mask_path
-
-    function = getattr(client, method_name)
-    result = function(**params)
-
-    if response_mode == "async":
-        assert result.status == "success"
-        assert result.data == []
-        assert result.inference_id is not None
-        result: PaintingApiResponse = wait_for_result(
-            client=client,
-            inference_id=result.inference_id,
-            max_retries=20,
-            retry_delay=2,
-        )
-
-    assert_response(result, count)
-
-
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "method_name, client_name, image_path, mask_path, prompt, response_mode",
+    "method_name, client_name, client_type, params",
     [
         (
             "inpainting",
             "inpainting",
-            "../resources/painting/inpainting_image.jpeg",
-            "../resources/painting/inpainting_mask.png",
-            "a black cat",
             "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": "../resources/painting/inpainting_mask.png",
+                "prompt": "a black cat",
+                "mode": "sync",
+            },
         ),
         (
             "inpainting",
             "inpainting",
-            "../resources/painting/inpainting_image.jpeg",
-            "../resources/painting/inpainting_mask.png",
-            "a black cat",
-            "async",
-        ),
-        (
-            "outpainting",
-            "outpainting",
-            "../resources/painting/outpainting_image.jpeg",
-            "../resources/painting/outpainting_mask.png",
-            "a green field",
             "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": "../resources/painting/inpainting_mask.png",
+                "prompt": "a black cat",
+                "mode": "async",
+            },
         ),
         (
             "outpainting",
             "outpainting",
-            "../resources/painting/outpainting_image.jpeg",
-            "../resources/painting/outpainting_mask.png",
-            "a green field",
-            "async",
-        ),
-        (
-            "replace_background",
-            "replace_background",
-            "../resources/painting/inpainting_image.jpeg",
-            None,
-            "a green field",
             "sync",
+            {
+                "image_path": "../resources/painting/outpainting_image.jpeg",
+                "mask_path": "../resources/painting/outpainting_mask.png",
+                "prompt": "a green field",
+                "mode": "sync",
+            },
+        ),
+        (
+            "outpainting",
+            "outpainting",
+            "sync",
+            {
+                "image_path": "../resources/painting/outpainting_image.jpeg",
+                "mask_path": "../resources/painting/outpainting_mask.png",
+                "prompt": "a green field",
+                "mode": "async",
+            },
         ),
         (
             "replace_background",
             "replace_background",
-            "../resources/painting/inpainting_image.jpeg",
-            None,
-            "a green field",
+            "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "mode": "sync",
+            },
+        ),
+        (
+            "replace_background",
+            "replace_background",
+            "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "mode": "async",
+            },
+        ),
+        (
+            "expand",
+            "expand",
+            "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "width": 1600,
+                "height": 1600,
+                "mode": "sync",
+            },
+        ),
+        (
+            "expand",
+            "expand",
+            "sync",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "width": 1600,
+                "height": 1600,
+                "mode": "async",
+            },
+        ),
+        # async clients
+        (
+            "inpainting",
+            "inpainting",
             "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": "../resources/painting/inpainting_mask.png",
+                "prompt": "a black cat",
+                "mode": "sync",
+            },
+        ),
+        (
+            "inpainting",
+            "inpainting",
+            "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": "../resources/painting/inpainting_mask.png",
+                "prompt": "a black cat",
+                "mode": "async",
+            },
+        ),
+        (
+            "outpainting",
+            "outpainting",
+            "async",
+            {
+                "image_path": "../resources/painting/outpainting_image.jpeg",
+                "mask_path": "../resources/painting/outpainting_mask.png",
+                "prompt": "a green field",
+                "mode": "sync",
+            },
+        ),
+        (
+            "outpainting",
+            "outpainting",
+            "async",
+            {
+                "image_path": "../resources/painting/outpainting_image.jpeg",
+                "mask_path": "../resources/painting/outpainting_mask.png",
+                "prompt": "a green field",
+                "mode": "async",
+            },
+        ),
+        (
+            "replace_background",
+            "replace_background",
+            "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "mode": "sync",
+            },
+        ),
+        (
+            "replace_background",
+            "replace_background",
+            "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "mode": "async",
+            },
+        ),
+        (
+            "expand",
+            "expand",
+            "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "width": 1600,
+                "height": 1600,
+                "mode": "sync",
+            },
+        ),
+        (
+            "expand",
+            "expand",
+            "async",
+            {
+                "image_path": "../resources/painting/inpainting_image.jpeg",
+                "mask_path": None,
+                "prompt": "a green field",
+                "width": 1600,
+                "height": 1600,
+                "mode": "async",
+            },
         ),
     ],
 )
-async def test_painting_async_client(
-    method_name, client_name, image_path, mask_path, prompt, response_mode
-):
-    client: InpaintingClient = picsart_sdk.async_client(client_name)  # get ASYNC client
-    image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), image_path))
-    if mask_path is not None:
-        mask_path = os.path.abspath(os.path.join(os.path.dirname(__file__), mask_path))
+async def test_painting_async_client(method_name, client_name, client_type, params):
+    if client_type == "async":
+        client: InpaintingClient = picsart_sdk.async_client(
+            client_name
+        )  # get ASYNC client
+    else:
+        client: InpaintingClient = picsart_sdk.client(client_name)
 
-    count = 2
+    params["image_path"] = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), params["image_path"])
+    )
+    if params.get("mask_path") is not None:
+        params["mask_path"] = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), params.get("mask_path"))
+        )
+    else:
+        del params["mask_path"]
 
-    params = {
-        "prompt": prompt,
-        "image_path": image_path,
-        "count": count,
-        "output_format": PicsartImageFormat.PNG,
-        "mode": response_mode,
-    }
-
-    if mask_path:
-        params["mask_path"] = mask_path
+    params["count"] = 2
+    params["output_format"] = PicsartImageFormat.PNG
 
     function = getattr(client, method_name)
-    result: PaintingApiResponse = await function(**params)
+    if client_type == "async":
+        result: PaintingApiResponse = await function(**params)
+    else:
+        result: PaintingApiResponse = function(**params)
 
-    if response_mode == "async":
+    if params["mode"] == "async":
         assert result.status == "success"
         assert result.data == []
         assert result.inference_id is not None
-        result: PaintingApiResponse = await wait_for_result_async(
-            client=client,
-            inference_id=result.inference_id,
-            max_retries=20,
-            retry_delay=2,
-        )
+        if client_type == "async":
+            result: PaintingApiResponse = await wait_for_result_async(
+                client=client,
+                inference_id=result.inference_id,
+                max_retries=20,
+                retry_delay=2,
+            )
+        else:
+            result: PaintingApiResponse = wait_for_result(
+                client=client,
+                inference_id=result.inference_id,
+                max_retries=20,
+                retry_delay=2,
+            )
 
-    assert_response(result, count)
+    assert_response(result, params["count"])

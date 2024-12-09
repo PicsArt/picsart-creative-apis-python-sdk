@@ -40,3 +40,16 @@ class ReplaceBackgroundRequest(BaseRequest):
     count: Optional[int] = 4
     format: Optional[PicsartImageFormat] = PicsartImageFormat.JPG
     mode: Optional[PaintingMode] = PaintingMode.SYNC
+
+
+@dataclass
+class ExpandRequest(BaseRequest):
+    image: PicsartImage
+    prompt: str
+    width: Optional[int] = 1024
+    height: Optional[int] = 1024
+    direction: Optional[str] = "center"
+    negative_prompt: Optional[str] = ""
+    count: Optional[int] = 4
+    format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG
+    mode: Optional[PaintingMode] = PaintingMode.SYNC

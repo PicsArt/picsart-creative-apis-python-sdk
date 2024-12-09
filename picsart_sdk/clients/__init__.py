@@ -38,9 +38,13 @@ from picsart_sdk.clients.painting_client import (
     InpaintingClient,
     OutpaintingClient,
 )
+from picsart_sdk.clients.painting_expand_client import (
+    AsyncPaintingExpandClient,
+    PaintingExpandClient,
+)
 from picsart_sdk.clients.painting_replace_background_client import (
-    AsyncReplaceBackgroundClient,
-    ReplaceBackgroundClient,
+    AsyncPaintingReplaceBackgroundClient,
+    PaintingReplaceBackgroundClient,
 )
 from picsart_sdk.clients.remove_background_client import (
     AsyncRemoveBackgroundClient,
@@ -131,6 +135,8 @@ __all__ = [
     "AsyncInpaintingClient",
     "OutpaintingClient",
     "AsyncOutpaintingClient",
-    "ReplaceBackgroundClient",
-    "AsyncReplaceBackgroundClient",
+    "PaintingReplaceBackgroundClient",
+    "AsyncPaintingReplaceBackgroundClient",
+    "PaintingExpandClient",
+    "AsyncPaintingExpandClient",
 ]
