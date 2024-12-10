@@ -619,3 +619,9 @@ poetry run pre-commit install
 ```bash
 PICSART_LOG_HTTP_CALLS=true PICSART_LOG_HTTP_CALLS_HEADERS=true PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
 ```
+
+
+# Debugging
+
+To enable detailed logging of HTTP calls, set the environment variables `PICSART_LOG_HTTP_CALLS=true` and 
+`PICSART_LOG_HTTP_CALLS_HEADERS=true`. This will log information about the HTTP calls made, including their headers.
