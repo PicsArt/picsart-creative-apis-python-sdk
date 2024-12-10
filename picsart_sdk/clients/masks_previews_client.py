@@ -1,4 +1,3 @@
-from abc import ABC
 from typing import Optional
 
 from picsart_sdk.api_responses.masks_previews_response import (

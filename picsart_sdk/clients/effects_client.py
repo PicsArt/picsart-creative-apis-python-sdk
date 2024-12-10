@@ -30,9 +30,9 @@ class CommonEffects(ImageBaseClient):
 class EffectsClient(CommonEffects):
     def effects(
         self,
+        effect_name: str,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-        effect_name: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
         request = EffectsRequest(
@@ -50,7 +50,7 @@ class AsyncEffectsClient(CommonEffects):
 
     async def effects(
         self,
-        effect_name,
+        effect_name: str,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,

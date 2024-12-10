@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Optional
+from typing import Optional, Union
 
 from picsart_sdk.api_responses.painting_response import (
     PaintingApiResponse,
@@ -62,7 +62,7 @@ class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
         negative_prompt: Optional[str] = None,
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
+        mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC.value,
     ):
         request = InpaintingRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
