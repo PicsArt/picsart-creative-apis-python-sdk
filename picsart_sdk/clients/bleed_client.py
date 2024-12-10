@@ -64,7 +64,7 @@ class BleedClient(CommonBleedClient):
 class AsyncBleedClient(CommonBleedClient):
     async def bleed(
         self,
-        prompt: str,
+        prompt: Optional[str] = "",
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
         negative_prompt: Optional[str] = None,
