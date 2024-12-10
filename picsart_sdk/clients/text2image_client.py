@@ -15,7 +15,7 @@ class CommonText2ImageClient(GenAiBaseClient):
         return "text2image"
 
     def parse_response(
-        self, result
+        self, result: dict, request_method: str
     ) -> Union[Text2ImageCreateApiResponse, Text2ImageApiResponse]:
         if result.get("inference_id") and result.get("status") == "ACCEPTED":
             return Text2ImageCreateApiResponse(**result)

@@ -12,4 +12,5 @@ from picsart_sdk.clients.requests_models.picsart_image import (
 class EffectsPreviewsRequest(BaseRequest):
     image: PicsartImage
     effect_names: list[str]
+    preview_size: Optional[int] = 120
     format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG

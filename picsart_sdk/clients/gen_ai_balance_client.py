@@ -7,24 +7,15 @@ class CommonGenAiBalanceClient(GenAiBaseClient):
     def endpoint(self):
         return "balance"
 
-    def parse_response(self, result) -> BalanceApiResponse:
+    def parse_response(self, result: dict, request_method: str) -> BalanceApiResponse:
         return BalanceApiResponse(**result)
 
 
 class GenAiBalanceClient(CommonGenAiBalanceClient):
     def get_balance(self) -> BalanceApiResponse:
-        result = self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-        return BalanceApiResponse(credits=result.get("credits"))
+        return self.get()
 
 
 class AsyncGenAiBalanceClient(CommonGenAiBalanceClient):
     async def get_balance(self) -> BalanceApiResponse:
-        result = await self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-
-        return BalanceApiResponse(credits=result.get("credits"))
+        return await self.async_get()
