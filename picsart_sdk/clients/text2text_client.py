@@ -11,7 +11,7 @@ class CommonText2TextClient(GenAiBaseClient):
     def endpoint(self) -> str:
         return "text2text/chat/completions"
 
-    def parse_response(self, result) -> Text2TextApiResponse:
+    def parse_response(self, result: dict, request_method: str) -> Text2TextApiResponse:
         return Text2TextApiResponse(**result)
 
 
@@ -33,7 +33,7 @@ class Text2TextClient(CommonText2TextClient):
         )
         return self.post(request=request, as_json=True)
 
-    def parse_response(self, result) -> Text2TextApiResponse:
+    def parse_response(self, result: dict, request_method: str) -> Text2TextApiResponse:
         return Text2TextApiResponse(**result)
 
 

@@ -14,7 +14,9 @@ class CommonImageTaggingClient(ImageBaseClient):
     def endpoint(self):
         return "tags"
 
-    def parse_response(self, result: dict) -> ImageTaggingApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> ImageTaggingApiResponse:
         return ImageTaggingApiResponse(
             status=result["status"],
             data=ImageTaggingApiResponseData(

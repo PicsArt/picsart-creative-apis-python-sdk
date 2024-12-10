@@ -14,7 +14,9 @@ class CommonImageDescriptionClient(ImageBaseClient):
     def endpoint(self):
         return "describe"
 
-    def parse_response(self, result: dict) -> ImageDescriptionApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> ImageDescriptionApiResponse:
         return ImageDescriptionApiResponse(
             status=result["status"],
             data=ImageDescriptionApiResponseData(

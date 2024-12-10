@@ -23,16 +23,20 @@ class EffectsPreviewsClient(ImageBaseClient):
         effect_names: list[str],
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
+        preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> EffectsPreviewsApiResponse:
         request = EffectsPreviewsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_names=effect_names,
+            preview_size=preview_size,
             format=output_format,
         )
         return self.post(request=request)
 
-    def parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> EffectsPreviewsApiResponse:
 
         return EffectsPreviewsApiResponse(
             status=result.get("status"),
@@ -58,16 +62,20 @@ class AsyncEffectsPreviewsClient(ImageBaseClient):
         effect_names: list[str],
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
+        preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> EffectsPreviewsApiResponse:
         request = EffectsPreviewsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_names=effect_names,
+            preview_size=preview_size,
             format=output_format,
         )
         return await self.async_post(request=request)
 
-    def parse_response(self, result: dict) -> EffectsPreviewsApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> EffectsPreviewsApiResponse:
 
         return EffectsPreviewsApiResponse(
             status=result.get("status"),

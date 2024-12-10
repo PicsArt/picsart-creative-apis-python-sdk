@@ -1,6 +1,6 @@
-from typing import Optional
+from typing import Optional, Union
 
-from picsart_sdk.api_responses import ApiResponse
+from picsart_sdk.api_responses import ApiResponse, ApiResponseData
 from picsart_sdk.api_responses.effects_response import EffectsList
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import (
@@ -10,12 +10,24 @@ from picsart_sdk.clients.requests_models import (
 )
 
 
-class AiEffectsClient(ImageBaseClient):
-
+class CommonAiEffects(ImageBaseClient):
     @property
     def endpoint(self):
         return "effects/ai"
 
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> Union[EffectsList, ApiResponse]:
+        if request_method == "GET":
+            return EffectsList(
+                effects=[item.get("name") for item in result.get("data", [])]
+            )
+        return ApiResponse(
+            status=result.get("status"), data=ApiResponseData(**result.get("data", {}))
+        )
+
+
+class AiEffectsClient(CommonAiEffects):
     def ai_effects(
         self,
         image_url: Optional[str] = None,
@@ -31,16 +43,10 @@ class AiEffectsClient(ImageBaseClient):
         return self.post(request=request)
 
     def get_available_ai_effects(self) -> EffectsList:
-        result = self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-        return EffectsList(
-            effects=[item.get("name") for item in result.get("data", [])]
-        )
+        return self.get()
 
 
-class AsyncAiEffectsClient(ImageBaseClient):
+class AsyncAiEffectsClient(CommonAiEffects):
     @property
     def endpoint(self):
         return "effects/ai"
@@ -60,10 +66,4 @@ class AsyncAiEffectsClient(ImageBaseClient):
         return await self.async_post(request=request)
 
     async def get_available_ai_effects(self) -> EffectsList:
-        result = await self.http_client.get(
-            url=self.get_url(),
-            headers=self.headers,
-        )
-        return EffectsList(
-            effects=[item.get("name") for item in result.get("data", [])]
-        )
+        return await self.async_get()

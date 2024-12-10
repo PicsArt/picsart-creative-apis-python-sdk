@@ -24,7 +24,7 @@ class InpaintingClient(InpaintingCommon):
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
+    ) -> PaintingApiResponse:
         return super().sync_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -54,7 +54,7 @@ class AsyncInpaintingClient(InpaintingCommon):
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
+    ) -> PaintingApiResponse:
         return await super().async_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -84,7 +84,7 @@ class OutpaintingClient(OutpaintingCommon):
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
+    ) -> PaintingApiResponse:
         return super().sync_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -113,7 +113,7 @@ class AsyncOutpaintingClient(OutpaintingCommon):
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
-    ):
+    ) -> PaintingApiResponse:
         return await super().async_inpainting_request(
             prompt=prompt,
             image_url=image_url,

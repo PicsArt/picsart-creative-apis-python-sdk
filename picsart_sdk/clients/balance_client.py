@@ -7,15 +7,15 @@ class CommonBalanceClient(ImageBaseClient):
     def endpoint(self):
         return "balance"
 
-    def parse_response(self, result):
+    def parse_response(self, result: dict, request_method: str) -> BalanceApiResponse:
         return BalanceApiResponse(credits=result.get("credits"))
 
 
 class BalanceClient(CommonBalanceClient):
     def get_balance(self) -> BalanceApiResponse:
-        return super().get()
+        return self.get()
 
 
 class AsyncBalanceClient(CommonBalanceClient):
     async def get_balance(self) -> BalanceApiResponse:
-        return await super().async_get()
+        return await self.async_get()

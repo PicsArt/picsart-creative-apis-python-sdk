@@ -41,7 +41,7 @@ class BaseClient:
     def set_payload(self, request): ...
 
     @abstractmethod
-    def parse_response(self, result: dict): ...
+    def parse_response(self, result: dict, request_method: str): ...
 
     @property
     @abstractmethod
@@ -71,7 +71,7 @@ class BaseClient:
             as_json=as_json,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="POST")
 
     async def async_post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)
@@ -84,7 +84,7 @@ class BaseClient:
             as_json=as_json,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="POST")
 
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
         url = f"{self.endpoint_url}/{postfix_url}" if postfix_url else self.endpoint_url
@@ -101,7 +101,7 @@ class BaseClient:
             headers=self.headers,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="GET")
 
     async def async_get(self, postfix_url: str = "", query_params: dict = None):
         result = await self.http_client.get(
@@ -109,4 +109,4 @@ class BaseClient:
             headers=self.headers,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="GET")

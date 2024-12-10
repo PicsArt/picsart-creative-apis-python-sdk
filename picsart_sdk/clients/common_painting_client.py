@@ -15,7 +15,7 @@ from picsart_sdk.clients.requests_models.painting_request import (
 
 
 class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
-    def parse_response(self, result):
+    def parse_response(self, result, request_method: str):
         return PaintingApiResponse(
             status=result.get("status"),
             data=[

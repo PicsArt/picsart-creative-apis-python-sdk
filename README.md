@@ -2,6 +2,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+from picsart_sdk.api_responses.balance_response import BalanceApiResponsefrom picsart_sdk.api_responses import ApiResponse
+
+>>>>>>> 78e54dd (fixes)
 # PICSART CREATIVE APIS Python SDK
 =======
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
@@ -308,7 +313,7 @@ If the PICSART_API_KEY environment variable is set, you can quickly create a cli
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients.client_factory import ApiClient
+from picsart_sdk.clients import ApiClient
 
 upload_client = picsart_sdk.client(ApiClient.UPLOAD)
 ```
@@ -319,7 +324,7 @@ You can also create a session manually and pass the API key directly:
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients.client_factory import ApiClient
+from picsart_sdk.clients import ApiClient
 
 session = picsart_sdk.Session(api_key="YOUR_API_KEY")
 upload_client = session.client(ApiClient.UPLOAD)
@@ -331,8 +336,11 @@ upload_client = session.client(ApiClient.UPLOAD)
 
 ```python
 import picsart_sdk
+from picsart_sdk.api_responses import ApiResponse
+
 upload_client = picsart_sdk.client("upload")
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 936ede4 (readd coide)
 upload_client.upload_from_path(file_path="/path/to/image.jpg")
@@ -341,6 +349,12 @@ upload_client.upload_from_url(url="https://domain.com/file.jpg")
 upload_client.upload_image(image_path="/path/to/image.jpg")
 upload_client.upload_image(image_url="https://domain.com/file.jpg")
 >>>>>>> a903eeb (refactor)
+=======
+response: ApiResponse = upload_client.upload_image(image_path="/path/to/image.jpg")
+print(response.data.url)
+response: ApiResponse = upload_client.upload_image(image_url="https://domain.com/file.jpg")
+print(response.data.url)
+>>>>>>> 78e54dd (fixes)
 ```
 
 #### 2. Remove Background
@@ -348,12 +362,12 @@ upload_client.upload_image(image_url="https://domain.com/file.jpg")
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients import RemoveBackgroundClient
-from picsart_sdk.clients.client_factory import ApiClient
+from picsart_sdk.clients import RemoveBackgroundClient, ApiClient
+from picsart_sdk.api_responses import ApiResponse
 
 client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
 
-response = client.remove_background(image_path="./file.jpg")
+response: ApiResponse = client.remove_background(image_path="./file.jpg")
 print(response.data.url)
 
 response = client.remove_background(image_url="https://domain.com/image.jpg")
@@ -366,7 +380,7 @@ In case you want to apply different features available for [remove background](h
 you can pass them as parameters, having the same names.
 
 ```python
-response = client.remove_background(image_url="https://domain.com/image.jpg", stroke_size=2, stroke_color="red")
+response: ApiResponse = client.remove_background(image_url="https://domain.com/image.jpg", stroke_size=2, stroke_color="red")
 print(response.data.url)
 ```
 <<<<<<< HEAD
@@ -383,7 +397,7 @@ print(response.data.url)
 
 ```python
 client = picsart_sdk.client(ApiClient.UPSCALE)
-response = client.upscale(url="https://domain.com/image.jpg", upscale_factor=2)
+response: ApiResponse = client.upscale(url="https://domain.com/image.jpg", upscale_factor=2)
 print(response.data.url)
 ```
 <<<<<<< HEAD
@@ -392,6 +406,122 @@ print(response.data.url)
 =======
 =======
 >>>>>>> 936ede4 (readd coide)
+
+#### 4. Ultra Upscale an Image
+
+**Using synchronous mode** (not feasible for large images)
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import UltraUpscaleClient, ApiClient
+from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
+
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
+response: ApiResponse = client.ultra_upscale(image_path="./your-file.jpg", mode=UltraUpscaleMode.SYNC)
+print(response.data.url)
+```
+
+**Using asynchronous mode** (_recommended_)
+
+```python
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
+response: ApiResponse = client.ultra_upscale(image_path="./your-file.jpg", mode=UltraUpscaleMode.SYNC)
+time.sleep(10)  # depending on the load of the service and the size of the image, the time to process can differ
+response: ApiResponse = client.get_result(transaction_id=response.transaction_id)
+print(response.data.url)
+```
+
+#### 5. Ultra Enhance
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import UltraEnhanceClient, ApiClient
+from picsart_sdk.api_responses import ApiResponse
+
+client: UltraEnhanceClient = picsart_sdk.client(ApiClient.ULTRA_ENHANCE)
+response: ApiResponse = client.ultra_enhance(image_path="./your-file.jpg")
+print(response.data.url)
+```
+
+#### 6. Face Enhancement
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import FaceEnhancementClient, ApiClient
+from picsart_sdk.api_responses import ApiResponse
+
+client: FaceEnhancementClient = picsart_sdk.client(ApiClient.FACE_ENHANCEMENT)
+response: ApiResponse = client.face_enhancement(image_path="./your-file.jpg")
+print(response.data.url)
+```
+
+#### 7. Effects
+
+**1. Get the list of available effects** 
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import EffectsClient, ApiClient
+from picsart_sdk.api_responses.effects_response import EffectsList
+
+client: EffectsClient = picsart_sdk.client(ApiClient.EFFECTS)
+response: EffectsList = client.get_available_effects()
+for effect_name in response.effects:
+    print(effect_name)
+```
+
+2. Apply an effect
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import EffectsClient, ApiClient
+from picsart_sdk.api_responses import ApiResponse
+
+client: EffectsClient = picsart_sdk.client(ApiClient.EFFECTS)
+response: ApiResponse = client.effects(image_path="./your-file.jpg", effect_name="apr1")
+print(response.data.url)
+```
+
+#### 8. Effects Preview
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import ApiClient, EffectsPreviewsClient
+from picsart_sdk.api_responses.effects_response import EffectsPreviewsApiResponse
+
+client: EffectsPreviewsClient = picsart_sdk.client(ApiClient.EFFECTS_PREVIEWS)
+response: EffectsPreviewsApiResponse = client.effects_previews(image_path="./your-file.jpg", effect_names=["apr1", "brnz3"])
+for item in response.data:
+    print(item.effect_name, item.url)
+```
+
+#### 9. AI Effects
+
+```python
+import picsart_sdk
+from picsart_sdk.clients import ApiClient, AiEffectsClient
+from picsart_sdk.api_responses import ApiResponse
+
+client: AiEffectsClient = picsart_sdk.client(ApiClient.AI_EFFECTS)
+response: ApiResponse = client.ai_effects(image_path="./your-file.jpg")
+print(response.data.url)
+```
+
+#### 10. Get the balance
+```python
+import picsart_sdk
+from picsart_sdk.clients import ApiClient, BalanceClient, AsyncBalanceClient
+from picsart_sdk.api_responses.balance_response import BalanceApiResponse
+
+client: BalanceClient = picsart_sdk.client(ApiClient.BALANCE)
+response: BalanceApiResponse = client.get_balance()
+print(response.credits)
+
+# async
+client: AsyncBalanceClient = picsart_sdk.async_client(ApiClient.BALANCE)
+response: BalanceApiResponse = await client.get_balance()
+print(response.credits)
+```
 
 # TODO - EXAMPLES FOR ALL APIs 
 
