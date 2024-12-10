@@ -943,7 +943,7 @@ poetry run pre-commit install
 #### The tests should be run only by the SDK Developers with the specific PICSART_API_KEY otherwise the calls will consume from the credit. 
 
 ```bash
-PICSART_LOG_HTTP_CALLS=true PICSART_LOG_HTTP_CALLS_HEADERS=true PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
+PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
 ```
 <<<<<<< HEAD
 >>>>>>> 109e9f4 (update tests and documentation)
