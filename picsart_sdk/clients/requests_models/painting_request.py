@@ -1,6 +1,6 @@
 from dataclasses import dataclass, fields
 from enum import Enum
-from typing import Optional
+from typing import Optional, Union
 
 from picsart_sdk.clients.base.base_request import BaseRequest
 from picsart_sdk.clients.requests_models import PicsartImage, PicsartImageFormat
@@ -20,7 +20,7 @@ class InpaintingRequest(BaseRequest):
     negative_prompt: Optional[str] = ""
     count: Optional[int] = 4
     format: Optional[PicsartImageFormat] = PicsartImageFormat.JPG
-    mode: Optional[PaintingMode] = PaintingMode.SYNC
+    mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC.value
 
     def get_dict(self):
         data = super().get_dict()
@@ -39,7 +39,7 @@ class ReplaceBackgroundRequest(BaseRequest):
     negative_prompt: Optional[str] = ""
     count: Optional[int] = 4
     format: Optional[PicsartImageFormat] = PicsartImageFormat.JPG
-    mode: Optional[PaintingMode] = PaintingMode.SYNC
+    mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC.value
 
 
 @dataclass
@@ -52,4 +52,4 @@ class ExpandRequest(BaseRequest):
     negative_prompt: Optional[str] = ""
     count: Optional[int] = 4
     format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG
-    mode: Optional[PaintingMode] = PaintingMode.SYNC
+    mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC.value

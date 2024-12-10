@@ -30,9 +30,9 @@ class CommonAiEffects(ImageBaseClient):
 class AiEffectsClient(CommonAiEffects):
     def ai_effects(
         self,
+        effect_name: str,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-        effect_name: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
         request = EffectsRequest(
@@ -53,7 +53,7 @@ class AsyncAiEffectsClient(CommonAiEffects):
 
     async def ai_effects(
         self,
-        effect_name,
+        effect_name: str,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,

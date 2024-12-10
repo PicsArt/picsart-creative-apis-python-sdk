@@ -9,7 +9,7 @@ from picsart_sdk.clients.requests_models.painting_request import (
 )
 
 
-class CommonReplaceBackgroundClient(CommonPaintingClient):
+class CommonExpandClient(CommonPaintingClient):
     @property
     def endpoint(self) -> str:
         return "painting/expand"
@@ -19,7 +19,7 @@ class CommonReplaceBackgroundClient(CommonPaintingClient):
         return url.replace("expand/", "")
 
 
-class PaintingExpandClient(CommonReplaceBackgroundClient):
+class PaintingExpandClient(CommonExpandClient):
 
     def get_result(self, inference_id: str) -> PaintingApiResponse:
         return self.get(postfix_url=inference_id)
@@ -52,7 +52,7 @@ class PaintingExpandClient(CommonReplaceBackgroundClient):
         return self.post(request=request)
 
 
-class AsyncPaintingExpandClient(CommonReplaceBackgroundClient):
+class AsyncPaintingExpandClient(CommonExpandClient):
     async def get_result(self, inference_id: str) -> PaintingApiResponse:
         return await self.async_get(postfix_url=inference_id)
 
