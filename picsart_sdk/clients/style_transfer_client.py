@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class CommonStyleTransfer(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "styletransfer"
 
     def set_payload(self, request: StyleTransferRequest):

@@ -10,7 +10,7 @@ from picsart_sdk.clients.requests_models import ImageTaggingRequest, PicsartImag
 
 class CommonImageTaggingClient(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "tags"
 
     def parse_response(

@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class VectorizerClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "vectorizer"
 
     def vectorizer(
@@ -33,7 +33,7 @@ class VectorizerClient(ImageBaseClient):
 class AsyncVectorizerClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "vectorizer"
 
     async def vectorizer(

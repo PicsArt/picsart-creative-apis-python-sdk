@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 
 class CommonEffects(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "effects"
 
     def parse_response(

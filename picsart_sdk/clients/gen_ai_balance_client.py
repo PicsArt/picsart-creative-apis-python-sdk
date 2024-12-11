@@ -4,7 +4,7 @@ from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
 
 class CommonGenAiBalanceClient(GenAiBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "balance"
 
     def parse_response(self, result: dict, request_method: str) -> BalanceApiResponse:

@@ -17,7 +17,7 @@ class CommonBleedClient(GenAiBaseClient):
         )
 
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "painting/bleed"
 
     def set_payload(self, request):

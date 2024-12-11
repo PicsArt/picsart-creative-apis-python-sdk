@@ -8,7 +8,7 @@ from picsart_sdk.clients.requests_models.text2text_request import Text2ImageMess
 
 class CommonText2TextClient(GenAiBaseClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "text2text/chat/completions"
 
     def parse_response(self, result: dict, request_method: str) -> Text2TextApiResponse:
@@ -39,7 +39,7 @@ class Text2TextClient(CommonText2TextClient):
 
 class AsyncText2TextClient(CommonText2TextClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "text2text/chat/completions"
 
     async def chat_completions(

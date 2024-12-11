@@ -11,7 +11,7 @@ from picsart_sdk.clients.requests_models import Text2ImageRequest
 
 class CommonText2ImageClient(GenAiBaseClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "text2image"
 
     def parse_response(

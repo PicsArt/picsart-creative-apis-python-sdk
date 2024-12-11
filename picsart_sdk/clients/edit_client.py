@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class EditClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "edit"
 
     def edit(
@@ -49,7 +49,7 @@ class EditClient(ImageBaseClient):
 class AsyncEditClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "edit"
 
     async def edit(

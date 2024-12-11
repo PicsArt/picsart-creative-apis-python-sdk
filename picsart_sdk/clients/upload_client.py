@@ -9,7 +9,7 @@ from picsart_sdk.clients.requests_models.picsart_image import PicsartImage
 class UploadClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upload"
 
     def upload_image(
@@ -26,7 +26,7 @@ class UploadClient(ImageBaseClient):
 class AsyncUploadClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upload"
 
     async def upload_image(

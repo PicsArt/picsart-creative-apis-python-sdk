@@ -15,7 +15,7 @@ from picsart_sdk.clients.requests_models import (
 class EffectsPreviewsClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "effects/previews"
 
     def effects_previews(
@@ -54,7 +54,7 @@ class EffectsPreviewsClient(ImageBaseClient):
 class AsyncEffectsPreviewsClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "effects/previews"
 
     async def effects_previews(

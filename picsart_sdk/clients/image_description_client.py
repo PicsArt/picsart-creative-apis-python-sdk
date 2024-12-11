@@ -10,7 +10,7 @@ from picsart_sdk.clients.requests_models import ImageDescriptionRequest, Picsart
 
 class CommonImageDescriptionClient(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "describe"
 
     def parse_response(
