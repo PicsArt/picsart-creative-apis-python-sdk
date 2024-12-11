@@ -8,3 +8,4 @@ Responses
     balance_response
     effects_list_response
     effects_previews_response
+    image_description_response
