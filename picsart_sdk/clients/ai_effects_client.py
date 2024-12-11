@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 
 class CommonAiEffects(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "effects/ai"
 
     def parse_response(
@@ -47,10 +47,6 @@ class AiEffectsClient(CommonAiEffects):
 
 
 class AsyncAiEffectsClient(CommonAiEffects):
-    @property
-    def endpoint(self):
-        return "effects/ai"
-
     async def ai_effects(
         self,
         effect_name: str,

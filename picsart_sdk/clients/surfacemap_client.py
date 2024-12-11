@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class CommonSurfacemap(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "surfacemap"
 
     def set_payload(self, request: SurfacemapRequest):

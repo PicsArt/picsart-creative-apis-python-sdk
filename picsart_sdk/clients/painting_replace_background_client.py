@@ -11,7 +11,7 @@ from picsart_sdk.clients.requests_models.painting_request import (
 
 class CommonReplaceBackgroundClient(CommonPaintingClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "painting/replace-background"
 
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:

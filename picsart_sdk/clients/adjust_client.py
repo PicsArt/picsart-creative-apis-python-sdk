@@ -10,9 +10,16 @@ from picsart_sdk.clients.requests_models import (
 
 
 class AdjustClient(ImageBaseClient):
+    """
+    Client for applying adjustments to images.
+
+    This client provides functionality to adjust image properties such as brightness,
+    contrast, clarity, and more. The adjustments can be applied using image URLs or
+    local image paths.
+    """
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "adjust"
 
     def adjust(
@@ -32,6 +39,40 @@ class AdjustClient(ImageBaseClient):
         vignette: Optional[int] = 0,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Adjust image properties.
+
+        :param image_url: URL of the image to be adjusted. Provide only if `image_path` is not provided.
+        :type image_url: Optional[str]
+        :param image_path: Local path of the image to be adjusted. Provide only if `image_url` is not provided.
+        :type image_path: Optional[str]
+        :param brightness: Brightness adjustment level.
+        :type brightness: Optional[float]
+        :param contrast: Contrast adjustment level.
+        :type contrast: Optional[float]
+        :param clarity: Clarity adjustment level.
+        :type clarity: Optional[float]
+        :param saturation: Saturation adjustment level.
+        :type saturation: Optional[float]
+        :param hue: Hue adjustment level.
+        :type hue: Optional[float]
+        :param shadows: Enable or disable shadows adjustment.
+        :type shadows: Optional[bool]
+        :param highlights: Highlights adjustment level.
+        :type highlights: Optional[int]
+        :param temperature: Color temperature adjustment level.
+        :type temperature: Optional[int]
+        :param sharpen: Sharpening level.
+        :type sharpen: Optional[int]
+        :param noise: Noise reduction level.
+        :type noise: Optional[int]
+        :param vignette: Vignette effect level.
+        :type vignette: Optional[int]
+        :param output_format: Format of the output image.
+        :type output_format: Optional[PicsartImageFormat]
+        :return: API response containing adjustment results.
+        :rtype: ApiResponse
+        """
         request = AdjustRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             brightness=brightness,
@@ -51,9 +92,16 @@ class AdjustClient(ImageBaseClient):
 
 
 class AsyncAdjustClient(ImageBaseClient):
+    """
+    HTTP Async client for applying adjustments to images.
+
+    This client provides asynchronous functionality to adjust image properties
+    such as brightness, contrast, clarity, and more. Adjustments can be applied
+    using image URLs or local image paths.
+    """
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "adjust"
 
     async def adjust(
@@ -73,6 +121,41 @@ class AsyncAdjustClient(ImageBaseClient):
         vignette: Optional[int] = 0,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Adjust image properties using the HTTP asynchronous client.
+
+        :param image_url: URL of the image to be adjusted.
+        :type image_url: Optional[str]
+        :param image_path: Local path of the image to be adjusted.
+        :type image_path: Optional[str]
+        :param brightness: Brightness adjustment level.
+        :type brightness: Optional[float]
+        :param contrast: Contrast adjustment level.
+        :type contrast: Optional[float]
+        :param clarity: Clarity adjustment level.
+        :type clarity: Optional[float]
+        :param saturation: Saturation adjustment level.
+        :type saturation: Optional[float]
+        :param hue: Hue adjustment level.
+        :type hue: Optional[float]
+        :param shadows: Enable or disable shadows adjustment.
+        :type shadows: Optional[bool]
+        :param highlights: Highlights adjustment level.
+        :type highlights: Optional[int]
+        :param temperature: Color temperature adjustment level.
+        :type temperature: Optional[int]
+        :param sharpen: Sharpening level.
+        :type sharpen: Optional[int]
+        :param noise: Noise reduction level.
+        :type noise: Optional[int]
+        :param vignette: Vignette effect level.
+        :type vignette: Optional[int]
+        :param output_format: Format of the output image.
+        :type output_format: Optional[PicsartImageFormat]
+        :return: API response containing adjustment results.
+        :rtype: ApiResponse
+        """
+
         request = AdjustRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             brightness=brightness,

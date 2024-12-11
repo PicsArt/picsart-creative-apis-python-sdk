@@ -17,7 +17,7 @@ from picsart_sdk.clients.requests_models.remove_background_request import (
 class RemoveBackgroundClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "removebg"
 
     def remove_background(
@@ -69,7 +69,7 @@ class RemoveBackgroundClient(ImageBaseClient):
 class AsyncRemoveBackgroundClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "removebg"
 
     async def remove_background(

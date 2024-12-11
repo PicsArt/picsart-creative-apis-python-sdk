@@ -9,7 +9,7 @@ from picsart_sdk.clients.requests_models.picsart_image import PicsartImageFormat
 class UltraEnhanceClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upscale/enhance"
 
     def ultra_enhance(
@@ -29,7 +29,7 @@ class UltraEnhanceClient(ImageBaseClient):
 
 class AsyncUltraEnhanceClient(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upscale/enhance"
 
     async def ultra_enhance(
