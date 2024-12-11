@@ -6,3 +6,4 @@ Responses
 
    api_response
    balance_response
+   effects_list_response

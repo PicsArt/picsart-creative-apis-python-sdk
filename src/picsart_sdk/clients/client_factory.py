@@ -44,9 +44,6 @@ class ClientFactory:
 
     This class provides a centralized way to retrieve instances of specific
     API clients based on their names.
-
-    Attributes:
-        _clients (dict): A mapping of client names to their class paths.
     """
 
     _clients = {

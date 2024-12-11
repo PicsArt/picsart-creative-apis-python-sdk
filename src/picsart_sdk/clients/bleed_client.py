@@ -40,6 +40,12 @@ class CommonBleedClient(GenAiBaseClient):
 
 
 class BleedClient(CommonBleedClient):
+    """
+    Client for generating bleed effects on images.
+
+    This client provides functionality to apply bleed effects to images based
+    on prompts, optional negative prompts, and other customizable parameters.
+    """
 
     def bleed(
         self,
@@ -50,6 +56,18 @@ class BleedClient(CommonBleedClient):
         bleed_size: Optional[int] = 5,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ):
+        """
+        Apply a bleed effect to an image.
+
+        :param prompt: The main prompt for generating the bleed effect.
+        :param image_url: The URL of the image to apply the bleed effect to.
+        :param image_path: The local path of the image to apply the bleed effect to.
+        :param negative_prompt: An optional negative prompt to modify the effect generation.
+        :param bleed_size: The size of the bleed effect. Default is 5.
+        :param output_format: The desired output format for the image. Default is PNG.
+        :return: The API response containing the bleed effect result.
+        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
+        """
         request = BleedRequest(
             prompt=prompt,
             image=PicsartImage(image_url=image_url, image_path=image_path),
@@ -62,6 +80,13 @@ class BleedClient(CommonBleedClient):
 
 
 class AsyncBleedClient(CommonBleedClient):
+    """
+    HTTP Async client for generating bleed effects on images.
+
+    This client provides functionality to apply bleed effects to images based
+    on prompts, optional negative prompts, and other customizable parameters.
+    """
+
     async def bleed(
         self,
         prompt: Optional[str] = "",
@@ -71,6 +96,18 @@ class AsyncBleedClient(CommonBleedClient):
         bleed_size: Optional[int] = 5,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> PaintingApiResponse:
+        """
+        Apply a bleed effect to an image using the HTTP asynchronous client.
+
+        :param prompt: The main prompt for generating the bleed effect.
+        :param image_url: The URL of the image to apply the bleed effect to.
+        :param image_path: The local path of the image to apply the bleed effect to.
+        :param negative_prompt: An optional negative prompt to modify the effect generation.
+        :param bleed_size: The size of the bleed effect. Default is 5.
+        :param output_format: The desired output format for the image. Default is PNG.
+        :return: The API response containing the bleed effect result.
+        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
+        """
         request = BleedRequest(
             prompt=prompt,
             image=PicsartImage(image_url=image_url, image_path=image_path),

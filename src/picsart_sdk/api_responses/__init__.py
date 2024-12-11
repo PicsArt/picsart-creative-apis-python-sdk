@@ -1,7 +1,7 @@
 from picsart_sdk.api_responses.api_response import ApiResponse, ApiResponseData
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 from picsart_sdk.api_responses.effects_response import (
-    EffectsList,
+    EffectsListApiResponse,
     EffectsPreviewsApiResponse,
     EffectsPreviewsApiResponseData,
 )
@@ -32,7 +32,7 @@ __all__ = [
     "ApiResponse",
     "ApiResponseData",
     "BalanceApiResponse",
-    "EffectsList",
+    "EffectsListApiResponse",
     "EffectsPreviewsApiResponseData",
     "EffectsPreviewsApiResponse",
     "ImageDescriptionApiResponse",
