@@ -12,10 +12,34 @@ class CommonGenAiBalanceClient(GenAiBaseClient):
 
 
 class GenAiBalanceClient(CommonGenAiBalanceClient):
+    """
+    Client for retrieving the account balance for the GenAI APIs.
+
+    This client provides a method to fetch the current balance associated
+    with the account using the API.
+    """
+
     def get_balance(self) -> BalanceApiResponse:
+        """
+        Retrieve the current account balance.
+
+        :return: The balance information returned by the API.
+        """
         return self.get()
 
 
 class AsyncGenAiBalanceClient(CommonGenAiBalanceClient):
+    """
+    Client for retrieving the account balance for the GenAI APIs.
+
+    This client provides a method to fetch the current balance associated
+    with the account using the API.
+    """
+
     async def get_balance(self) -> BalanceApiResponse:
+        """
+        Retrieve the current account balance using the HTTP asynchronous client.
+
+        :return: The balance information returned by the API.
+        """
         return await self.async_get()
