@@ -22,3 +22,4 @@ Image APIs
 
    clients/index
    responses/index
+   errors/index
