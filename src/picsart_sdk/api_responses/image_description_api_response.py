@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-from docutils.nodes import description
-
 
 @dataclass
 class ImageDescriptionApiResponseData:
