@@ -926,7 +926,14 @@ The SDK converts API errors into Python exceptions for easier debugging:
 ## Development
 ### Setup for Developers
 
-1. Install dependencies using Poetry:
+Set the `PYTHONPATH` environment variable to include the `src` folder:
+```bash
+export PYTHONPATH=$PYTHONPATH:/path/to/project/src
+```
+
+Setup a virtual environment and:
+
+1. Install dependencies using `poetry`:
 ```bash
 poetry install
 ```
