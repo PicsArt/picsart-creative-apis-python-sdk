@@ -954,6 +954,7 @@ poetry run pre-commit install
 PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
 ```
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 109e9f4 (update tests and documentation)
 =======
 
@@ -967,3 +968,11 @@ To enable detailed logging of HTTP calls, set the environment variables `PICSART
 Install packages necessary for generating `docs`:
 `poetry install --with docs`
 >>>>>>> e3c5f00 (docs)
+=======
+
+### Build the package
+
+1. Create a new virtual environment for building.
+2. Install the necessary dependencies from `requirements-build.txt`
+3. Run `python -m build`
+>>>>>>> 7c2fecd (add code for building the package)
