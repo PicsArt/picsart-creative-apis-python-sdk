@@ -1,7 +1,7 @@
 from typing import Optional, Union
 
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData
-from picsart_sdk.api_responses.effects_response import EffectsList
+from picsart_sdk.api_responses.effects_response import EffectsListApiResponse
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import (
     EffectsRequest,
@@ -10,16 +10,16 @@ from picsart_sdk.clients.requests_models import (
 )
 
 
-class CommonEffects(ImageBaseClient):
+class CommonEffectsClient(ImageBaseClient):
     @property
     def _endpoint(self):
         return "effects"
 
     def parse_response(
         self, result: dict, request_method: str
-    ) -> Union[EffectsList, ApiResponse]:
+    ) -> Union[EffectsListApiResponse, ApiResponse]:
         if request_method == "GET":
-            return EffectsList(
+            return EffectsListApiResponse(
                 effects=[item.get("name") for item in result.get("data", [])]
             )
         return ApiResponse(
@@ -27,7 +27,7 @@ class CommonEffects(ImageBaseClient):
         )
 
 
-class EffectsClient(CommonEffects):
+class EffectsClient(CommonEffectsClient):
     def effects(
         self,
         effect_name: str,
@@ -42,11 +42,11 @@ class EffectsClient(CommonEffects):
         )
         return self.post(request=request)
 
-    def get_available_effects(self) -> EffectsList:
+    def get_available_effects(self) -> EffectsListApiResponse:
         return self.get()
 
 
-class AsyncEffectsClient(CommonEffects):
+class AsyncEffectsClient(CommonEffectsClient):
 
     async def effects(
         self,
@@ -62,5 +62,5 @@ class AsyncEffectsClient(CommonEffects):
         )
         return await self.async_post(request=request)
 
-    async def get_available_effects(self) -> EffectsList:
+    async def get_available_effects(self) -> EffectsListApiResponse:
         return await self.async_get()

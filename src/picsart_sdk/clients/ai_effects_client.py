@@ -1,7 +1,10 @@
 from typing import Optional, Union
 
-from picsart_sdk.api_responses import ApiResponse, ApiResponseData
-from picsart_sdk.api_responses.effects_response import EffectsList
+from picsart_sdk.api_responses import (
+    ApiResponse,
+    ApiResponseData,
+    EffectsListApiResponse,
+)
 from picsart_sdk.clients.base.image_base_client import ImageBaseClient
 from picsart_sdk.clients.requests_models import (
     EffectsRequest,
@@ -17,9 +20,9 @@ class CommonAiEffects(ImageBaseClient):
 
     def parse_response(
         self, result: dict, request_method: str
-    ) -> Union[EffectsList, ApiResponse]:
+    ) -> Union[EffectsListApiResponse, ApiResponse]:
         if request_method == "GET":
-            return EffectsList(
+            return EffectsListApiResponse(
                 effects=[item.get("name") for item in result.get("data", [])]
             )
         return ApiResponse(
@@ -59,12 +62,12 @@ class AiEffectsClient(CommonAiEffects):
         )
         return self.post(request=request)
 
-    def get_available_ai_effects(self) -> EffectsList:
+    def get_available_ai_effects(self) -> EffectsListApiResponse:
         """
         Retrieve the list of available AI effects.
 
         :return: List of available AI effects.
-        :rtype: EffectsList
+        :rtype: EffectsListApiResponse
         """
         return self.get()
 
@@ -101,11 +104,11 @@ class AsyncAiEffectsClient(CommonAiEffects):
         )
         return await self.async_post(request=request)
 
-    async def get_available_ai_effects(self) -> EffectsList:
+    async def get_available_ai_effects(self) -> EffectsListApiResponse:
         """
         Retrieve the list of available AI effects using the HTTP asynchronous client.
 
         :return: List of available AI effects.
-        :rtype: EffectsList
+        :rtype: EffectsListApiResponse
         """
         return await self.async_get()

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class EffectsList:
+class EffectsListApiResponse:
     effects: list[str]
 
 
