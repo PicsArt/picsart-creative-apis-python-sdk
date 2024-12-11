@@ -20,7 +20,7 @@ class UpscaleClient(ImageBaseClient):
     """
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         """The API endpoint for upscaling."""
         return "upscale"
 
@@ -55,7 +55,7 @@ class UpscaleClient(ImageBaseClient):
 class AsyncUpscaleClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upscale"
 
     async def upscale(

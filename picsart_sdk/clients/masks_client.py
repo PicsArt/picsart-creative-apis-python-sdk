@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class MasksClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "masks"
 
     def masks(
@@ -41,7 +41,7 @@ class MasksClient(ImageBaseClient):
 class AsyncMasksClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "masks"
 
     async def masks(

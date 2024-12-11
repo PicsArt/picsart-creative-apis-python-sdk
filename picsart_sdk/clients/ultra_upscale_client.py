@@ -15,7 +15,7 @@ from picsart_sdk.clients.requests_models.ultra_upscale_request import (
 class UltraUpscaleClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upscale/ultra"
 
     def ultra_upscale(
@@ -40,7 +40,7 @@ class UltraUpscaleClient(ImageBaseClient):
 
 class AsyncUltraUpscaleClient(ImageBaseClient):
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "upscale/ultra"
 
     async def ultra_upscale(

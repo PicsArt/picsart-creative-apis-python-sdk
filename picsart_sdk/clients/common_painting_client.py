@@ -101,7 +101,7 @@ class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
 
 class InpaintingCommon(CommonPaintingClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "painting/inpaint"
 
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
@@ -111,7 +111,7 @@ class InpaintingCommon(CommonPaintingClient):
 
 class OutpaintingCommon(CommonPaintingClient):
     @property
-    def endpoint(self) -> str:
+    def _endpoint(self) -> str:
         return "painting/outpaint"
 
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:

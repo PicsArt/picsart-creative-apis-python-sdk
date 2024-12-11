@@ -35,7 +35,7 @@ class BaseClient:
 
     @property
     @abstractmethod
-    def endpoint(self) -> str: ...
+    def _endpoint(self) -> str: ...
 
     @abstractmethod
     def set_payload(self, request): ...
@@ -58,7 +58,7 @@ class BaseClient:
 
     @property
     def endpoint_url(self) -> str:
-        return f"{self.base_url}/{self.version}/{self.endpoint}"
+        return f"{self.base_url}/{self.version}/{self._endpoint}"
 
     def post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)

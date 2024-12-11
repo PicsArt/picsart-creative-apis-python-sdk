@@ -15,7 +15,7 @@ from picsart_sdk.clients.requests_models import (
 class MasksPreviewsClientCommon(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "masks/previews"
 
     @classmethod

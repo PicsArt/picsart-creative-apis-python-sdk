@@ -9,7 +9,7 @@ from picsart_sdk.clients.requests_models.picsart_image import PicsartImageFormat
 class FaceEnhancementClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "enhance/face"
 
     def face_enhancement(
@@ -28,7 +28,7 @@ class FaceEnhancementClient(ImageBaseClient):
 class AsyncFaceEnhancementClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "enhance/face"
 
     async def face_enhancement(

@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class TextureGeneratorClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "background/texture"
 
     def texture_generator(
@@ -45,7 +45,7 @@ class TextureGeneratorClient(ImageBaseClient):
 class AsyncTextureGeneratorClient(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "background/texture"
 
     async def texture_generator(

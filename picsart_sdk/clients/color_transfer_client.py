@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 class CommonColorTransfer(ImageBaseClient):
 
     @property
-    def endpoint(self):
+    def _endpoint(self):
         return "color-transfer"
 
     def set_payload(self, request: ColorTransferRequest):
