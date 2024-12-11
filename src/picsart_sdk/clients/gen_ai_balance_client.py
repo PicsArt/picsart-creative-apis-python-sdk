@@ -30,7 +30,7 @@ class GenAiBalanceClient(CommonGenAiBalanceClient):
 
 class AsyncGenAiBalanceClient(CommonGenAiBalanceClient):
     """
-    Client for retrieving the account balance for the GenAI APIs.
+    Client for retrieving the account balance for the GenAI APIs, using the HTTP asynchronous client.
 
     This client provides a method to fetch the current balance associated
     with the account using the API.
