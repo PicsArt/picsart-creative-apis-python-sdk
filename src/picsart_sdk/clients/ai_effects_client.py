@@ -28,6 +28,13 @@ class CommonAiEffects(ImageBaseClient):
 
 
 class AiEffectsClient(CommonAiEffects):
+    """
+    Client for applying AI effects to images.
+
+    This client provides methods to apply specific AI effects to images
+    and retrieve the list of available AI effects.
+    """
+
     def ai_effects(
         self,
         effect_name: str,
@@ -35,6 +42,16 @@ class AiEffectsClient(CommonAiEffects):
         image_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Apply a specific AI effect to an image.
+
+        :param effect_name: Name of the AI effect to apply.
+        :param image_url: URL of the image to which the effect will be applied.
+        :param image_path: Local path of the image to which the effect will be applied.
+        :param output_format: Format of the output image. Default is PNG.
+        :return: API response containing the processed image.
+        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
+        """
         request = EffectsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_name=effect_name,
@@ -43,10 +60,23 @@ class AiEffectsClient(CommonAiEffects):
         return self.post(request=request)
 
     def get_available_ai_effects(self) -> EffectsList:
+        """
+        Retrieve the list of available AI effects.
+
+        :return: List of available AI effects.
+        :rtype: EffectsList
+        """
         return self.get()
 
 
 class AsyncAiEffectsClient(CommonAiEffects):
+    """
+    Async HTTP client for applying AI effects to images.
+
+    This client provides methods to apply specific AI effects to images
+    and retrieve the list of available AI effects.
+    """
+
     async def ai_effects(
         self,
         effect_name: str,
@@ -54,6 +84,16 @@ class AsyncAiEffectsClient(CommonAiEffects):
         image_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Apply a specific AI effect to an image using the HTTP asynchronous client.
+
+        :param effect_name: Name of the AI effect to apply.
+        :param image_url: URL of the image to which the effect will be applied.
+        :param image_path: Local path of the image to which the effect will be applied.
+        :param output_format: Format of the output image. Default is PNG.
+        :return: API response containing the processed image.
+        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
+        """
         request = EffectsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_name=effect_name,
@@ -62,4 +102,10 @@ class AsyncAiEffectsClient(CommonAiEffects):
         return await self.async_post(request=request)
 
     async def get_available_ai_effects(self) -> EffectsList:
+        """
+        Retrieve the list of available AI effects using the HTTP asynchronous client.
+
+        :return: List of available AI effects.
+        :rtype: EffectsList
+        """
         return await self.async_get()

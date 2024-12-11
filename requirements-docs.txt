@@ -3,3 +3,4 @@ sphinx==7.4.7
 furo==2024.8.6
 sphinx_copybutton==0.5.2
 sphinx-remove-toctrees==1.0.0.post1
+sphinx-autodoc-typehints==2.3.0
