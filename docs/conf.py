@@ -8,7 +8,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../src'))
 
 project = 'Picsart Creative APIs Python SDK'
 copyright = '2024, Picsart, Inc.'
@@ -20,6 +20,7 @@ author = 'Picsart, Inc.'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.autodoc',
 ]
 
 templates_path = ['_templates']
@@ -39,3 +40,4 @@ html_theme_options = {
 }
 html_static_path = ['_static']
 nitpicky = True
+autodoc_typehints = "description"
