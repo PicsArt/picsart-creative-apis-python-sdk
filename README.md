@@ -25,7 +25,7 @@ pip install picsart-sdk
 
 **Option 1: Using Default Session**
 
-If the PICSART_API_KEY environment variable is set, you can quickly create a client:
+If the `PICSART_API_KEY` environment variable is set, you can quickly create a client:
 
 ```python
 import picsart_sdk
