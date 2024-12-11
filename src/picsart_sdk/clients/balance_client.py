@@ -12,7 +12,20 @@ class CommonBalanceClient(ImageBaseClient):
 
 
 class BalanceClient(CommonBalanceClient):
+    """
+    Client for retrieving account balance.
+
+    This client provides a method to fetch the current balance associated
+    with the account using the API.
+    """
+
     def get_balance(self) -> BalanceApiResponse:
+        """
+        Retrieve the current account balance.
+
+        :return: The balance information returned by the API.
+        :rtype: :class:`~picsart_sdk.api_responses.BalanceApiResponse`
+        """
         return self.get()
 
 
