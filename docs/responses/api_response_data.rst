@@ -3,7 +3,7 @@
 ApiResponseData
 ===============
 
-.. automodule:: picsart_sdk.api_responses.ApiResponseData
-    :members:
+.. automodule:: picsart_sdk.api_responses
+    :members: ApiResponseData
     :undoc-members:
-    :show-inheritance:
+
