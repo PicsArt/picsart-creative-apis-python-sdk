@@ -1,0 +1,3 @@
+# Optional dependencies for building the package
+twine==6.0.1
+build==1.2.2

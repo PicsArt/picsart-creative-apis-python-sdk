@@ -647,3 +647,9 @@ To enable detailed logging of HTTP calls, set the environment variables `PICSART
 ```bash
 PICSART_API_KEY=<YOUR_API_KEY> pytest tests/
 ```
+
+### Build the package
+
+1. Create a new virtual environment for building.
+2. Install the necessary dependencies from `requirements-build.txt`
+3. Run `python -m build`
