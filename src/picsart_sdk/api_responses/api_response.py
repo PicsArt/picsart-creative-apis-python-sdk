@@ -7,9 +7,10 @@ class ApiResponseData:
     """
     Represents the data of an API response.
 
-    Attributes:
-        id (str): The unique identifier for the response data.
-        url (str): The URL associated with the response data.
+    :param id: The unique identifier for the response data.
+    :type id: str
+    :param url: The URL associated with the response data.
+    :type url: str
     """
 
     id: str
@@ -19,12 +20,18 @@ class ApiResponseData:
 @dataclass
 class ApiResponse:
     """
-    Represents the structure of an API response if not otherwise specified.
+    Represents the response returned by the API.
 
-    Attributes:
-        status (str): The status of the API response, such as "success" or "failure".
-        data (ApiResponseData): The response data containing details such as an ID and URL. See :ref:`api_response_data` for details.
-        transaction_id (Optional[str]): The transaction ID associated with the API response, if available.
+    This data class encapsulates the status, data, and optional transaction ID
+    of an API response.
+
+    :param status: The status of the API response (e.g., "success", "error").
+    :type status: str
+    :param data: The main data payload of the API response.
+    :type data: :ref:`api_response_data`
+    :param transaction_id: An optional identifier for the transaction associated
+                           with this response.
+    :type transaction_id: Optional[str]
     """
 
     status: str

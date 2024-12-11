@@ -1,20 +1,34 @@
+from typing import Optional
+
+
 class ApiError(Exception):
     """
-    Raise this exception for errors related to API requests.
+    Exception raised for errors related to API requests.
 
-    Attributes:
-        detail (str): A detailed error message.
-        message (str): A user-friendly error message.
-        code (int): The error code returned by the API.
+    This exception provides detailed information about API errors,
+    including the error message, code, and any additional response data.
+
+    :param detail: A detailed error message returned by the API.
+    :type detail: Optional[str]
+    :param message: A user-friendly error message returned by the API.
+    :type message: Optional[str]
+    :param code: The error code returned by the API.
+    :type code: Optional[int]
+    :param response_data: The full error response returned by the API.
+    :type response_data: Optional[dict]
     """
 
     def __init__(
         self,
-        detail: str = None,
-        message: str = None,
-        code: int = None,
-        response_data: dict = None,
+        detail: Optional[str] = None,
+        message: Optional[str] = None,
+        code: Optional[int] = None,
+        response_data: Optional[dict] = None,
     ):
+        """
+        Initialize the ApiError exception.
+        """
+
         self.detail = detail
         self.message = message
         self.code = code
