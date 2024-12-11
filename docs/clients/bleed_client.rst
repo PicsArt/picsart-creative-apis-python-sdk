@@ -1,3 +1,5 @@
+.. _bleed_client:
+
 BleedClient
 ===========
 

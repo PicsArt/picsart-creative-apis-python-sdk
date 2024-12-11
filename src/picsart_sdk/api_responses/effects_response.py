@@ -3,6 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class EffectsListApiResponse:
+    """
+    Response object with the list of effects.
+
+    :param effects: The list of available effects.
+    """
+
     effects: list[str]
 
 

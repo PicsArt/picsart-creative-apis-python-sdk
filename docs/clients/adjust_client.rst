@@ -1,3 +1,5 @@
+.. _adjust_client:
+
 AdjustClient
 ============
 

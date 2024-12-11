@@ -1,3 +1,5 @@
+.. _edit_client:
+
 EditClient
 ==========
 

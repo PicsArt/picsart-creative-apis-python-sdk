@@ -7,6 +7,10 @@ from picsart_sdk.clients.base.base_http_client import BaseHttpClient
 
 
 class ApiClient(str, Enum):
+    """
+    The available API Clients.
+    """
+
     AI_EFFECTS = "ai_effects"
     ADJUST = "adjust"
     BALANCE = "balance"
@@ -88,6 +92,23 @@ class ClientFactory:
         *args,
         **kwargs,
     ):
+        """
+        The factory method to retrieve a specific API client (eg: :ref:`upscale_client`, :ref:`edit_client`, etc).
+
+        :param client_name: The client name as defined in `ApiClient`
+        :type client_name: str
+        :param session: The session to use
+        :type session: An instance of type :class:`~picsart_sdk.session.Session`
+        :param http_client: The http client to use. An implementation of the :class:`~BaseHttpClient` class.
+        :param is_async: Specifies if the HTTP client is asynchronous
+        :type is_async: bool
+        :param version: The version of the API to use
+        :type version: str
+        :param args: Other arguments
+        :param kwargs: Other keyword arguments
+        :return: An API Client instance.
+        :rtype: :class:`~picsart_sdk.clients.base.base_http_client.BaseHttpClient`
+        """
         class_path = ClientFactory._clients.get(client_name.lower())
         if not class_path:
             raise ValueError(f"Unknown client name: {client_name}")
@@ -104,7 +125,3 @@ class ClientFactory:
         return client_class(
             session=session, http_client=http_client, version=version, *args, **kwargs
         )
-
-    @staticmethod
-    def add_client(name: str, class_name):
-        ClientFactory._clients[name] = class_name

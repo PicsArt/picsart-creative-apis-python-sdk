@@ -1,3 +1,5 @@
+.. _ai_effects_client:
+
 AiEffectsClient
 ===============
 

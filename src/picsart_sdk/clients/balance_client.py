@@ -24,11 +24,15 @@ class BalanceClient(CommonBalanceClient):
         Retrieve the current account balance.
 
         :return: The balance information returned by the API.
-        :rtype: :class:`~picsart_sdk.api_responses.BalanceApiResponse`
         """
         return self.get()
 
 
 class AsyncBalanceClient(CommonBalanceClient):
     async def get_balance(self) -> BalanceApiResponse:
+        """
+        Retrieve the current account balance using the HTTP asynchronous client.
+
+        :return: The balance information returned by the API.
+        """
         return await self.async_get()

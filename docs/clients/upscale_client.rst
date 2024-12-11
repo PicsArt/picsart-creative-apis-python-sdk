@@ -1,3 +1,5 @@
+.. _upscale_client:
+
 UpscaleClient
 =============
 

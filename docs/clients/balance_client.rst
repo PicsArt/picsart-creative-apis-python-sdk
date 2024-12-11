@@ -1,3 +1,5 @@
+.. _balance_client:
+
 BalanceClient
 =============
 

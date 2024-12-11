@@ -57,7 +57,6 @@ class AdjustClient(ImageBaseClient):
         :param vignette: Vignette effect level.
         :param output_format: Format of the output image.
         :return: API response containing adjustment results.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
         request = AdjustRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
@@ -125,7 +124,6 @@ class AsyncAdjustClient(ImageBaseClient):
         :param vignette: Vignette effect level.
         :param output_format: Format of the output image.
         :return: API response containing adjustment results.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
 
         request = AdjustRequest(

@@ -36,6 +36,12 @@ class CommonEffectsPreviewsClient(ImageBaseClient):
 
 
 class EffectsPreviewsClient(CommonEffectsPreviewsClient):
+    """
+    Client for generating previews of effects on images.
+
+    The effects previews service applies an effect to a given input image and returns a preview
+    (i.e., thumbnail) of the effect.
+    """
 
     def effects_previews(
         self,
@@ -45,6 +51,17 @@ class EffectsPreviewsClient(CommonEffectsPreviewsClient):
         preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> EffectsPreviewsApiResponse:
+        """
+        Generate previews for multiple effects applied to an image.
+
+        :param effect_names: A list of effect names to apply.
+        :param image_url: The URL of the image to generate effect previews for.
+        :param image_path: The local path of the image to generate effect previews for.
+        :param preview_size: The size of the effect previews. Default is 120.
+        :param output_format: The desired output format for the preview images. Default is PNG.
+        :return: The API response containing the effect previews.
+        """
+
         request = EffectsPreviewsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_names=effect_names,
@@ -55,6 +72,12 @@ class EffectsPreviewsClient(CommonEffectsPreviewsClient):
 
 
 class AsyncEffectsPreviewsClient(CommonEffectsPreviewsClient):
+    """
+    HTTP Async client for generating previews of effects on images.
+
+    The effects previews service applies an effect to a given input image and returns a preview
+    (i.e., thumbnail) of the effect.
+    """
 
     @property
     def _endpoint(self):
@@ -68,6 +91,16 @@ class AsyncEffectsPreviewsClient(CommonEffectsPreviewsClient):
         preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> EffectsPreviewsApiResponse:
+        """
+        Generate previews for multiple effects applied to an image using the HTTP asynchronous client.
+
+        :param effect_names: A list of effect names to apply.
+        :param image_url: The URL of the image to generate effect previews for.
+        :param image_path: The local path of the image to generate effect previews for.
+        :param preview_size: The size of the effect previews. Default is 120.
+        :param output_format: The desired output format for the preview images. Default is PNG.
+        :return: The API response containing the effect previews.
+        """
         request = EffectsPreviewsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             effect_names=effect_names,

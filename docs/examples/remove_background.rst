@@ -2,6 +2,7 @@ Remove Background
 =================
 
 This page explains how to use the Picsart Creative APIs Python SDK to remove the background from an image.
+Please refer to the `API documentation <https://docs.picsart.io/reference/image-remove-background>`_ for the full list of the features and their possible values and to the API Reference :ref:`remove_background_client` for the SDK usage.
 
 Simple use case for Remove Background
 -------------------------------------
