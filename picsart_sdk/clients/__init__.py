@@ -1,6 +1,8 @@
 from picsart_sdk.clients.adjust_client import AdjustClient, AsyncAdjustClient
 from picsart_sdk.clients.ai_effects_client import AiEffectsClient, AsyncAiEffectsClient
 from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
+from picsart_sdk.clients.bleed_client import AsyncBleedClient, BleedClient
+from picsart_sdk.clients.client_factory import ApiClient
 from picsart_sdk.clients.color_transfer_client import (
     AsyncColorTransferClient,
     ColorTransferClient,
@@ -15,6 +17,10 @@ from picsart_sdk.clients.face_enhancement_client import (
     AsyncFaceEnhancementClient,
     FaceEnhancementClient,
 )
+from picsart_sdk.clients.gen_ai_balance_client import (
+    AsyncGenAiBalanceClient,
+    GenAiBalanceClient,
+)
 from picsart_sdk.clients.image_description_client import (
     AsyncImageDescriptionClient,
     ImageDescriptionClient,
@@ -28,6 +34,20 @@ from picsart_sdk.clients.masks_previews_client import (
     AsyncMasksPreviewsClient,
     MasksPreviewsClient,
 )
+from picsart_sdk.clients.painting_client import (
+    AsyncInpaintingClient,
+    AsyncOutpaintingClient,
+    InpaintingClient,
+    OutpaintingClient,
+)
+from picsart_sdk.clients.painting_expand_client import (
+    AsyncPaintingExpandClient,
+    PaintingExpandClient,
+)
+from picsart_sdk.clients.painting_replace_background_client import (
+    AsyncPaintingReplaceBackgroundClient,
+    PaintingReplaceBackgroundClient,
+)
 from picsart_sdk.clients.remove_background_client import (
     AsyncRemoveBackgroundClient,
     RemoveBackgroundClient,
@@ -40,7 +60,11 @@ from picsart_sdk.clients.surfacemap_client import (
     AsyncSurfacemapClient,
     SurfacemapClient,
 )
-from picsart_sdk.clients.text2image_client import Text2ImageClient
+from picsart_sdk.clients.text2image_client import (
+    AsyncText2ImageClient,
+    Text2ImageClient,
+)
+from picsart_sdk.clients.text2text_client import AsyncText2TextClient, Text2TextClient
 from picsart_sdk.clients.texture_generator_client import (
     AsyncTextureGeneratorClient,
     TextureGeneratorClient,
@@ -61,6 +85,7 @@ from picsart_sdk.clients.vectorizer_client import (
 )
 
 __all__ = [
+    "ApiClient",
     "UploadClient",
     "AsyncUploadClient",
     "RemoveBackgroundClient",
@@ -81,6 +106,8 @@ __all__ = [
     "AsyncEffectsPreviewsClient",
     "BalanceClient",
     "AsyncBalanceClient",
+    "GenAiBalanceClient",
+    "AsyncGenAiBalanceClient",
     "ColorTransferClient",
     "AsyncColorTransferClient",
     "StyleTransferClient",
@@ -104,4 +131,17 @@ __all__ = [
     "ImageDescriptionClient",
     "AsyncImageDescriptionClient",
     "Text2ImageClient",
+    "AsyncText2ImageClient",
+    "Text2TextClient",
+    "AsyncText2TextClient",
+    "InpaintingClient",
+    "AsyncInpaintingClient",
+    "OutpaintingClient",
+    "AsyncOutpaintingClient",
+    "PaintingReplaceBackgroundClient",
+    "AsyncPaintingReplaceBackgroundClient",
+    "PaintingExpandClient",
+    "AsyncPaintingExpandClient",
+    "BleedClient",
+    "AsyncBleedClient",
 ]

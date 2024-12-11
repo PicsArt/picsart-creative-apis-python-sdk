@@ -9,8 +9,9 @@ from picsart_sdk.clients.requests_models.picsart_image import (
 
 
 @dataclass
-class EffectsPreviewsRequest(BaseRequest):
+class BleedRequest(BaseRequest):
     image: PicsartImage
-    effect_names: list[str]
-    preview_size: Optional[int] = 120
+    prompt: Optional[str] = None
+    bleed_size: Optional[int] = 5
+    negative_prompt: Optional[str] = ""
     format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG

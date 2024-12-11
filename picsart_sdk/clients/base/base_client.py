@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import IO, Dict, Optional, Union
 from urllib.parse import urlencode
 
-from picsart_sdk.api_responses import ApiResponse, ApiResponseData
+from picsart_sdk.clients.http_clients import AsyncHttpClient, HttpClient
 
 
 class BaseClient:
@@ -10,7 +10,7 @@ class BaseClient:
     _files = None
     _version = None
     headers = {
-        "accept": "application/json",
+        "Accept": "application/json",
     }
 
     files: Dict[str, Union[str, IO]] = {}
@@ -41,7 +41,7 @@ class BaseClient:
     def set_payload(self, request): ...
 
     @abstractmethod
-    def parse_response(self, result: dict): ...
+    def parse_response(self, result: dict, request_method: str): ...
 
     @property
     @abstractmethod
@@ -62,7 +62,21 @@ class BaseClient:
 
     def post(self, request, as_json: Optional[bool] = False):
         self.set_payload(request)
-        result = self.http_client.post(
+        http_client: HttpClient = self.http_client
+        result = http_client.post(
+            url=self.endpoint_url,
+            data=self._payload,
+            files=self.get_files(),
+            headers=self.headers,
+            as_json=as_json,
+        )
+
+        return self.parse_response(result=result, request_method="POST")
+
+    async def async_post(self, request, as_json: Optional[bool] = False):
+        self.set_payload(request)
+        http_client: AsyncHttpClient = self.http_client
+        result = await http_client.post(
             url=self.endpoint_url,
             data=self._payload,
             files=self._files,
@@ -70,18 +84,7 @@ class BaseClient:
             as_json=as_json,
         )
 
-        return self.parse_response(result=result)
-
-    async def async_post(self, request):
-        self.set_payload(request)
-        result = await self.http_client.post(
-            url=self.endpoint_url,
-            data=self._payload,
-            files=self._files,
-            headers=self.headers,
-        )
-
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="POST")
 
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
         url = f"{self.endpoint_url}/{postfix_url}" if postfix_url else self.endpoint_url
@@ -92,20 +95,18 @@ class BaseClient:
 
         return url
 
-    def get(self, postfix_url: str = "", query_params: dict = None) -> ApiResponse:
+    def get(self, postfix_url: str = "", query_params: dict = None):
         result = self.http_client.get(
             url=self._get_url(postfix_url, query_params),
             headers=self.headers,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="GET")
 
-    async def async_get(
-        self, postfix_url: str = "", query_params: dict = None
-    ) -> ApiResponse:
+    async def async_get(self, postfix_url: str = "", query_params: dict = None):
         result = await self.http_client.get(
             url=self._get_url(postfix_url, query_params),
             headers=self.headers,
         )
 
-        return self.parse_response(result=result)
+        return self.parse_response(result=result, request_method="GET")

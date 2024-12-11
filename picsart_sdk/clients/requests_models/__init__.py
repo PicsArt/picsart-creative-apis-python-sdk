@@ -1,4 +1,5 @@
 from picsart_sdk.clients.requests_models.adjust_request import AdjustRequest
+from picsart_sdk.clients.requests_models.bleed_request import BleedRequest
 from picsart_sdk.clients.requests_models.color_transfer_request import (
     ColorTransferRequest,
 )
@@ -31,6 +32,8 @@ from picsart_sdk.clients.requests_models.style_transfer_request import (
     StyleTransferRequest,
 )
 from picsart_sdk.clients.requests_models.surfacemap_request import SurfacemapRequest
+from picsart_sdk.clients.requests_models.text2image_request import Text2ImageRequest
+from picsart_sdk.clients.requests_models.text2text_request import Text2TextRequest
 from picsart_sdk.clients.requests_models.texture_generator_request import (
     TextureGeneratorRequest,
 )
@@ -66,4 +69,7 @@ __all__ = [
     "SurfacemapRequest",
     "ImageTaggingRequest",
     "ImageDescriptionRequest",
+    "Text2ImageRequest",
+    "Text2TextRequest",
+    "BleedRequest",
 ]

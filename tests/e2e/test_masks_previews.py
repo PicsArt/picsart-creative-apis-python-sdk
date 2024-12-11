@@ -8,6 +8,7 @@ from picsart_sdk.api_responses.masks_previews_response import (
     MasksPreviewsApiResponseData,
 )
 from picsart_sdk.clients import AsyncMasksPreviewsClient, MasksPreviewsClient
+from picsart_sdk.clients.client_factory import ApiClient
 
 
 def common_assertion(result, masks):
@@ -23,6 +24,10 @@ def common_assertion(result, masks):
         assert isinstance(item, MasksPreviewsApiResponseData)
 
 
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 @pytest.mark.parametrize(
     "mask, expected_masks",
     [
@@ -36,12 +41,16 @@ def test_masks_previews(mask, expected_masks):
     file_path = "../resources/image1.jpeg"
     image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), file_path))
 
-    client: MasksPreviewsClient = picsart_sdk.client("masks_previews")
+    client: MasksPreviewsClient = picsart_sdk.client(ApiClient.MASKS_PREVIEWS)
     result = client.masks_previews(image_path=image_path, mask=mask)
     common_assertion(result, expected_masks)
 
 
 @pytest.mark.asyncio
+@pytest.mark.skipif(
+    not os.getenv("PICSART_API_KEY"),
+    reason="PICSART_API_KEY environment variable is not set",
+)
 @pytest.mark.parametrize(
     "mask, expected_masks",
     [
@@ -55,6 +64,6 @@ async def test_masks_previews_async(mask, expected_masks):
     file_path = "../resources/image1.jpeg"
     image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), file_path))
 
-    client: MasksPreviewsClient = picsart_sdk.client("masks_previews")
+    client: MasksPreviewsClient = picsart_sdk.client(ApiClient.MASKS_PREVIEWS)
     result = client.masks_previews(image_path=image_path, mask=mask)
     common_assertion(result, expected_masks)

@@ -1,6 +1,5 @@
 from typing import Optional
 
-from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.api_responses.image_tagging_api_response import (
     ImageTaggingApiResponse,
     ImageTaggingApiResponseData,
@@ -14,7 +13,9 @@ class CommonImageTaggingClient(ImageBaseClient):
     def endpoint(self):
         return "tags"
 
-    def parse_response(self, result: dict) -> ImageTaggingApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> ImageTaggingApiResponse:
         return ImageTaggingApiResponse(
             status=result["status"],
             data=ImageTaggingApiResponseData(
@@ -29,7 +30,7 @@ class ImageTaggingClient(CommonImageTaggingClient):
         self,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-    ) -> ApiResponse:
+    ) -> ImageTaggingApiResponse:
         return self.post(
             request=ImageTaggingRequest(
                 image=PicsartImage(image_path=image_path, image_url=image_url)
@@ -43,7 +44,7 @@ class AsyncImageTaggingClient(CommonImageTaggingClient):
         self,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-    ) -> ApiResponse:
+    ) -> ImageTaggingApiResponse:
         return await self.async_post(
             request=ImageTaggingRequest(
                 image=PicsartImage(image_path=image_path, image_url=image_url)

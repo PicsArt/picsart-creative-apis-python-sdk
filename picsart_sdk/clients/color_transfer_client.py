@@ -56,7 +56,6 @@ class ColorTransferClient(CommonColorTransfer):
             format=output_format,
         )
 
-        self.set_payload(request)
         return self.post(request=request)
 
 
@@ -78,5 +77,4 @@ class AsyncColorTransferClient(CommonColorTransfer):
             format=output_format,
         )
 
-        self.set_payload(request)
         return await self.async_post(request=request)

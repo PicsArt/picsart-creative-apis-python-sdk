@@ -1,20 +1,12 @@
-import os
 from typing import IO, Any, Dict
 
 import httpx
 from httpx import Response
 
 from picsart_sdk.clients.base.base_http_client import BaseHttpClient, handle_http_errors
-from picsart_sdk.core.logger import get_logger
-from picsart_sdk.settings import PICSART_LOG_HTTP_CALLS, PICSART_LOG_HTTP_CALLS_HEADERS
-
-logger = get_logger()
 
 
 class HttpClient(BaseHttpClient):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
     def post(
         self,
         url: str,
@@ -57,34 +49,15 @@ class HttpClient(BaseHttpClient):
         headers: Dict[str, str] = None,
         as_json: bool = False,
     ) -> Response:
+        request_params = self.prepare_request_params(
+            method=method,
+            url=url,
+            data=data,
+            files=files,
+            headers=headers,
+            as_json=as_json,
+        )
         try:
-            request_params = {
-                "method": method,
-                "url": url,
-                "headers": {
-                    **headers,
-                    **self.default_headers,
-                    "content-type": "application/json",
-                },
-            }
-
-            if files:
-                request_params["files"] = files
-
-            if as_json:
-                request_params["json"] = data
-            else:
-                request_params["data"] = data
-
-            if PICSART_LOG_HTTP_CALLS:
-                log_message = f"{request_params}"
-                if not PICSART_LOG_HTTP_CALLS_HEADERS:
-                    filtered_dict = request_params.copy()
-                    filtered_dict.pop("headers", None)
-                    log_message = f"{filtered_dict}"
-
-                logger.debug(log_message)
-
             with httpx.Client(timeout=self.timeout) as client:
                 response = client.request(**request_params)
             response.raise_for_status()

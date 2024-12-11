@@ -37,7 +37,13 @@ class ImageBaseClient(BaseClient, ABC):
 
         self._payload.update(request.get_dict())
 
-    def parse_response(self, result: dict) -> ApiResponse:
+    def parse_response(self, result: dict, request_method: str) -> ApiResponse:
+        """
+        Parse the response from the Picsart API.
+        :param result: The result returned by the Picsart API, as JSON object
+        :param request_method: The HTTP method used to send the request
+        :return: The ApiResponse object
+        """
         data = result["data"] if "data" in result else None
         return ApiResponse(
             status=result["status"],

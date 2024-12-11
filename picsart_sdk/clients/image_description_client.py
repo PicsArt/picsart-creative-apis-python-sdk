@@ -1,6 +1,5 @@
 from typing import Optional
 
-from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.api_responses.image_description_api_response import (
     ImageDescriptionApiResponse,
     ImageDescriptionApiResponseData,
@@ -14,7 +13,9 @@ class CommonImageDescriptionClient(ImageBaseClient):
     def endpoint(self):
         return "describe"
 
-    def parse_response(self, result: dict) -> ImageDescriptionApiResponse:
+    def parse_response(
+        self, result: dict, request_method: str
+    ) -> ImageDescriptionApiResponse:
         return ImageDescriptionApiResponse(
             status=result["status"],
             data=ImageDescriptionApiResponseData(
@@ -29,7 +30,7 @@ class ImageDescriptionClient(CommonImageDescriptionClient):
         self,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-    ) -> ApiResponse:
+    ) -> ImageDescriptionApiResponse:
         return self.post(
             request=ImageDescriptionRequest(
                 image=PicsartImage(image_path=image_path, image_url=image_url)
@@ -43,7 +44,7 @@ class AsyncImageDescriptionClient(CommonImageDescriptionClient):
         self,
         image_url: Optional[str] = None,
         image_path: Optional[str] = None,
-    ) -> ApiResponse:
+    ) -> ImageDescriptionApiResponse:
         return await self.async_post(
             request=ImageDescriptionRequest(
                 image=PicsartImage(image_path=image_path, image_url=image_url)
