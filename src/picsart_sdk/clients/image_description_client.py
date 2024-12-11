@@ -65,7 +65,7 @@ class AsyncImageDescriptionClient(CommonImageDescriptionClient):
         image_path: Optional[str] = None,
     ) -> ImageDescriptionApiResponse:
         """
-        Gets a description for the given image.
+        Gets a description for the given image using the HTTP asynchronous client.
 
         :param image_url: The URL of the image to describe.
         :param image_path: The local path of the image to describe.

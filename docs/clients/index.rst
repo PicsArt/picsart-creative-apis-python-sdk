@@ -16,5 +16,6 @@ API Clients
     face_enhancement_client
     gen_ai_balance_client
     image_description_client
+    image_tagging_client
     remove_background_client
     upscale_client
