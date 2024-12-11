@@ -53,7 +53,6 @@ class AiEffectsClient(CommonAiEffects):
         :param image_path: Local path of the image to which the effect will be applied.
         :param output_format: Format of the output image. Default is PNG.
         :return: API response containing the processed image.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
         request = EffectsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
@@ -67,7 +66,6 @@ class AiEffectsClient(CommonAiEffects):
         Retrieve the list of available AI effects.
 
         :return: List of available AI effects.
-        :rtype: EffectsListApiResponse
         """
         return self.get()
 
@@ -95,7 +93,6 @@ class AsyncAiEffectsClient(CommonAiEffects):
         :param image_path: Local path of the image to which the effect will be applied.
         :param output_format: Format of the output image. Default is PNG.
         :return: API response containing the processed image.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
         request = EffectsRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
@@ -109,6 +106,5 @@ class AsyncAiEffectsClient(CommonAiEffects):
         Retrieve the list of available AI effects using the HTTP asynchronous client.
 
         :return: List of available AI effects.
-        :rtype: EffectsListApiResponse
         """
         return await self.async_get()

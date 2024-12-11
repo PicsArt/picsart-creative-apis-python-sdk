@@ -1,3 +1,5 @@
+.. _effects_client:
+
 EffectsClient
 =============
 

@@ -1,3 +1,5 @@
+.. _effects_previews_client:
+
 EffectsPreviewsClient
 =====================
 

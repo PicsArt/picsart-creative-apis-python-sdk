@@ -65,7 +65,7 @@ class AsyncUpscaleClient(ImageBaseClient):
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
         """
-        Upscale an image by a specified factor  using the HTTP asynchronous client.
+        Upscale an image by a specified factor using the HTTP asynchronous client.
 
         :param image_url: URL of the image to be upscaled.
         :param image_path: Local path of the image to be upscaled.

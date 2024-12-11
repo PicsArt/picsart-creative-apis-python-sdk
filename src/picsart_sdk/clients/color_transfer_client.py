@@ -39,6 +39,9 @@ class CommonColorTransfer(ImageBaseClient):
 
 
 class ColorTransferClient(CommonColorTransfer):
+    """
+    The color transfer tool transfers the color style from a reference image to the target image.
+    """
 
     def color_transfer(
         self,
@@ -48,6 +51,16 @@ class ColorTransferClient(CommonColorTransfer):
         reference_image_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Transfer the color palette of a reference image onto a target image.
+
+        :param image_url: The URL of the target image to apply the color transfer.
+        :param image_path: The local path of the target image to apply the color transfer.
+        :param reference_image_url: The URL of the reference image whose colors will be transferred.
+        :param reference_image_path: The local path of the reference image whose colors will be transferred.
+        :param output_format: The desired format for the output image. Default is PNG.
+        :return: The API response containing the new image with the applied color.
+        """
         request = ColorTransferRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             reference_image=PicsartImage(
@@ -60,6 +73,10 @@ class ColorTransferClient(CommonColorTransfer):
 
 
 class AsyncColorTransferClient(CommonColorTransfer):
+    """
+    The color transfer tool transfers the color style from a reference image to the target image,
+    using the HTTP asynchronous client.
+    """
 
     async def color_transfer(
         self,
@@ -69,6 +86,17 @@ class AsyncColorTransferClient(CommonColorTransfer):
         reference_image_url: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Transfer the color palette of a reference image onto a target image using the HTTP asynchronous client.
+
+        :param image_url: The URL of the target image to apply the color transfer.
+        :param image_path: The local path of the target image to apply the color transfer.
+        :param reference_image_url: The URL of the reference image whose colors will be transferred.
+        :param reference_image_path: The local path of the reference image whose colors will be transferred.
+        :param output_format: The desired format for the output image. Default is PNG.
+        :return: The API response containing the new image with the applied color.
+        """
+
         request = ColorTransferRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             reference_image=PicsartImage(

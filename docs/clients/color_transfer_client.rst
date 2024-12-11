@@ -1,3 +1,5 @@
+.. _color_transfer_client:
+
 ColorTransferClient
 ===================
 

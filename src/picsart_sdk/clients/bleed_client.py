@@ -1,7 +1,6 @@
 from typing import Optional
 
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData
-from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 from picsart_sdk.clients.base.genai_base_client import GenAiBaseClient
 from picsart_sdk.clients.requests_models import (
     BleedRequest,
@@ -55,7 +54,7 @@ class BleedClient(CommonBleedClient):
         negative_prompt: Optional[str] = None,
         bleed_size: Optional[int] = 5,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-    ):
+    ) -> ApiResponse:
         """
         Apply a bleed effect to an image.
 
@@ -66,7 +65,6 @@ class BleedClient(CommonBleedClient):
         :param bleed_size: The size of the bleed effect. Default is 5.
         :param output_format: The desired output format for the image. Default is PNG.
         :return: The API response containing the bleed effect result.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
         request = BleedRequest(
             prompt=prompt,
@@ -95,7 +93,7 @@ class AsyncBleedClient(CommonBleedClient):
         negative_prompt: Optional[str] = None,
         bleed_size: Optional[int] = 5,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-    ) -> PaintingApiResponse:
+    ) -> ApiResponse:
         """
         Apply a bleed effect to an image using the HTTP asynchronous client.
 
@@ -106,7 +104,6 @@ class AsyncBleedClient(CommonBleedClient):
         :param bleed_size: The size of the bleed effect. Default is 5.
         :param output_format: The desired output format for the image. Default is PNG.
         :return: The API response containing the bleed effect result.
-        :rtype: :class:`~picsart_sdk.api_responses.ApiResponse`
         """
         request = BleedRequest(
             prompt=prompt,
