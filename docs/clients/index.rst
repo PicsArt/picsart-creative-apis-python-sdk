@@ -14,5 +14,6 @@ API Clients
     effects_client
     effects_previews_client
     face_enhancement_client
+    gen_ai_balance_client
     remove_background_client
     upscale_client
