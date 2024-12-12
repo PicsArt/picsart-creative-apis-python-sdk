@@ -158,7 +158,7 @@ async def wait_for_result_async(
                 "mode": "async",
             },
         ),
-        # async clients
+        # async clients_image_api
         (
             "inpainting",
             "inpainting",
