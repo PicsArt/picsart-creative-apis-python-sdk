@@ -24,4 +24,7 @@ API Clients
     painting_expand_client
     painting_replace_background_client
     remove_background_client
+    style_transfer_client
+    surfacemap_client
+    text2image_client
     upscale_client
