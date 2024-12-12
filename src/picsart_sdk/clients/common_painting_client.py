@@ -117,3 +117,13 @@ class OutpaintingCommon(CommonPaintingClient):
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
         url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
         return url.replace("outpaint/", "")
+
+
+class CommonExpandClient(CommonPaintingClient):
+    @property
+    def _endpoint(self) -> str:
+        return "painting/expand"
+
+    def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
+        url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
+        return url.replace("expand/", "")
