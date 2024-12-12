@@ -23,6 +23,7 @@ Clients for Image APIs
     surfacemap_client
     texture_generator_client
     ultra_enhance_client
-    upscale_client
     ultra_enhance_client
     ultra_upscale_client
+    upload_client
+    upscale_client

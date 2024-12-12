@@ -22,5 +22,4 @@ Image APIs
 
    clients_image_api/index
    clients_genai/index
-   responses/index
    errors/index
