@@ -7,9 +7,17 @@ from picsart_sdk.clients.requests_models.painting_request import PaintingMode
 
 
 class OutpaintingClient(OutpaintingCommon):
+    """
+    Client for performing outpainting operations.
 
-    def get_result(self, inference_id: str) -> PaintingApiResponse:
-        return self.get(postfix_url=inference_id)
+    The Outpainting service enables outpainting, allowing users to extend or replace specific parts of an image.
+    This is a reversed form of the Inpainting service (drawing outside of the mask, not inside).
+
+    It operates in two modes:
+
+    * **Single Image Mode**: Upload one RGBA image. The API enhances the outer area with content based on the prompt parameter.
+    * **Mask Mode**: Provide an RGBA image along with a mask of the same size. The API applies this mask to paint beyond the masked region, using content determined by the prompt parameter.
+    """
 
     def outpainting(
         self,
@@ -23,6 +31,21 @@ class OutpaintingClient(OutpaintingCommon):
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
+        """
+        Perform an outpainting operation on an image.
+
+        :param prompt: The prompt describing the desired changes or replacements for the image.
+        :param image_url: The URL of the image to outpaint.
+        :param image_path: The local path of the image to outpaint.
+        :param mask_url: The URL of the mask image defining the area to outpaint.
+        :param mask_path: The local path of the mask image defining the area to outpaint.
+        :param negative_prompt: An optional prompt specifying what to avoid in the outpainting result.
+        :param count: The number of outpainting variations to generate. Default is 4.
+        :param output_format: The desired format for the outpainting result. Default is PNG.
+        :param mode: The mode of outpainting (e.g., synchronous or asynchronous). Default is synchronous.
+        :return: The API response containing the outpainting result.
+        """
+
         return super().sync_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -35,10 +58,29 @@ class OutpaintingClient(OutpaintingCommon):
             mode=mode,
         )
 
+    def get_result(self, inference_id: str) -> PaintingApiResponse:
+        """
+        Retrieve the result of an outpainting operation using its inference ID.
+
+        :param inference_id: The unique identifier for the outpainting operation.
+        :return: The API response containing the outpainting result.
+        """
+
+        return self.get(postfix_url=inference_id)
+
 
 class AsyncOutpaintingClient(OutpaintingCommon):
-    async def get_result(self, inference_id: str) -> PaintingApiResponse:
-        return await self.async_get(postfix_url=inference_id)
+    """
+    Client for performing outpainting operations, using an asynchronous HTTP client.
+
+    The Outpainting service enables outpainting, allowing users to extend or replace specific parts of an image.
+    This is a reversed form of the Inpainting service (drawing outside of the mask, not inside).
+
+    It operates in two modes:
+
+    * **Single Image Mode**: Upload one RGBA image. The API enhances the outer area with content based on the prompt parameter.
+    * **Mask Mode**: Provide an RGBA image along with a mask of the same size. The API applies this mask to paint beyond the masked region, using content determined by the prompt parameter.
+    """
 
     async def outpainting(
         self,
@@ -52,6 +94,21 @@ class AsyncOutpaintingClient(OutpaintingCommon):
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
+        """
+        Perform an outpainting operation on an image using an asynchronous HTTP client.
+
+        :param prompt: The prompt describing the desired changes or replacements for the image.
+        :param image_url: The URL of the image to outpaint.
+        :param image_path: The local path of the image to outpaint.
+        :param mask_url: The URL of the mask image defining the area to outpaint.
+        :param mask_path: The local path of the mask image defining the area to outpaint.
+        :param negative_prompt: An optional prompt specifying what to avoid in the outpainting result.
+        :param count: The number of outpainting variations to generate. Default is 4.
+        :param output_format: The desired format for the outpainting result. Default is PNG.
+        :param mode: The mode of outpainting (e.g., synchronous or asynchronous). Default is synchronous.
+        :return: The API response containing the outpainting result.
+        """
+
         return await super().async_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -63,3 +120,13 @@ class AsyncOutpaintingClient(OutpaintingCommon):
             output_format=output_format,
             mode=mode,
         )
+
+    async def get_result(self, inference_id: str) -> PaintingApiResponse:
+        """
+        Retrieve the result of an outpainting operation using its inference ID, using an asynchronous HTTP client.
+
+        :param inference_id: The unique identifier for the outpainting operation.
+        :return: The API response containing the outpainting result.
+        """
+
+        return await self.async_get(postfix_url=inference_id)
