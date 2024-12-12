@@ -27,4 +27,5 @@ API Clients
     style_transfer_client
     surfacemap_client
     text2image_client
+    text2text_client
     upscale_client
