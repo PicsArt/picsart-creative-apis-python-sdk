@@ -36,7 +36,7 @@ class PaintingExpandClient(CommonExpandClient):
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
         """
-        Expand an image by generating additional content based on a prompt, , using an asynchronous HTTP client.
+        Expand an image by generating additional content based on a prompt, using an asynchronous HTTP client.
 
         :param prompt: The prompt describing the content to generate in the expanded areas.
         :param image_url: The URL of the image to expand.
