@@ -2,6 +2,7 @@ Usage Examples
 ==============
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   remove_background
+    remove_background
+    upscale_image
