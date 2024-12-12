@@ -47,7 +47,7 @@ class Text2ImageClient(CommonText2ImageClient):
         )
         return self.post(request=request, as_json=True)
 
-    def get_text2image_result(self, inference_id: str) -> Text2ImageApiResponse:
+    def get_result(self, inference_id: str) -> Text2ImageApiResponse:
         return self.get(postfix_url=f"inferences/{inference_id}")
 
 
@@ -70,5 +70,5 @@ class AsyncText2ImageClient(CommonText2ImageClient):
         )
         return await self.async_post(request=request, as_json=True)
 
-    async def get_text2image_result(self, inference_id: str) -> Text2ImageApiResponse:
+    async def get_result(self, inference_id: str) -> Text2ImageApiResponse:
         return await self.async_get(postfix_url=f"inferences/{inference_id}")
