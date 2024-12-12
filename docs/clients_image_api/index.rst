@@ -21,4 +21,5 @@ Clients for Image APIs
     remove_background_client
     style_transfer_client
     surfacemap_client
+    texture_generator_client
     upscale_client
