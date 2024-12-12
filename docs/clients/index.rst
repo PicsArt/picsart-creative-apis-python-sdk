@@ -13,7 +13,6 @@ API Clients
     edit_client
     effects_client
     effects_previews_client
-    expand_client
     face_enhancement_client
     gen_ai_balance_client
     image_description_client
@@ -22,5 +21,7 @@ API Clients
     masks_client
     masks_previews_client
     outpainting_client
+    painting_expand_client
+    painting_replace_background_client
     remove_background_client
     upscale_client

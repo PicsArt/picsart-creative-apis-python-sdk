@@ -1,7 +1,7 @@
-.. _inpainting_client:
+.. _painting_expand_client:
 
-ExpandClient
-============
+PaintingExpandClient
+====================
 
 .. automodule:: picsart_sdk.clients.painting_expand_client
     :members:

@@ -127,3 +127,13 @@ class CommonExpandClient(CommonPaintingClient):
     def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
         url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
         return url.replace("expand/", "")
+
+
+class CommonReplaceBackgroundClient(CommonPaintingClient):
+    @property
+    def _endpoint(self) -> str:
+        return "painting/replace-background"
+
+    def _get_url(self, postfix_url: str = "", query_params: dict = None) -> str:
+        url = super()._get_url(postfix_url=postfix_url, query_params=query_params)
+        return url.replace("replace-background/", "")

@@ -62,7 +62,7 @@ class InpaintingClient(InpaintingCommon):
         """
         Retrieve the result of an inpainting operation using its inference ID.
 
-        :param inference_id: The unique identifier for the inpainting operation.
+        :param inference_id: The unique identifier for the inpainting operation, returned by the `inpainting` method.
         :return: The API response containing the inpainting result.
         """
 
@@ -126,7 +126,7 @@ class AsyncInpaintingClient(InpaintingCommon):
         """
         Retrieve the result of an inpainting operation using its inference ID, using an asynchronous HTTP client.
 
-        :param inference_id: The unique identifier for the inpainting operation.
+        :param inference_id: The unique identifier for the inpainting operation, returned by the `inpainting` method.
         :return: The API response containing the inpainting result.
         """
 

@@ -62,7 +62,7 @@ class OutpaintingClient(OutpaintingCommon):
         """
         Retrieve the result of an outpainting operation using its inference ID.
 
-        :param inference_id: The unique identifier for the outpainting operation.
+        :param inference_id: The unique identifier for the outpainting operation, returned by the `outpainting` method.
         :return: The API response containing the outpainting result.
         """
 
@@ -125,7 +125,7 @@ class AsyncOutpaintingClient(OutpaintingCommon):
         """
         Retrieve the result of an outpainting operation using its inference ID, using an asynchronous HTTP client.
 
-        :param inference_id: The unique identifier for the outpainting operation.
+        :param inference_id: The unique identifier for the outpainting operation, returned by the `outpainting` method.
         :return: The API response containing the outpainting result.
         """
 
