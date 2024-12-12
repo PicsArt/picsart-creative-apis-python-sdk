@@ -52,6 +52,13 @@ class CommonSurfacemap(ImageBaseClient):
 
 
 class SurfacemapClient(CommonSurfacemap):
+    """
+    Client for applying surfacemap effects to images.
+
+    The Surface Map tool allows you to seamlessly 'print' a sticker onto a target image.
+    By utilizing a mask, the tool maps the sticker's pixels onto the texture and contours of the target image,
+    creating a realistic and dynamic print-preview effect.
+    """
 
     def surfacemap(
         self,
@@ -63,6 +70,19 @@ class SurfacemapClient(CommonSurfacemap):
         sticker_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Apply a surfacemap effect to an image.
+
+        :param image_url: The URL of the target image to apply the effect to.
+        :param image_path: The local path of the target image to apply the effect to.
+        :param mask_url: The URL of the mask image defining the area for the effect.
+        :param mask_path: The local path of the mask image defining the area for the effect.
+        :param sticker_url: The URL of the sticker to be applied as part of the effect.
+        :param sticker_path: The local path of the sticker to be applied as part of the effect.
+        :param output_format: The desired format for the output image. Default is PNG.
+        :return: The API response containing the image with the applied surfacemap effect.
+        """
+
         request = SurfacemapRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             mask=PicsartImage(image_path=mask_path, image_url=mask_url),
@@ -74,6 +94,13 @@ class SurfacemapClient(CommonSurfacemap):
 
 
 class AsyncSurfacemapClient(CommonSurfacemap):
+    """
+    Client for applying surfacemap effects to images, using an asynchronous HTTP client.
+
+    The Surface Map tool allows you to seamlessly 'print' a sticker onto a target image.
+    By utilizing a mask, the tool maps the sticker's pixels onto the texture and contours of the target image,
+    creating a realistic and dynamic print-preview effect.
+    """
 
     async def surfacemap(
         self,
@@ -85,6 +112,18 @@ class AsyncSurfacemapClient(CommonSurfacemap):
         sticker_path: Optional[str] = None,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Apply a surfacemap effect to an image, using an asynchronous HTTP client.
+
+        :param image_url: The URL of the target image to apply the effect to.
+        :param image_path: The local path of the target image to apply the effect to.
+        :param mask_url: The URL of the mask image defining the area for the effect.
+        :param mask_path: The local path of the mask image defining the area for the effect.
+        :param sticker_url: The URL of the sticker to be applied as part of the effect.
+        :param sticker_path: The local path of the sticker to be applied as part of the effect.
+        :param output_format: The desired format for the output image. Default is PNG.
+        :return: The API response containing the image with the applied surfacemap effect.
+        """
         request = SurfacemapRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             mask=PicsartImage(image_path=mask_path, image_url=mask_url),
