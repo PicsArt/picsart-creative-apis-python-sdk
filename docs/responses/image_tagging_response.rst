@@ -1,5 +1,5 @@
 ImageTaggingApiResponse
-===========================
+=======================
 
 .. automodule:: picsart_sdk.api_responses
     :members: ImageTaggingApiResponse

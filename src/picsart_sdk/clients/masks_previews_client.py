@@ -12,7 +12,7 @@ from picsart_sdk.clients.requests_models import (
 )
 
 
-class MasksPreviewsClientCommon(ImageBaseClient):
+class CommonMasksPreviewsClient(ImageBaseClient):
 
     @property
     def _endpoint(self):
@@ -60,7 +60,14 @@ class MasksPreviewsClientCommon(ImageBaseClient):
         )
 
 
-class MasksPreviewsClient(MasksPreviewsClientCommon):
+class MasksPreviewsClient(CommonMasksPreviewsClient):
+    """
+    Client for generating mask effects to a given input image and returns a preview (i.e., thumbnail) of the effect.
+
+    This client provides functionality to apply multiple masks to an image
+    and generate previews with customizable parameters such as blending, opacity, mask flip,
+    and hue adjustments.
+    """
 
     def masks_previews(
         self,
@@ -74,6 +81,21 @@ class MasksPreviewsClient(MasksPreviewsClientCommon):
         preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> MasksPreviewsApiResponse:
+        """
+        Generate previews for multiple masks applied to an image.
+
+        :param image_url: The URL of the image to apply the masks to.
+        :param image_path: The local path of the image to apply the masks to.
+        :param blend: The blending mode for the masks (e.g., "screen").
+        :param mask: A list of mask names to apply.
+        :param opacity: The opacity of the masks (0 to 100). Default is 100.
+        :param hue: The hue adjustment for the masks. Default is 0.
+        :param mask_flip: The flip mode for the masks (e.g., "horizontal").
+        :param preview_size: The size of the preview images. Default is 120.
+        :param output_format: The desired format for the preview images. Default is PNG.
+        :return: The API response containing the mask previews.
+        """
+
         request = MasksPreviewsRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             blend=blend,
@@ -87,7 +109,15 @@ class MasksPreviewsClient(MasksPreviewsClientCommon):
         return self.post(request=request)
 
 
-class AsyncMasksPreviewsClient(MasksPreviewsClientCommon):
+class AsyncMasksPreviewsClient(CommonMasksPreviewsClient):
+    """
+    Client for generating mask effects to a given input image and returns a preview (i.e., thumbnail) of the effect,
+    using the asynchronous HTTP client.
+
+    This client provides functionality to apply multiple masks to an image
+    and generate previews with customizable parameters such as blending, opacity, mask flip,
+    and hue adjustments.
+    """
 
     async def masks_previews(
         self,
@@ -101,6 +131,21 @@ class AsyncMasksPreviewsClient(MasksPreviewsClientCommon):
         preview_size: Optional[int] = 120,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> MasksPreviewsApiResponse:
+        """
+        Generate previews for multiple masks applied to an image using the asynchronous HTTP client.
+
+        :param image_url: The URL of the image to apply the masks to.
+        :param image_path: The local path of the image to apply the masks to.
+        :param blend: The blending mode for the masks (e.g., "screen").
+        :param mask: A list of mask names to apply.
+        :param opacity: The opacity of the masks (0 to 100). Default is 100.
+        :param hue: The hue adjustment for the masks. Default is 0.
+        :param mask_flip: The flip mode for the masks (e.g., "horizontal").
+        :param preview_size: The size of the preview images. Default is 120.
+        :param output_format: The desired format for the preview images. Default is PNG.
+        :return: The API response containing the mask previews.
+        """
+
         request = MasksPreviewsRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             blend=blend,
