@@ -7,6 +7,13 @@ from picsart_sdk.clients.requests_models.picsart_image import PicsartImageFormat
 
 
 class UltraEnhanceClient(ImageBaseClient):
+    """
+    Client for enhancing and upscaling images.
+
+    Ultra Enhance is an advanced upscaling technique powered by a generative model designed to deliver high-frequency
+    details with exceptional clarity.
+    It excels on noise-free images, ensuring superior preservation of intricate details for high-quality results.
+    """
 
     @property
     def _endpoint(self):
@@ -19,6 +26,15 @@ class UltraEnhanceClient(ImageBaseClient):
         upscale_factor: int = 2,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Perform ultra enhancement and upscaling on an image.
+
+        :param image_url: The URL of the image to enhance and upscale.
+        :param image_path: The local path of the image to enhance and upscale.
+        :param upscale_factor: The factor by which to upscale the image. Default is 2.
+        :param output_format: The desired format for the enhanced image. Default is PNG.
+        :return: The API response containing the enhanced and upscaled image.
+        """
         request = UltraEnhanceRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             upscale_factor=upscale_factor,
@@ -28,6 +44,14 @@ class UltraEnhanceClient(ImageBaseClient):
 
 
 class AsyncUltraEnhanceClient(ImageBaseClient):
+    """
+    Client for enhancing and upscaling images, using an asynchronous HTTP client.
+
+    Ultra Enhance is an advanced upscaling technique powered by a generative model designed to deliver high-frequency
+    details with exceptional clarity.
+    It excels on noise-free images, ensuring superior preservation of intricate details for high-quality results.
+    """
+
     @property
     def _endpoint(self):
         return "upscale/enhance"
@@ -39,6 +63,15 @@ class AsyncUltraEnhanceClient(ImageBaseClient):
         upscale_factor: int = 2,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
     ) -> ApiResponse:
+        """
+        Perform ultra enhancement and upscaling on an image using an asynchronous HTTP client.
+
+        :param image_url: The URL of the image to enhance and upscale.
+        :param image_path: The local path of the image to enhance and upscale.
+        :param upscale_factor: The factor by which to upscale the image. Default is 2.
+        :param output_format: The desired format for the enhanced image. Default is PNG.
+        :return: The API response containing the enhanced and upscaled image.
+        """
         request = UltraEnhanceRequest(
             image=PicsartImage(image_url=image_url, image_path=image_path),
             upscale_factor=upscale_factor,
