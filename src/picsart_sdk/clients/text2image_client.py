@@ -30,6 +30,12 @@ class CommonText2ImageClient(GenAiBaseClient):
 
 
 class Text2ImageClient(CommonText2ImageClient):
+    """
+    Client for generating images from text prompts.
+
+    The Text2Image service helps generate an image based on the text introduced as input by the user.
+    """
+
     def text2image(
         self,
         prompt: str,
@@ -38,6 +44,16 @@ class Text2ImageClient(CommonText2ImageClient):
         height: Optional[int] = 1024,
         count: Optional[int] = 2,
     ) -> Text2ImageCreateApiResponse:
+        """
+        Generate images based on a text prompt.
+
+        :param prompt: The primary text prompt describing the desired image.
+        :param negative_prompt: An optional text prompt specifying what to avoid in the image. Default is an empty string.
+        :param width: The width of the generated image. Default is 1024.
+        :param height: The height of the generated image. Default is 1024.
+        :param count: The number of image variations to generate. Default is 2.
+        :return: The API response containing the generated images.
+        """
         request = Text2ImageRequest(
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -48,10 +64,21 @@ class Text2ImageClient(CommonText2ImageClient):
         return self.post(request=request, as_json=True)
 
     def get_result(self, inference_id: str) -> Text2ImageApiResponse:
+        """
+        Retrieve the result of a text-to-image operation using its inference ID.
+
+        :param inference_id: The unique identifier for the text-to-image operation.
+        :return: The API response containing the generated image results.
+        """
         return self.get(postfix_url=f"inferences/{inference_id}")
 
 
 class AsyncText2ImageClient(CommonText2ImageClient):
+    """
+    Client for generating images from text prompts, using an asynchronous HTTP client.
+
+    The Text2Image service helps generate an image based on the text introduced as input by the user.
+    """
 
     async def text2image(
         self,
@@ -61,6 +88,17 @@ class AsyncText2ImageClient(CommonText2ImageClient):
         height: Optional[int] = 1024,
         count: Optional[int] = 2,
     ) -> Text2ImageCreateApiResponse:
+        """
+        Generate images based on a text prompt using an asynchronous HTTP client.
+
+        :param prompt: The primary text prompt describing the desired image.
+        :param negative_prompt: An optional text prompt specifying what to avoid in the image. Default is an empty string.
+        :param width: The width of the generated image. Default is 1024.
+        :param height: The height of the generated image. Default is 1024.
+        :param count: The number of image variations to generate. Default is 2.
+        :return: The API response containing the generated images.
+        """
+
         request = Text2ImageRequest(
             prompt=prompt,
             negative_prompt=negative_prompt,
@@ -71,4 +109,10 @@ class AsyncText2ImageClient(CommonText2ImageClient):
         return await self.async_post(request=request, as_json=True)
 
     async def get_result(self, inference_id: str) -> Text2ImageApiResponse:
+        """
+        Retrieve the result of a text-to-image operation using its inference ID using an asynchronous HTTP client.
+
+        :param inference_id: The unique identifier for the text-to-image operation.
+        :return: The API response containing the generated image results.
+        """
         return await self.async_get(postfix_url=f"inferences/{inference_id}")
