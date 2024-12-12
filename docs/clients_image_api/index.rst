@@ -25,3 +25,4 @@ Clients for Image APIs
     ultra_enhance_client
     upscale_client
     ultra_enhance_client
+    ultra_upscale_client
