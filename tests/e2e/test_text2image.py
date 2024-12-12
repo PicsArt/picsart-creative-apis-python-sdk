@@ -21,7 +21,7 @@ def wait_for_result(
     """
     result = None
     for _ in range(max_retries):
-        result = client.get_text2image_result(inference_id=inference_id)
+        result = client.get_result(inference_id=inference_id)
         if result.status == "FINISHED":
             return result
         time.sleep(retry_delay)
@@ -38,7 +38,7 @@ async def wait_for_result_async(
     """
     result = None
     for _ in range(max_retries):
-        result = await client.get_text2image_result(inference_id=inference_id)
+        result = await client.get_result(inference_id=inference_id)
         if result.status == "FINISHED":
             return result
         await asyncio.sleep(retry_delay)
