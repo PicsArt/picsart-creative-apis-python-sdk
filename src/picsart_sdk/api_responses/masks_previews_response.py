@@ -7,11 +7,8 @@ class MasksPreviewsApiResponseData:
     Represents the data of an API response.
 
     :param id: The unique identifier for the response data.
-    :type id: str
     :param url: The URL associated with the response data.
-    :type url: str
     :param mask: The mask name associated with the response data.
-    :type mask: str
     """
 
     id: str

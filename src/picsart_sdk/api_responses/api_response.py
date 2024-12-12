@@ -26,12 +26,8 @@ class ApiResponse:
     of an API response.
 
     :param status: The status of the API response (e.g., "success", "error").
-    :type status: str
     :param data: The main data payload of the API response.
-    :type data: :ref:`api_response_data`
-    :param transaction_id: An optional identifier for the transaction associated
-                           with this response.
-    :type transaction_id: Optional[str]
+    :param transaction_id: An optional identifier for the transaction associated with this response.
     """
 
     status: str
