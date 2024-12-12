@@ -20,6 +20,7 @@ Image APIs
 .. toctree::
    :maxdepth: 2
 
-   clients/index
+   clients_image_api/index
+   clients_genai/index
    responses/index
    errors/index

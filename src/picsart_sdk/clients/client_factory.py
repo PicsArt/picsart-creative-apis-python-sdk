@@ -44,42 +44,42 @@ class ApiClient(str, Enum):
 
 class ClientFactory:
     """
-    Factory class to create instances of API clients in the Picsart SDK.
+    Factory class to create instances of API clients_image_api in the Picsart SDK.
 
     This class provides a centralized way to retrieve instances of specific
-    API clients based on their names.
+    API clients_image_api based on their names.
     """
 
     _clients = {
-        ApiClient.BALANCE: "picsart_sdk.clients.BalanceClient",
-        ApiClient.GEN_AI_BALANCE: "picsart_sdk.clients.GenAiBalanceClient",
-        ApiClient.UPLOAD: "picsart_sdk.clients.UploadClient",
-        ApiClient.REMOVE_BACKGROUND: "picsart_sdk.clients.RemoveBackgroundClient",
-        ApiClient.UPSCALE: "picsart_sdk.clients.UpscaleClient",
-        ApiClient.ULTRA_UPSCALE: "picsart_sdk.clients.UltraUpscaleClient",
-        ApiClient.ULTRA_ENHANCE: "picsart_sdk.clients.UltraEnhanceClient",
-        ApiClient.FACE_ENHANCEMENT: "picsart_sdk.clients.FaceEnhancementClient",
-        ApiClient.EFFECTS: "picsart_sdk.clients.EffectsClient",
-        ApiClient.AI_EFFECTS: "picsart_sdk.clients.AiEffectsClient",
-        ApiClient.EFFECTS_PREVIEWS: "picsart_sdk.clients.EffectsPreviewsClient",
-        ApiClient.COLOR_TRANSFER: "picsart_sdk.clients.ColorTransferClient",
-        ApiClient.STYLE_TRANSFER: "picsart_sdk.clients.StyleTransferClient",
-        ApiClient.MASKS: "picsart_sdk.clients.MasksClient",
-        ApiClient.MASKS_PREVIEWS: "picsart_sdk.clients.MasksPreviewsClient",
-        ApiClient.ADJUST: "picsart_sdk.clients.AdjustClient",
-        ApiClient.EDIT: "picsart_sdk.clients.EditClient",
-        ApiClient.TEXTURE_GENERATOR: "picsart_sdk.clients.TextureGeneratorClient",
-        ApiClient.VECTORIZER: "picsart_sdk.clients.VectorizerClient",
-        ApiClient.SURFACEMAP: "picsart_sdk.clients.SurfacemapClient",
-        ApiClient.IMAGE_TAGGING: "picsart_sdk.clients.ImageTaggingClient",
-        ApiClient.IMAGE_DESCRIPTION: "picsart_sdk.clients.ImageDescriptionClient",
-        ApiClient.TEXT2IMAGE: "picsart_sdk.clients.Text2ImageClient",
-        ApiClient.TEXT2TEXT: "picsart_sdk.clients.Text2TextClient",
-        ApiClient.INPAINTING: "picsart_sdk.clients.InpaintingClient",
-        ApiClient.OUTPAINTING: "picsart_sdk.clients.OutpaintingClient",
-        ApiClient.REPLACE_BACKGROUND: "picsart_sdk.clients.PaintingReplaceBackgroundClient",
-        ApiClient.EXPAND: "picsart_sdk.clients.PaintingExpandClient",
-        ApiClient.BLEED: "picsart_sdk.clients.BleedClient",
+        ApiClient.BALANCE: "picsart_sdk.clients_image_api.BalanceClient",
+        ApiClient.GEN_AI_BALANCE: "picsart_sdk.clients_image_api.GenAiBalanceClient",
+        ApiClient.UPLOAD: "picsart_sdk.clients_image_api.UploadClient",
+        ApiClient.REMOVE_BACKGROUND: "picsart_sdk.clients_image_api.RemoveBackgroundClient",
+        ApiClient.UPSCALE: "picsart_sdk.clients_image_api.UpscaleClient",
+        ApiClient.ULTRA_UPSCALE: "picsart_sdk.clients_image_api.UltraUpscaleClient",
+        ApiClient.ULTRA_ENHANCE: "picsart_sdk.clients_image_api.UltraEnhanceClient",
+        ApiClient.FACE_ENHANCEMENT: "picsart_sdk.clients_image_api.FaceEnhancementClient",
+        ApiClient.EFFECTS: "picsart_sdk.clients_image_api.EffectsClient",
+        ApiClient.AI_EFFECTS: "picsart_sdk.clients_image_api.AiEffectsClient",
+        ApiClient.EFFECTS_PREVIEWS: "picsart_sdk.clients_image_api.EffectsPreviewsClient",
+        ApiClient.COLOR_TRANSFER: "picsart_sdk.clients_image_api.ColorTransferClient",
+        ApiClient.STYLE_TRANSFER: "picsart_sdk.clients_image_api.StyleTransferClient",
+        ApiClient.MASKS: "picsart_sdk.clients_image_api.MasksClient",
+        ApiClient.MASKS_PREVIEWS: "picsart_sdk.clients_image_api.MasksPreviewsClient",
+        ApiClient.ADJUST: "picsart_sdk.clients_image_api.AdjustClient",
+        ApiClient.EDIT: "picsart_sdk.clients_image_api.EditClient",
+        ApiClient.TEXTURE_GENERATOR: "picsart_sdk.clients_image_api.TextureGeneratorClient",
+        ApiClient.VECTORIZER: "picsart_sdk.clients_image_api.VectorizerClient",
+        ApiClient.SURFACEMAP: "picsart_sdk.clients_image_api.SurfacemapClient",
+        ApiClient.IMAGE_TAGGING: "picsart_sdk.clients_image_api.ImageTaggingClient",
+        ApiClient.IMAGE_DESCRIPTION: "picsart_sdk.clients_image_api.ImageDescriptionClient",
+        ApiClient.TEXT2IMAGE: "picsart_sdk.clients_image_api.Text2ImageClient",
+        ApiClient.TEXT2TEXT: "picsart_sdk.clients_image_api.Text2TextClient",
+        ApiClient.INPAINTING: "picsart_sdk.clients_image_api.InpaintingClient",
+        ApiClient.OUTPAINTING: "picsart_sdk.clients_image_api.OutpaintingClient",
+        ApiClient.REPLACE_BACKGROUND: "picsart_sdk.clients_image_api.PaintingReplaceBackgroundClient",
+        ApiClient.EXPAND: "picsart_sdk.clients_image_api.PaintingExpandClient",
+        ApiClient.BLEED: "picsart_sdk.clients_image_api.BleedClient",
     }
 
     @staticmethod
