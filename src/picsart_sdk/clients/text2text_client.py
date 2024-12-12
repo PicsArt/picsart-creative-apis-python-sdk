@@ -16,6 +16,11 @@ class CommonText2TextClient(GenAiBaseClient):
 
 
 class Text2TextClient(CommonText2TextClient):
+    """
+    Client for generating text completions based on the user provided content.
+
+    The Text2Text Completion service helps generate a text based on the text introduced as input by the user.
+    """
 
     def chat_completions(
         self,
@@ -24,6 +29,15 @@ class Text2TextClient(CommonText2TextClient):
         max_tokens: Optional[int] = 512,
         temperature: Optional[int] = 1,
     ) -> Text2TextApiResponse:
+        """
+        Generate a chat-based text completion.
+
+        :param content: The content of the message or prompt to process.
+        :param role: The role of the message sender (e.g., "user", "assistant").
+        :param max_tokens: The maximum number of tokens to generate. Default is 512.
+        :param temperature: The sampling temperature to control randomness. Default is 1.
+        :return: The API response containing the generated text completion.
+        """
         message = Text2ImageMessage(
             content=content,
             role=role,
@@ -33,14 +47,13 @@ class Text2TextClient(CommonText2TextClient):
         )
         return self.post(request=request, as_json=True)
 
-    def parse_response(self, result: dict, request_method: str) -> Text2TextApiResponse:
-        return Text2TextApiResponse(**result)
-
 
 class AsyncText2TextClient(CommonText2TextClient):
-    @property
-    def _endpoint(self) -> str:
-        return "text2text/chat/completions"
+    """
+    Client for generating text completions based on the user-provided content, using an asynchronous HTTP client.
+
+    The Text2Text Completion service helps generate a text based on the text introduced as input by the user.
+    """
 
     async def chat_completions(
         self,
@@ -49,6 +62,15 @@ class AsyncText2TextClient(CommonText2TextClient):
         max_tokens: Optional[int] = 512,
         temperature: Optional[int] = 1,
     ) -> Text2TextApiResponse:
+        """
+        Generate a chat-based text completion, using an asynchronous HTTP client.
+
+        :param content: The content of the message or prompt to process.
+        :param role: The role of the message sender (e.g., "user", "assistant").
+        :param max_tokens: The maximum number of tokens to generate. Default is 512.
+        :param temperature: The sampling temperature to control randomness. Default is 1.
+        :return: The API response containing the generated text completion.
+        """
         message = Text2ImageMessage(
             content=content,
             role=role,
