@@ -29,15 +29,17 @@ from picsart_sdk.clients.image_tagging_client import (
     AsyncImageTaggingClient,
     ImageTaggingClient,
 )
+from picsart_sdk.clients.inpainting_client import (
+    AsyncInpaintingClient,
+    InpaintingClient,
+)
 from picsart_sdk.clients.masks_client import AsyncMasksClient, MasksClient
 from picsart_sdk.clients.masks_previews_client import (
     AsyncMasksPreviewsClient,
     MasksPreviewsClient,
 )
-from picsart_sdk.clients.painting_client import (
-    AsyncInpaintingClient,
+from picsart_sdk.clients.outpainting_client import (
     AsyncOutpaintingClient,
-    InpaintingClient,
     OutpaintingClient,
 )
 from picsart_sdk.clients.painting_expand_client import (
