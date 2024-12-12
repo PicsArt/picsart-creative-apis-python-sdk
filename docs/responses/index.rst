@@ -9,3 +9,5 @@ Responses
     effects_list_response
     effects_previews_response
     image_description_response
+    masks_previews_response
+    painting_response

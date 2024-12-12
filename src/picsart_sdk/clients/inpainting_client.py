@@ -7,8 +7,18 @@ from picsart_sdk.clients.requests_models.painting_request import PaintingMode
 
 
 class InpaintingClient(InpaintingCommon):
-    def get_result(self, inference_id: str) -> PaintingApiResponse:
-        return self.get(postfix_url=inference_id)
+    """
+    Client for performing inpainting operations.
+
+    The Inpainting service offers inpainting capabilities,
+    enabling users to fill or replace areas within an image based on specified criteria.
+
+    It operates in two modes:
+
+    * Single Image Mode: Submit one RGBA image. The API fills the specified inner area with content based on the `prompt` parameter.
+    * Mask Mode: Along with the RGBA image, provide a mask of identical size and format. The API uses this mask to identify areas for inpainting with content determined by the `prompt` parameter.
+
+    """
 
     def inpainting(
         self,
@@ -22,6 +32,20 @@ class InpaintingClient(InpaintingCommon):
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
+        """
+        Perform an inpainting operation on an image.
+
+        :param prompt: The prompt describing the desired changes or replacements for the image.
+        :param image_url: The URL of the image to inpaint.
+        :param image_path: The local path of the image to inpaint.
+        :param mask_url: The URL of the mask image defining the area to inpaint.
+        :param mask_path: The local path of the mask image defining the area to inpaint.
+        :param negative_prompt: An optional prompt specifying what to avoid in the inpainting result.
+        :param count: The number of inpainting variations to generate. Default is 4.
+        :param output_format: The desired format for the inpainting result. Default is PNG.
+        :param mode: The mode of inpainting (e.g., synchronous or asynchronous). Default is synchronous.
+        :return: The API response containing the inpainting result.
+        """
         return super().sync_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -34,11 +58,30 @@ class InpaintingClient(InpaintingCommon):
             mode=mode,
         )
 
+    def get_result(self, inference_id: str) -> PaintingApiResponse:
+        """
+        Retrieve the result of an inpainting operation using its inference ID.
+
+        :param inference_id: The unique identifier for the inpainting operation.
+        :return: The API response containing the inpainting result.
+        """
+
+        return self.get(postfix_url=inference_id)
+
 
 class AsyncInpaintingClient(InpaintingCommon):
+    """
+    Client for performing inpainting operations, using an HTTP asynchronous client.
 
-    async def get_result(self, inference_id: str) -> PaintingApiResponse:
-        return await self.async_get(postfix_url=inference_id)
+    The Inpainting service offers inpainting capabilities,
+    enabling users to fill or replace areas within an image based on specified criteria.
+
+    It operates in two modes:
+
+    * Single Image Mode: Submit one RGBA image. The API fills the specified inner area with content based on the `prompt` parameter.
+    * Mask Mode: Along with the RGBA image, provide a mask of identical size and format. The API uses this mask to identify areas for inpainting with content determined by the `prompt` parameter.
+
+    """
 
     async def inpainting(
         self,
@@ -52,6 +95,21 @@ class AsyncInpaintingClient(InpaintingCommon):
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
         mode: Optional[PaintingMode] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
+        """
+        Perform an inpainting operation on an image using an asynchronous HTTP client.
+
+        :param prompt: The prompt describing the desired changes or replacements for the image.
+        :param image_url: The URL of the image to inpaint.
+        :param image_path: The local path of the image to inpaint.
+        :param mask_url: The URL of the mask image defining the area to inpaint.
+        :param mask_path: The local path of the mask image defining the area to inpaint.
+        :param negative_prompt: An optional prompt specifying what to avoid in the inpainting result.
+        :param count: The number of inpainting variations to generate. Default is 4.
+        :param output_format: The desired format for the inpainting result. Default is PNG.
+        :param mode: The mode of inpainting (e.g., synchronous or asynchronous). Default is synchronous.
+        :return: The API response containing the inpainting result.
+        """
+
         return await super().async_inpainting_request(
             prompt=prompt,
             image_url=image_url,
@@ -63,3 +121,13 @@ class AsyncInpaintingClient(InpaintingCommon):
             output_format=output_format,
             mode=mode,
         )
+
+    async def get_result(self, inference_id: str) -> PaintingApiResponse:
+        """
+        Retrieve the result of an inpainting operation using its inference ID, using an asynchronous HTTP client.
+
+        :param inference_id: The unique identifier for the inpainting operation.
+        :return: The API response containing the inpainting result.
+        """
+
+        return await self.async_get(postfix_url=inference_id)
