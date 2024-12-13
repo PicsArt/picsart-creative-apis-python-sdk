@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 from picsart_sdk.api_responses.balance_response import BalanceApiResponsefrom picsart_sdk.api_responses import ApiResponse
 =======
@@ -11,6 +12,8 @@ from itertools import count
 >>>>>>> 449ba3c (readme + fixes)
 
 >>>>>>> 78e54dd (fixes)
+=======
+>>>>>>> 3874616 (update readme)
 # PICSART CREATIVE APIS Python SDK
 =======
 from picsart_sdk.clients.requests_models.upscale_request import UpscaleRequest
