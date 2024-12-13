@@ -293,49 +293,91 @@ def test_remove_background_api_error(
 
 
 @pytest.mark.parametrize(
-    "client_class, method_name, params",
+    "client_class, method_name, params, error_message",
     [
         (
             StyleTransferClient,
             "style_transfer",
             {"image_url": "https://example.com/image.png"},
+            "At least one of `reference_image_url`, or `reference_image_path` must be provided.",
         ),
         (
             SurfacemapClient,
             "surfacemap",
             {"image_url": "https://example.com/image.png"},
+            "At least one of `mask_url`, or `mask_path` must be provided.",
+        ),
+        (
+            SurfacemapClient,
+            "surfacemap",
+            {
+                "image_url": "https://example.com/image.png",
+                "mask_url": "https://example.com/image2.png",
+            },
+            "At least one of `sticker_url`, or `sticker_path` must be provided.",
         ),
         (
             StyleTransferClient,
             "style_transfer",
             {"image_url": "https://example.com/image.png"},
+            "At least one of `reference_image_url`, or `reference_image_path` must be provided.",
         ),
         (
             ColorTransferClient,
             "color_transfer",
             {"image_url": "https://example.com/image.png"},
+            "At least one of `reference_image_url`, or `reference_image_path` must be provided.",
         ),
     ],
 )
-def test_missing_param(client_class, method_name, params, session, http_client):
+def test_missing_param(
+    client_class, method_name, params, error_message, session, http_client
+):
     client = client_class(session=session, http_client=http_client)
     function = getattr(client, method_name)
     with pytest.raises(ValueError) as exc_info:
         function(**params)
 
-    assert (
-        exc_info.value.args[0]
-        == "At least one of `image_url`, or `image_path` must be provided."
-    )
+    assert exc_info.value.args[0] == error_message
 
 
-def test_image_url_and_image_path(session, http_client):
-    client = RemoveBackgroundClient(session=session, http_client=http_client)
+@pytest.mark.parametrize(
+    "client_class, method_name, params, error_message",
+    [
+        (
+            RemoveBackgroundClient,
+            "remove_background",
+            {"image_url": "https://example.com/image.png", "image_path": "./file.png"},
+            "Only one of `image_url`, or `image_path` can be provided.",
+        ),
+        (
+            StyleTransferClient,
+            "style_transfer",
+            {
+                "image_url": "https://example.com/image.png",
+                "reference_image_path": "./file.png",
+                "reference_image_url": "https://example.com/image2.png",
+            },
+            "Only one of `reference_image_url`, or `reference_image_path` can be provided.",
+        ),
+        (
+            SurfacemapClient,
+            "surfacemap",
+            {
+                "image_url": "https://example.com/image.png",
+                "mask_url": "https://example.com/image2.png",
+                "sticker_url": "https://example.com/image3.png",
+                "sticker_path": "./file.png",
+            },
+            "Only one of `sticker_url`, or `sticker_path` can be provided.",
+        ),
+    ],
+)
+def test_image_url_and_image_path(
+    client_class, method_name, params, error_message, session, http_client
+):
+    client = client_class(session=session, http_client=http_client)
+    function = getattr(client, method_name)
     with pytest.raises(ValueError) as exc_info:
-        client.remove_background(
-            image_url="https://example.com/image.png", image_path="./file.png"
-        )
-    assert (
-        exc_info.value.args[0]
-        == "Only one of `image_url`, or `image_path` can be provided."
-    )
+        function(**params)
+    assert exc_info.value.args[0] == error_message
