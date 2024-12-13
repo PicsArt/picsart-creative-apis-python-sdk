@@ -930,6 +930,7 @@ The SDK converts API errors into Python exceptions for easier debugging:
 - **ValueError**: Raised for invalid payloads.
 >>>>>>> 109e9f4 (update tests and documentation)
 
+<<<<<<< HEAD
 
 ## Development
 ### Setup for Developers
@@ -984,3 +985,5 @@ Install packages necessary for generating `docs`:
 2. Install the necessary dependencies from `requirements-build.txt`
 3. Run `python -m build`
 >>>>>>> 7c2fecd (add code for building the package)
+=======
+>>>>>>> 2d3e8f9 (fix tests; documentation, readme dev)

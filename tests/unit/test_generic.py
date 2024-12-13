@@ -20,6 +20,7 @@ from picsart_sdk.clients import (
     UltraUpscaleClient,
     UploadClient,
     UpscaleClient,
+    VectorizerClient,
 )
 from picsart_sdk.clients.http_clients import HttpClient
 from picsart_sdk.errors import ApiError
@@ -148,6 +149,13 @@ def mock_response_data():
                 "image_url": "https://example.com/image.png",
             },
         ),
+        (
+            VectorizerClient,
+            "vectorizer",
+            {
+                "image_url": "https://example.com/image.png",
+            },
+        ),
     ],
 )
 def test_call_client_success(
@@ -271,11 +279,16 @@ def test_call_client_success(
                 "image_url": "https://example.com/image.png",
             },
         ),
+        (
+            VectorizerClient,
+            "vectorizer",
+            {
+                "image_url": "https://example.com/image.png",
+            },
+        ),
     ],
 )
-def test_remove_background_api_error(
-    client_class, method_name, params, session, http_client
-):
+def test_call_client_api_error(client_class, method_name, params, session, http_client):
     client = client_class(session=session, http_client=http_client)
 
     client.http_client.post.side_effect = ApiError(
@@ -327,6 +340,12 @@ def test_remove_background_api_error(
             "color_transfer",
             {"image_url": "https://example.com/image.png"},
             "At least one of `reference_image_url`, or `reference_image_path` must be provided.",
+        ),
+        (
+            VectorizerClient,
+            "vectorizer",
+            {},
+            "At least one of `image_url`, or `image_path` must be provided.",
         ),
     ],
 )

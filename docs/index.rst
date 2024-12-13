@@ -6,6 +6,14 @@
 Picsart Creative APIs Python SDK documentation
 ==============================================
 
+Quickstart
+----------
+
+.. toctree::
+   :maxdepth: 2
+
+   examples/quickstart
+
 Tutorials
 ---------
 

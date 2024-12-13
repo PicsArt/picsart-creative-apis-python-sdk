@@ -13,6 +13,7 @@ from picsart_sdk.clients import (
     AsyncEffectsClient,
     AsyncFaceEnhancementClient,
     AsyncMasksClient,
+    AsyncRemoveBackgroundClient,
     AsyncStyleTransferClient,
     AsyncSurfacemapClient,
     AsyncTextureGeneratorClient,
@@ -20,8 +21,8 @@ from picsart_sdk.clients import (
     AsyncUltraUpscaleClient,
     AsyncUploadClient,
     AsyncUpscaleClient,
+    AsyncVectorizerClient,
 )
-from picsart_sdk.clients.remove_background_client import AsyncRemoveBackgroundClient
 from picsart_sdk.errors import ApiError
 
 
@@ -145,6 +146,13 @@ def mock_response_data():
         (
             AsyncUpscaleClient,
             "upscale",
+            {
+                "image_url": "https://example.com/image.png",
+            },
+        ),
+        (
+            AsyncVectorizerClient,
+            "vectorizer",
             {
                 "image_url": "https://example.com/image.png",
             },
@@ -273,9 +281,16 @@ async def test_call_client_success(
                 "image_url": "https://example.com/image.png",
             },
         ),
+        (
+            AsyncVectorizerClient,
+            "vectorizer",
+            {
+                "image_url": "https://example.com/image.png",
+            },
+        ),
     ],
 )
-async def test_remove_background_api_error(
+async def test_call_client_api_error(
     client_class, method_name, params, session, http_client
 ):
     client = client_class(session=session, http_client=http_client)
@@ -330,6 +345,12 @@ async def test_remove_background_api_error(
             "color_transfer",
             {"image_url": "https://example.com/image.png"},
             "At least one of `reference_image_url`, or `reference_image_path` must be provided.",
+        ),
+        (
+            AsyncVectorizerClient,
+            "vectorizer",
+            {},
+            "At least one of `image_url`, or `image_path` must be provided.",
         ),
     ],
 )
