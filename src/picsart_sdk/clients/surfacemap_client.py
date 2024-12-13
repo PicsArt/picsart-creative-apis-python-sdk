@@ -85,8 +85,12 @@ class SurfacemapClient(CommonSurfacemap):
 
         request = SurfacemapRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
-            mask=PicsartImage(image_path=mask_path, image_url=mask_url),
-            sticker=PicsartImage(image_path=sticker_path, image_url=sticker_url),
+            mask=PicsartImage(
+                image_path=mask_path, image_url=mask_url, _field_name="mask"
+            ),
+            sticker=PicsartImage(
+                image_path=sticker_path, image_url=sticker_url, _field_name="sticker"
+            ),
             format=output_format,
         )
 

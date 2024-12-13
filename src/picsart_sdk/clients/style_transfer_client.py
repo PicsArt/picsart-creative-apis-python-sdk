@@ -71,7 +71,9 @@ class StyleTransferClient(CommonStyleTransfer):
         request = StyleTransferRequest(
             image=PicsartImage(image_path=image_path, image_url=image_url),
             reference_image=PicsartImage(
-                image_path=reference_image_path, image_url=reference_image_url
+                image_path=reference_image_path,
+                image_url=reference_image_url,
+                _field_name="reference_image",
             ),
             level=level,
             format=output_format,

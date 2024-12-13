@@ -1,5 +1,5 @@
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
@@ -15,6 +15,8 @@ class PicsartImage:
     image_url: Optional[str] = None
     image_path: Optional[str] = None
 
+    _field_name: str = field(default="image", init=True)
+
     def __post_init__(self):
         """
         Ensure at least one field is provided
@@ -24,11 +26,11 @@ class PicsartImage:
         )
         if provided_fields == 0:
             raise ValueError(
-                "At least one of `image_url`, or `image_path` must be provided."
+                f"At least one of `{self._field_name}_url`, or `{self._field_name}_path` must be provided."
             )
         if provided_fields > 1:
             raise ValueError(
-                "Only one of `image_url`, or `image_path` can be provided."
+                f"Only one of `{self._field_name}_url`, or `{self._field_name}_path` can be provided."
             )
 
         if self.image_path and not os.path.isfile(self.image_path):
