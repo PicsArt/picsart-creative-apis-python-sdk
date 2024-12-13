@@ -7,7 +7,7 @@ import picsart_sdk
 def client_name_class_map():
     return {
         "upload": "UploadClient",
-        "removebg": "RemoveBackgroundClient",
+        "remove_background": "RemoveBackgroundClient",
         "upscale": "UpscaleClient",
     }
 
