@@ -493,7 +493,7 @@ for effect_name in response.effects:
     print(effect_name)
 ```
 
-2. Apply an effect
+**2. Apply an effect**
 
 ```python
 import picsart_sdk
@@ -857,16 +857,21 @@ print(response1)
 time.sleep(10)
 response2 = client.get_result(transaction_id=response1.transaction_id)
 print(response2)
-# expect something like: 
-# ApiResponse(
-#   status='success', 
-#   data=ApiResponseData(
-#       id='702eb942-62fb-4c73-834b-db189cca923e.png', 
-#       url='https://cdn.picsart.io/702eb942-62fb-4c73-834b-db189cca923e.png'
-#   ), 
-#   transaction_id=None
-# )
 ```
+
+The response would be something like 
+
+```python
+ApiResponse(
+  status='success', 
+  data=ApiResponseData(
+      id='702eb942-62fb-4c73-834b-db189cca923e.png', 
+      url='https://cdn.picsart.io/702eb942-62fb-4c73-834b-db189cca923e.png'
+  ), 
+  transaction_id=None
+)
+```
+
 
 # Supported APIs
 
