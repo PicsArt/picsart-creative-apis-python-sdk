@@ -6,8 +6,8 @@ import pytest
 import picsart_sdk
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 from picsart_sdk.clients import BalanceClient
-from picsart_sdk.clients.api_error import ApiAuthenticationError
 from picsart_sdk.clients.client_factory import ApiClient
+from picsart_sdk.errors import ApiAuthenticationError
 
 
 @pytest.mark.skipif(

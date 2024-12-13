@@ -5,8 +5,8 @@ from typing import Any, Dict
 
 import httpx
 
-from picsart_sdk.clients.api_error import ApiAuthenticationError, ApiError
 from picsart_sdk.core.logger import get_logger
+from picsart_sdk.errors import ApiAuthenticationError, ApiError
 from picsart_sdk.settings import PICSART_LOG_HTTP_CALLS, PICSART_LOG_HTTP_CALLS_HEADERS
 from picsart_sdk.version import __version__
 
