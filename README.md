@@ -1,5 +1,3 @@
-from itertools import count
-
 # PICSART CREATIVE APIS Python SDK
 
 ## Overview
