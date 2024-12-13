@@ -1,7 +1,7 @@
 ApiError
 ========
 
-.. automodule:: picsart_sdk.clients.api_error
+.. automodule:: picsart_sdk.errors
     :members: ApiError
     :undoc-members:
     :show-inheritance:
