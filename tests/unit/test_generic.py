@@ -12,6 +12,7 @@ from picsart_sdk.clients import (
     EffectsClient,
     FaceEnhancementClient,
     MasksClient,
+    RemoveBackgroundClient,
     StyleTransferClient,
     SurfacemapClient,
     TextureGeneratorClient,
@@ -21,7 +22,6 @@ from picsart_sdk.clients import (
     UpscaleClient,
 )
 from picsart_sdk.clients.http_clients import HttpClient
-from picsart_sdk.clients.remove_background_client import RemoveBackgroundClient
 from picsart_sdk.errors import ApiError
 
 
