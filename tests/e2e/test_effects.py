@@ -3,9 +3,9 @@ import os
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses.effects_response import EffectsListApiResponse
 from picsart_sdk.clients import AsyncEffectsClient, EffectsClient
-from picsart_sdk.clients.client_factory import ApiClient
 
 
 @pytest.mark.skipif(
@@ -13,7 +13,7 @@ from picsart_sdk.clients.client_factory import ApiClient
     reason="PICSART_API_KEY environment variable is not set",
 )
 def test_get_effects():
-    client: EffectsClient = picsart_sdk.client(ApiClient.EFFECTS)
+    client: EffectsClient = picsart_sdk.client(PicsartAPI.EFFECTS)
     result = client.get_available_effects()
 
     assert isinstance(result, EffectsListApiResponse)
@@ -27,7 +27,7 @@ def test_get_effects():
 )
 @pytest.mark.asyncio
 async def test_get_effects_async():
-    client: AsyncEffectsClient = picsart_sdk.async_client(ApiClient.EFFECTS)
+    client: AsyncEffectsClient = picsart_sdk.async_client(PicsartAPI.EFFECTS)
     result = await client.get_available_effects()
 
     assert isinstance(result, EffectsListApiResponse)

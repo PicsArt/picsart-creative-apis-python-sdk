@@ -56,9 +56,9 @@ If the :code:`PICSART_API_KEY` environment variable is set, you can quickly crea
 .. code-block:: python
 
     import picsart_sdk
-    from picsart_sdk.clients import ApiClient
+    from picsart_sdk import PicsartAPI
 
-    client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
+    client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
 
 **Option 2: Creating a Session Manually**
 
@@ -67,10 +67,10 @@ You can also create a session manually and pass the API key directly:
 .. code-block:: python
 
     import picsart_sdk
-    from picsart_sdk.clients import ApiClient
+    from picsart_sdk import PicsartAPI
 
     session = picsart_sdk.Session(api_key="YOUR_API_KEY")
-    client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
+    client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
 
 **Remove the background of an image**
 

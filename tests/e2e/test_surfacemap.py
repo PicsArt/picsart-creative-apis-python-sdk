@@ -3,9 +3,9 @@ import os
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData
 from picsart_sdk.clients import AsyncSurfacemapClient, SurfacemapClient
-from picsart_sdk.clients.client_factory import ApiClient
 
 
 @pytest.fixture
@@ -34,7 +34,7 @@ def sticker_path():
     reason="PICSART_API_KEY environment variable is not set",
 )
 def test_surfacemap(image_path, mask_path, sticker_path):
-    client: SurfacemapClient = picsart_sdk.client(ApiClient.SURFACEMAP)
+    client: SurfacemapClient = picsart_sdk.client(PicsartAPI.SURFACEMAP)
     result = client.surfacemap(
         image_path=image_path, mask_path=mask_path, sticker_path=sticker_path
     )
@@ -52,7 +52,7 @@ def test_surfacemap(image_path, mask_path, sticker_path):
     reason="PICSART_API_KEY environment variable is not set",
 )
 async def test_surfacemap_async(image_path, mask_path, sticker_path):
-    client: AsyncSurfacemapClient = picsart_sdk.async_client(ApiClient.SURFACEMAP)
+    client: AsyncSurfacemapClient = picsart_sdk.async_client(PicsartAPI.SURFACEMAP)
     result = await client.surfacemap(
         image_path=image_path, mask_path=mask_path, sticker_path=sticker_path
     )

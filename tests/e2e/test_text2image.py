@@ -5,12 +5,12 @@ import time
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses.text2image_response import (
     Text2ImageApiResponse,
     Text2ImageCreateApiResponse,
 )
 from picsart_sdk.clients import AsyncText2ImageClient, Text2ImageClient
-from picsart_sdk.clients.client_factory import ApiClient
 
 
 def wait_for_result(
@@ -63,7 +63,7 @@ def common_assertion(result1, result2, total):
     reason="PICSART_API_KEY environment variable is not set",
 )
 def test_create_text2image():
-    client: Text2ImageClient = picsart_sdk.client(ApiClient.TEXT2IMAGE)
+    client: Text2ImageClient = picsart_sdk.client(PicsartAPI.TEXT2IMAGE)
     total = 2
 
     result1 = client.text2image(prompt="a cat in a tree", count=total)
@@ -79,7 +79,7 @@ def test_create_text2image():
     reason="PICSART_API_KEY environment variable is not set",
 )
 async def test_create_text2image_async():
-    client: AsyncText2ImageClient = picsart_sdk.async_client(ApiClient.TEXT2IMAGE)
+    client: AsyncText2ImageClient = picsart_sdk.async_client(PicsartAPI.TEXT2IMAGE)
     total = 2
 
     result1 = await client.text2image(prompt="a cat in a tree", count=total)

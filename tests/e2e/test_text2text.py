@@ -3,8 +3,8 @@ import os
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses.text2text_response import Text2TextApiResponse
-from picsart_sdk.clients.client_factory import ApiClient
 from picsart_sdk.clients.text2text_client import AsyncText2TextClient, Text2TextClient
 
 
@@ -13,7 +13,7 @@ from picsart_sdk.clients.text2text_client import AsyncText2TextClient, Text2Text
     reason="PICSART_API_KEY environment variable is not set",
 )
 def test_create_text2text():
-    client: Text2TextClient = picsart_sdk.client(ApiClient.TEXT2TEXT)
+    client: Text2TextClient = picsart_sdk.client(PicsartAPI.TEXT2TEXT)
 
     result = client.chat_completions(content="generate a test text", role="assistant")
     assert isinstance(result, Text2TextApiResponse)
@@ -27,7 +27,7 @@ def test_create_text2text():
     reason="PICSART_API_KEY environment variable is not set",
 )
 async def test_create_text2text_async():
-    client: AsyncText2TextClient = picsart_sdk.async_client(ApiClient.TEXT2TEXT)
+    client: AsyncText2TextClient = picsart_sdk.async_client(PicsartAPI.TEXT2TEXT)
 
     result = await client.chat_completions(
         content="generate a test text", role="assistant"
