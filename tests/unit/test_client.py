@@ -1,3 +1,6 @@
+import os
+from unittest.mock import patch
+
 from pytest import fixture
 
 import picsart_sdk
@@ -12,6 +15,7 @@ def client_name_class_map():
     }
 
 
+@patch.dict(os.environ, {"PICSART_API_KEY": ""})
 def test_client_type(client_name_class_map):
     for client_name, expected_class_name in client_name_class_map.items():
         client = picsart_sdk.client(client_name)

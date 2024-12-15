@@ -3,12 +3,12 @@ import os
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses.effects_response import (
     EffectsPreviewsApiResponse,
     EffectsPreviewsApiResponseData,
 )
 from picsart_sdk.clients import AsyncEffectsPreviewsClient, EffectsPreviewsClient
-from picsart_sdk.clients.client_factory import ApiClient
 
 
 def common_assertion(result, effect_names):
@@ -30,7 +30,7 @@ def test_effects_previews():
     image_path = os.path.abspath(os.path.join(os.path.dirname(__file__), file_path))
 
     effect_names = ["apr1", "icy1"]
-    client: EffectsPreviewsClient = picsart_sdk.client(ApiClient.EFFECTS_PREVIEWS)
+    client: EffectsPreviewsClient = picsart_sdk.client(PicsartAPI.EFFECTS_PREVIEWS)
     result = client.effects_previews(image_path=image_path, effect_names=effect_names)
 
     common_assertion(result, effect_names)
@@ -47,7 +47,7 @@ async def test_effects_previews_async():
 
     effect_names = ["apr1", "icy1"]
     client: AsyncEffectsPreviewsClient = picsart_sdk.async_client(
-        ApiClient.EFFECTS_PREVIEWS
+        PicsartAPI.EFFECTS_PREVIEWS
     )
     result = await client.effects_previews(
         image_path=image_path, effect_names=effect_names

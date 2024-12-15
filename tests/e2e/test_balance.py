@@ -3,9 +3,9 @@ import os
 import pytest
 
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 from picsart_sdk.clients.balance_client import AsyncBalanceClient, BalanceClient
-from picsart_sdk.clients.client_factory import ApiClient
 
 
 def assert_balance(result):
@@ -21,8 +21,8 @@ def assert_balance(result):
 @pytest.mark.parametrize(
     "client_name",
     [
-        ApiClient.BALANCE,
-        ApiClient.GEN_AI_BALANCE,
+        PicsartAPI.BALANCE,
+        PicsartAPI.GEN_AI_BALANCE,
     ],
 )
 def test_get_balance(client_name):
@@ -40,8 +40,8 @@ def test_get_balance(client_name):
 @pytest.mark.parametrize(
     "client_name",
     [
-        ApiClient.BALANCE,
-        ApiClient.GEN_AI_BALANCE,
+        PicsartAPI.BALANCE,
+        PicsartAPI.GEN_AI_BALANCE,
     ],
 )
 async def test_get_balance_async(client_name):

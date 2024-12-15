@@ -14,10 +14,10 @@ Using synchronous HTTP call
 .. code-block:: python
 
     import picsart_sdk
+    from picsart_sdk import PicsartAPI
     from picsart_sdk.clients import UpscaleClient
-    from picsart_sdk.clients.client_factory import ApiClient
 
-    client: UpscaleClient = picsart_sdk.client(ApiClient.UPSCALE)
+    client: UpscaleClient = picsart_sdk.client(PicsartAPI.UPSCALE)
     response = client.upscale(image_path="./image-file.jpg", upscale_factor=2)
     print(response.data.url)
 
@@ -30,11 +30,11 @@ Using asynchronous HTTP call
     import asyncio
 
     import picsart_sdk
+    from picsart_sdk import PicsartAPI
     from picsart_sdk.clients import AsyncUpscaleClient
-    from picsart_sdk.clients.client_factory import ApiClient
 
     async def async_upscale():
-        client: AsyncUpscaleClient = picsart_sdk.async_client(ApiClient.UPSCALE)
+        client: AsyncUpscaleClient = picsart_sdk.async_client(PicsartAPI.UPSCALE)
         response = await client.upscale(image_path="./image-file.jpg", upscale_factor=2)
         print(response.data.url)
 

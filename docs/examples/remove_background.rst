@@ -15,11 +15,11 @@ Example:
 .. code-block:: python
 
     import picsart_sdk
+    from picsart_sdk import PicsartAPI
     from picsart_sdk.api_responses import ApiResponse
     from picsart_sdk.clients import RemoveBackgroundClient
-    from picsart_sdk.clients.client_factory import ApiClient
 
-    client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
+    client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
 
     response1: ApiResponse = client.remove_background(image_path="./file.jpg")
     response2: ApiResponse = client.remove_background(image_url="https://domain.com/image.jpg")
@@ -40,11 +40,11 @@ Example:
 .. code-block:: python
 
     import picsart_sdk
+    from picsart_sdk import PicsartAPI
     from picsart_sdk.api_responses import ApiResponse
     from picsart_sdk.clients import RemoveBackgroundClient
-    from picsart_sdk.clients.client_factory import ApiClient
 
-    client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
+    client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
 
     response: ApiResponse = client.remove_background(
         image_url="https://domain.com/image.jpg",
@@ -60,12 +60,12 @@ Using asynchronous HTTP call
 .. code-block:: python
 
     import picsart_sdk
+    from picsart_sdk import PicsartAPI
     from picsart_sdk.api_responses import ApiResponse
     from picsart_sdk.clients import AsyncRemoveBackgroundClient
-    from picsart_sdk.clients.client_factory import ApiClient
 
     async def async_removebg():
-        client: AsyncRemoveBackgroundClient = picsart_sdk.async_client(ApiClient.REMOVE_BACKGROUND)
+        client: AsyncRemoveBackgroundClient = picsart_sdk.async_client(PicsartAPI.REMOVE_BACKGROUND)
         response: ApiResponse = await client.remove_background(image_path="./file.jpg", stroke_size=2, stroke_color="red")
         print(response.data.url)
 
