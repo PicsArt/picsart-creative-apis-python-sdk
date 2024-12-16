@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 from picsart_sdk.clients.common_painting_client import CommonReplaceBackgroundClient
@@ -25,7 +25,7 @@ class PaintingReplaceBackgroundClient(CommonReplaceBackgroundClient):
         negative_prompt: Optional[str] = None,
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
+        mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
         """
         Replace the background of an image based on a user-provided prompt.

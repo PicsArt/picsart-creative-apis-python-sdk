@@ -320,28 +320,22 @@ If the `PICSART_API_KEY` environment variable is set, you can quickly create a c
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients import UploadClient
-from picsart_sdk import PicsartAPI
+from picsart_sdk.clients import ApiClient
 
-upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
+upload_client = picsart_sdk.client(ApiClient.UPLOAD)
 ```
 
-**Option 2: Passing the PICSART_API_KEY manually**
+**Option 2: Creating a Session Manually**
 
-You can also pass the API key directly to the API. 
-Manually passing the API key takes precedence over using the environment variable:
+You can also create a session manually and pass the API key directly:
 
 ```python
 import picsart_sdk
-from picsart_sdk.clients import UploadClient
-from picsart_sdk import PicsartAPI
+from picsart_sdk.clients import ApiClient
 
-upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD, api_key="YOUR-API-KEY")
+session = picsart_sdk.Session(api_key="YOUR_API_KEY")
+upload_client = session.client(ApiClient.UPLOAD)
 ```
-
-> **_NOTE:_** We recommend always using Python type hinting, such as 
-> `upload_client: UploadClient = picsart_sdk.client(...)`, 
-> to fully leverage IDE autocompletion and improve code readability.
 
 ### Features and Examples
 
@@ -350,9 +344,8 @@ upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD, api_key="YOU
 ```python
 import picsart_sdk
 from picsart_sdk.api_responses import ApiResponse
-from picsart_sdk.clients import UploadClient
 
-upload_client: UploadClient = picsart_sdk.client("upload")
+upload_client = picsart_sdk.client("upload")
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -376,11 +369,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import RemoveBackgroundClient
+from picsart_sdk.clients import RemoveBackgroundClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
+client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
 
 response: ApiResponse = client.remove_background(image_path="./file.jpg")
 print(response.data.url)
@@ -396,11 +388,10 @@ you can pass them as parameters, having the same names.
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse
-from picsart_sdk.clients import RemoveBackgroundClient
+from picsart_sdk.clients import ApiClient, RemoveBackgroundClient
 
-client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND)
+client: RemoveBackgroundClient = picsart_sdk.client(ApiClient.REMOVE_BACKGROUND)
 response: ApiResponse = client.remove_background(image_url="https://domain.com/image.jpg", stroke_size=2, stroke_color="red")
 print(response.data.url)
 ```
@@ -418,10 +409,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse
+from picsart_sdk.clients import ApiClient
 
-client = picsart_sdk.client(PicsartAPI.UPSCALE)
+client = picsart_sdk.client(ApiClient.UPSCALE)
 response: ApiResponse = client.upscale(url="https://domain.com/image.jpg", upscale_factor=2)
 print(response.data.url)
 ```
@@ -438,12 +429,11 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import UltraUpscaleClient
+from picsart_sdk.clients import UltraUpscaleClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
 
-client: UltraUpscaleClient = picsart_sdk.client(PicsartAPI.ULTRA_UPSCALE)
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
 response: ApiResponse = client.ultra_upscale(image_path="./your-file.jpg", mode=UltraUpscaleMode.SYNC)
 print(response.data.url)
 ```
@@ -453,12 +443,11 @@ print(response.data.url)
 ```python
 import time
 import picsart_sdk
-from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse
-from picsart_sdk.clients import UltraUpscaleClient
+from picsart_sdk.clients import UltraUpscaleClient, ApiClient
 from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
 
-client: UltraUpscaleClient = picsart_sdk.client(PicsartAPI.ULTRA_UPSCALE)
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
 response: ApiResponse = client.ultra_upscale(image_path="./your-file.jpg", mode=UltraUpscaleMode.SYNC)
 time.sleep(10)  # depending on the load of the service and the size of the image, the time to process can differ
 response: ApiResponse = client.get_result(transaction_id=response.transaction_id)
@@ -469,11 +458,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import UltraEnhanceClient
+from picsart_sdk.clients import UltraEnhanceClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: UltraEnhanceClient = picsart_sdk.client(PicsartAPI.ULTRA_ENHANCE)
+client: UltraEnhanceClient = picsart_sdk.client(ApiClient.ULTRA_ENHANCE)
 response: ApiResponse = client.ultra_enhance(image_path="./your-file.jpg")
 print(response.data.url)
 ```
@@ -482,11 +470,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import FaceEnhancementClient
+from picsart_sdk.clients import FaceEnhancementClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: FaceEnhancementClient = picsart_sdk.client(PicsartAPI.FACE_ENHANCEMENT)
+client: FaceEnhancementClient = picsart_sdk.client(ApiClient.FACE_ENHANCEMENT)
 response: ApiResponse = client.face_enhancement(image_path="./your-file.jpg")
 print(response.data.url)
 ```
@@ -497,25 +484,23 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import EffectsClient
-from picsart_sdk.api_responses.effects_response import EffectsListApiResponse
+from picsart_sdk.clients import EffectsClient, ApiClient
+from picsart_sdk.api_responses.effects_response import EffectsList
 
-client: EffectsClient = picsart_sdk.client(PicsartAPI.EFFECTS)
-response: EffectsListApiResponse = client.get_available_effects()
+client: EffectsClient = picsart_sdk.client(ApiClient.EFFECTS)
+response: EffectsList = client.get_available_effects()
 for effect_name in response.effects:
     print(effect_name)
 ```
 
-**2. Apply an effect**
+2. Apply an effect
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import EffectsClient
+from picsart_sdk.clients import EffectsClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: EffectsClient = picsart_sdk.client(PicsartAPI.EFFECTS)
+client: EffectsClient = picsart_sdk.client(ApiClient.EFFECTS)
 response: ApiResponse = client.effects(image_path="./your-file.jpg", effect_name="apr1")
 print(response.data.url)
 ```
@@ -524,11 +509,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import EffectsPreviewsClient
+from picsart_sdk.clients import ApiClient, EffectsPreviewsClient
 from picsart_sdk.api_responses.effects_response import EffectsPreviewsApiResponse
 
-client: EffectsPreviewsClient = picsart_sdk.client(PicsartAPI.EFFECTS_PREVIEWS)
+client: EffectsPreviewsClient = picsart_sdk.client(ApiClient.EFFECTS_PREVIEWS)
 response: EffectsPreviewsApiResponse = client.effects_previews(
     image_path="./your-file.jpg", 
     effect_names=["apr1", "brnz3"]
@@ -541,11 +525,10 @@ for item in response.data:
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import AiEffectsClient
+from picsart_sdk.clients import ApiClient, AiEffectsClient, AsyncAiEffectsClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: AiEffectsClient = picsart_sdk.client(PicsartAPI.AI_EFFECTS)
+client: AiEffectsClient = picsart_sdk.client(ApiClient.AI_EFFECTS)
 
 # get the list of available effects
 effects = client.get_available_ai_effects()
@@ -560,13 +543,12 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import ColorTransferClient
+from picsart_sdk.clients import ColorTransferClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
 path1 = "./your-file.jpg"
 path2 = "./your-file2.jpg"
-client: ColorTransferClient = picsart_sdk.client(PicsartAPI.COLOR_TRANSFER)
+client: ColorTransferClient = picsart_sdk.client(ApiClient.COLOR_TRANSFER)
 response: ApiResponse = client.color_transfer(image_path=path1, reference_image_path=path2)
 print(response.data.url)
 ```
@@ -575,13 +557,12 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import StyleTransferClient
+from picsart_sdk.clients import StyleTransferClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
 path1 = "./your-file.jpg"
 path2 = "./your-file2.jpg"
-client: StyleTransferClient = picsart_sdk.client(PicsartAPI.STYLE_TRANSFER)
+client: StyleTransferClient = picsart_sdk.client(ApiClient.STYLE_TRANSFER)
 response: ApiResponse = client.style_transfer(image_path=path1, reference_image_path=path2)
 print(response.data.url)
 ```
@@ -590,11 +571,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import MasksClient
+from picsart_sdk.clients import MasksClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: MasksClient = picsart_sdk.client(PicsartAPI.MASKS)
+client: MasksClient = picsart_sdk.client(ApiClient.MASKS)
 response: ApiResponse = client.masks(image_path="./your-file.jpg", mask="lace1")
 print(response.data.url)
 ```
@@ -603,11 +583,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import MasksPreviewsClient
+from picsart_sdk.clients import MasksPreviewsClient, ApiClient
 from picsart_sdk.api_responses.masks_previews_response import MasksPreviewsApiResponse
 
-client: MasksPreviewsClient = picsart_sdk.client(PicsartAPI.MASKS_PREVIEWS)
+client: MasksPreviewsClient = picsart_sdk.client(ApiClient.MASKS_PREVIEWS)
 response: MasksPreviewsApiResponse = client.masks_previews(image_path="./your-file.jpg", mask=["lace1", "lace2"])
 print(response.data[0].mask, response.data[0].url)
 print(response.data[0].mask, response.data[1].url)
@@ -617,12 +596,11 @@ print(response.data[0].mask, response.data[1].url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import AdjustClient
+from picsart_sdk.clients import AdjustClient, ApiClient
 from picsart_sdk.api_responses import ApiResponse
 
 path = "tests/resources/image2.jpg"
-client: AdjustClient = picsart_sdk.client(PicsartAPI.ADJUST)
+client: AdjustClient = picsart_sdk.client(ApiClient.ADJUST)
 response: ApiResponse = client.adjust(image_path=path, contrast=50)
 ```
 
@@ -630,12 +608,11 @@ response: ApiResponse = client.adjust(image_path=path, contrast=50)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import EditClient
+from picsart_sdk.clients import ApiClient, EditClient
 from picsart_sdk.api_responses import ApiResponse
 
 path = "tests/resources/image2.jpg"
-client: EditClient = picsart_sdk.client(PicsartAPI.EDIT)
+client: EditClient = picsart_sdk.client(ApiClient.EDIT)
 response: ApiResponse = client.edit(image_path=path, rotate=90)
 print(response.data.url)
 ```
@@ -644,12 +621,11 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import TextureGeneratorClient
+from picsart_sdk.clients import ApiClient, TextureGeneratorClient
 from picsart_sdk.api_responses import ApiResponse
 
 path = "tests/resources/image2.jpg"
-client: TextureGeneratorClient = picsart_sdk.client(PicsartAPI.TEXTURE_GENERATOR)
+client: TextureGeneratorClient = picsart_sdk.client(ApiClient.TEXTURE_GENERATOR)
 response: ApiResponse = client.texture_generator(image_path="./your-file.jpg")
 print(response.data.url)
 ```
@@ -658,11 +634,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import VectorizerClient
+from picsart_sdk.clients import ApiClient, VectorizerClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: VectorizerClient = picsart_sdk.client(PicsartAPI.VECTORIZER)
+client: VectorizerClient = picsart_sdk.client(ApiClient.VECTORIZER)
 response: ApiResponse = client.vectorizer(image_path="./your-file.jpg")
 print(response.data.url)
 ```
@@ -671,11 +646,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import SurfacemapClient
+from picsart_sdk.clients import ApiClient, SurfacemapClient
 from picsart_sdk.api_responses import ApiResponse
 
-client: SurfacemapClient = picsart_sdk.client(PicsartAPI.SURFACEMAP)
+client: SurfacemapClient = picsart_sdk.client(ApiClient.SURFACEMAP)
 response: ApiResponse = client.surfacemap(
     image_path="./your-file.jpg", 
     mask_path="./mask-file.png", 
@@ -688,11 +662,10 @@ print(response.data.url)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import ImageTaggingClient
+from picsart_sdk.clients import ApiClient, ImageTaggingClient
 from picsart_sdk.api_responses.image_tagging_api_response import ImageTaggingApiResponse
 
-client: ImageTaggingClient = picsart_sdk.client(PicsartAPI.IMAGE_TAGGING)
+client: ImageTaggingClient = picsart_sdk.client(ApiClient.IMAGE_TAGGING)
 response: ImageTaggingApiResponse = client.get_tags(image_path="./your-file.jpg")
 print(response.data.tags)
 ```
@@ -701,11 +674,10 @@ print(response.data.tags)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import ImageDescriptionClient
+from picsart_sdk.clients import ApiClient, ImageDescriptionClient
 from picsart_sdk.api_responses.image_description_api_response import ImageDescriptionApiResponse
 
-client: ImageDescriptionClient = picsart_sdk.client(PicsartAPI.IMAGE_DESCRIPTION)
+client: ImageDescriptionClient = picsart_sdk.client(ApiClient.IMAGE_DESCRIPTION)
 response: ImageDescriptionApiResponse = client.get_description(image_path="./your-file.jpg")
 print(response.data.description)
 ```
@@ -714,11 +686,10 @@ print(response.data.description)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import BalanceClient
+from picsart_sdk.clients import ApiClient, BalanceClient
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 
-client: BalanceClient = picsart_sdk.client(PicsartAPI.BALANCE)
+client: BalanceClient = picsart_sdk.client(ApiClient.BALANCE)
 response: BalanceApiResponse = client.get_balance()
 print(response.credits)
 ```
@@ -727,11 +698,10 @@ print(response.credits)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import Text2ImageClient
+from picsart_sdk.clients import ApiClient, Text2ImageClient
 from picsart_sdk.api_responses.text2image_response import Text2ImageApiResponse, Text2ImageCreateApiResponse
 
-client: Text2ImageClient = picsart_sdk.client(PicsartAPI.TEXT2IMAGE)
+client: Text2ImageClient = picsart_sdk.client(ApiClient.TEXT2IMAGE)
 response1: Text2ImageCreateApiResponse = client.text2image(prompt="a cat in the green field", count=2)
 response2: Text2ImageApiResponse = client.get_text2image_result(response1.inference_id)
 print(response2.data[0].url)  # will generate 2 images
@@ -741,11 +711,10 @@ print(response2.data[0].url)  # will generate 2 images
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import Text2TextClient
+from picsart_sdk.clients import ApiClient, Text2TextClient
 from picsart_sdk.api_responses.text2text_response import Text2TextApiResponse 
 
-client: Text2TextClient = picsart_sdk.client(PicsartAPI.TEXT2IMAGE)
+client: Text2TextClient = picsart_sdk.client(ApiClient.TEXT2IMAGE)
 response: Text2TextApiResponse = client.chat_completions(role="assistant", content="what is cat?")
 print(response.data)
 ```
@@ -756,11 +725,10 @@ print(response.data)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import InpaintingClient
+from picsart_sdk.clients import ApiClient, InpaintingClient
 from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 
-client: InpaintingClient = picsart_sdk.client(PicsartAPI.INPAINTING)
+client: InpaintingClient = picsart_sdk.client(ApiClient.INPAINTING)
 response: PaintingApiResponse = client.inpainting(
     image_path="./your-file.jpeg",
     mask_path="./your_mask.png",
@@ -777,11 +745,10 @@ print(response.data[1].url)
 ```python
 import time
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import InpaintingClient
+from picsart_sdk.clients import ApiClient, InpaintingClient
 from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 
-client: InpaintingClient = picsart_sdk.client(PicsartAPI.INPAINTING)
+client: InpaintingClient = picsart_sdk.client(ApiClient.INPAINTING)
 response: PaintingApiResponse = client.inpainting(
     image_path="./your-file.jpeg",
     mask_path="./your_mask.png",
@@ -800,7 +767,7 @@ print(response.data[1].url)
 Similar with Inpainting, but using 
 
 ```python
-client: OutpaintingClient = picsart_sdk.client(PicsartAPI.OUTPAINTING)
+client: OutpaintingClient = picsart_sdk.client(ApiClient.OUTPAINTING)
 ```
 
 #### 25. Smart Replace Background
@@ -808,7 +775,7 @@ client: OutpaintingClient = picsart_sdk.client(PicsartAPI.OUTPAINTING)
 Similar with Inpainting, but using 
 
 ```python
-client: PaintingReplaceBackgroundClient = picsart_sdk.client(PicsartAPI.REPLACE_BACKGROUND)
+client: PaintingReplaceBackgroundClient = picsart_sdk.client(ApiClient.REPLACE_BACKGROUND)
 ```
 
 #### 25. Expand
@@ -816,7 +783,7 @@ client: PaintingReplaceBackgroundClient = picsart_sdk.client(PicsartAPI.REPLACE_
 Similar with Inpainting, but using 
 
 ```python
-client: PaintingExpandClient = picsart_sdk.client(PicsartAPI.EXPAND)
+client: PaintingExpandClient = picsart_sdk.client(ApiClient.EXPAND)
 ```
 
 
@@ -824,10 +791,9 @@ client: PaintingExpandClient = picsart_sdk.client(PicsartAPI.EXPAND)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import BleedClient
+from picsart_sdk.clients import BleedClient, ApiClient
 
-client: BleedClient = picsart_sdk.client(PicsartAPI.BLEED)
+client: BleedClient = picsart_sdk.client(ApiClient.BLEED)
 res = client.bleed(image_path="./your-file.jpg", bleed_size=30)
 print(res)
 ```
@@ -836,11 +802,10 @@ print(res)
 
 ```python
 import picsart_sdk
-from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import GenAiBalanceClient
+from picsart_sdk.clients import ApiClient, GenAiBalanceClient
 from picsart_sdk.api_responses.balance_response import BalanceApiResponse
 
-client: GenAiBalanceClient = picsart_sdk.client(PicsartAPI.GEN_AI_BALANCE)
+client: GenAiBalanceClient = picsart_sdk.client(ApiClient.GEN_AI_BALANCE)
 response: BalanceApiResponse = client.get_balance()
 print(response.credits)
 ```
@@ -853,12 +818,12 @@ The SDK includes an async HTTP client built on Python's async implementation, en
 import asyncio
 
 import picsart_sdk
-from picsart_sdk import PicsartAPI
 from picsart_sdk.clients import AsyncUploadClient
+from picsart_sdk.clients.client_factory import ApiClient
 
 async def upload_image_async():
     # Create an async client
-    client: AsyncUploadClient = picsart_sdk.async_client(PicsartAPI.UPLOAD)
+    client: AsyncUploadClient = picsart_sdk.async_client(ApiClient.UPLOAD)
 
     # Upload an image using the async/await syntax
     response = await client.upload_image(image_path="./file.jpg")
@@ -880,11 +845,11 @@ Please refer to the [API Documentation](https://docs.picsart.io/) for details.
 ```python
 import time
 import picsart_sdk
-from picsart_sdk import PicsartAPI
 from picsart_sdk.clients import UltraUpscaleClient
+from picsart_sdk.clients.client_factory import ApiClient
 from picsart_sdk.clients.requests_models.ultra_upscale_request import UltraUpscaleMode
 
-client: UltraUpscaleClient = picsart_sdk.client(PicsartAPI.ULTRA_UPSCALE)
+client: UltraUpscaleClient = picsart_sdk.client(ApiClient.ULTRA_UPSCALE)
 response1 = client.ultra_upscale(image_path="./file.jpg", mode=UltraUpscaleMode.ASYNC)
 print(response1)
 # expect something like: ApiResponse(status='queued', data=None, transaction_id='6862207a-838c-48c6-ba12-cf6083a9d76e')
@@ -892,21 +857,16 @@ print(response1)
 time.sleep(10)
 response2 = client.get_result(transaction_id=response1.transaction_id)
 print(response2)
+# expect something like: 
+# ApiResponse(
+#   status='success', 
+#   data=ApiResponseData(
+#       id='702eb942-62fb-4c73-834b-db189cca923e.png', 
+#       url='https://cdn.picsart.io/702eb942-62fb-4c73-834b-db189cca923e.png'
+#   ), 
+#   transaction_id=None
+# )
 ```
-
-The response would be something like 
-
-```python
-ApiResponse(
-  status='success', 
-  data=ApiResponseData(
-      id='702eb942-62fb-4c73-834b-db189cca923e.png', 
-      url='https://cdn.picsart.io/702eb942-62fb-4c73-834b-db189cca923e.png'
-  ), 
-  transaction_id=None
-)
-```
-
 
 # Supported APIs
 
@@ -963,10 +923,8 @@ The SDK converts API errors into Python exceptions for easier debugging:
 - **ApiError**: Raised for non-20x HTTP responses.
 - **ApiAuthenticationError**: Raised for authentication failures.
 - **ValueError**: Raised for invalid payloads.
-<<<<<<< HEAD
 >>>>>>> 109e9f4 (update tests and documentation)
 
-<<<<<<< HEAD
 
 ## Development
 ### Setup for Developers
@@ -1021,7 +979,3 @@ Install packages necessary for generating `docs`:
 2. Install the necessary dependencies from `requirements-build.txt`
 3. Run `python -m build`
 >>>>>>> 7c2fecd (add code for building the package)
-=======
->>>>>>> 2d3e8f9 (fix tests; documentation, readme dev)
-=======
->>>>>>> 29dbfa1 (update readme)
