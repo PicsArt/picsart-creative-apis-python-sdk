@@ -38,6 +38,8 @@ class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
         ):
             self._payload = self._payload or {}
             self._payload.setdefault("mask_url", request.mask.image_url)
+            if isinstance(self._files, dict):
+                self._files.pop("mask", None)
 
         if hasattr(request, "mask") and request.mask and request.mask.image_path:
             self._payload = self._payload or {}
@@ -49,6 +51,7 @@ class CommonPaintingClient(GenAiBaseClient, ImageBaseClient, ABC):
                     open(request.mask.image_path, "rb"),
                 ),
             )
+            self._payload.pop("mask_url", None)
 
         self._payload.update(request.get_dict())
 

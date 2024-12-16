@@ -23,6 +23,8 @@ class CommonBleedClient(GenAiBaseClient):
         if request.image.image_url is not None:
             self._payload = self._payload or {}
             self._payload.setdefault("image_url", request.image.image_url)
+            if isinstance(self._files, dict):
+                self._files.pop("image", None)
 
         if request.image.image_path:
             self._payload = self._payload or {}
@@ -34,6 +36,7 @@ class CommonBleedClient(GenAiBaseClient):
                     open(request.image.image_path, "rb"),
                 ),
             )
+            self._payload.pop("image_url", None)
 
         super().set_payload(request)
 
