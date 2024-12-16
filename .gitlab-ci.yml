@@ -8,7 +8,9 @@ build-docs:
   before_script:
     - pip install -r requirements-docs.txt
   script:
-    - sphinx-build -b html docs/ public/
+    - cd docs
+    - make clean && make html
+    - mv _build/html ../public
   artifacts:
     paths:
       - public
