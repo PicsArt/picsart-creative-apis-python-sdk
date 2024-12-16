@@ -320,22 +320,28 @@ If the `PICSART_API_KEY` environment variable is set, you can quickly create a c
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients import UploadClient
 from picsart_sdk import PicsartAPI
 
-upload_client = picsart_sdk.client(PicsartAPI.UPLOAD)
+upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
 ```
 
-**Option 2: Creating a Session Manually**
+**Option 2: Passing the PICSART_API_KEY manually**
 
-You can also create a session manually and pass the API key directly:
+You can also pass the API key directly to the API. 
+Manually passing the API key takes precedence over using the environment variable:
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients import UploadClient
 from picsart_sdk import PicsartAPI
 
-session = picsart_sdk.Session(api_key="YOUR_API_KEY")
-upload_client = session.client(PicsartAPI.UPLOAD)
+upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD, api_key="YOUR-API-KEY")
 ```
+
+> **_NOTE:_** We recommend always using Python type hinting, such as 
+> `upload_client: UploadClient = picsart_sdk.client(...)`, 
+> to fully leverage IDE autocompletion and improve code readability.
 
 ### Features and Examples
 
@@ -344,8 +350,9 @@ upload_client = session.client(PicsartAPI.UPLOAD)
 ```python
 import picsart_sdk
 from picsart_sdk.api_responses import ApiResponse
+from picsart_sdk.clients import UploadClient
 
-upload_client = picsart_sdk.client("upload")
+upload_client: UploadClient = picsart_sdk.client("upload")
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -956,6 +963,7 @@ The SDK converts API errors into Python exceptions for easier debugging:
 - **ApiError**: Raised for non-20x HTTP responses.
 - **ApiAuthenticationError**: Raised for authentication failures.
 - **ValueError**: Raised for invalid payloads.
+<<<<<<< HEAD
 >>>>>>> 109e9f4 (update tests and documentation)
 
 <<<<<<< HEAD
@@ -1015,3 +1023,5 @@ Install packages necessary for generating `docs`:
 >>>>>>> 7c2fecd (add code for building the package)
 =======
 >>>>>>> 2d3e8f9 (fix tests; documentation, readme dev)
+=======
+>>>>>>> 29dbfa1 (update readme)
