@@ -22,8 +22,8 @@ Tutorials
 
    examples/index
 
-Image APIs
-----------
+Picsart SDK Reference
+---------------------
 
 .. toctree::
    :maxdepth: 2
