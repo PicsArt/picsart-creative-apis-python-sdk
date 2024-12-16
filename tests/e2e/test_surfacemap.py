@@ -5,7 +5,7 @@ import pytest
 import picsart_sdk
 from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse, ApiResponseData
-from picsart_sdk.clients import AsyncSurfacemapClient, SurfacemapClient
+from picsart_sdk.clients import AsyncSurfacemapClient, SurfacemapClient, UploadClient
 
 
 @pytest.fixture
@@ -62,3 +62,24 @@ async def test_surfacemap_async(image_path, mask_path, sticker_path):
     assert result.status == "success"
     assert len(result.data.url) > 0
     assert len(result.data.id) > 0
+
+
+def test_surfacemap_subsequently(image_path, mask_path, sticker_path):
+    upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
+    mask_upload_result = upload_client.upload_image(image_path=mask_path)
+    mask_url = mask_upload_result.data.url
+
+    sticker_upload_result = upload_client.upload_image(image_path=mask_path)
+    sticker_url = sticker_upload_result.data.url
+
+    client: SurfacemapClient = picsart_sdk.client(PicsartAPI.SURFACEMAP)
+    result1 = client.surfacemap(
+        image_path=image_path, mask_path=mask_path, sticker_path=sticker_path
+    )
+
+    result2 = client.surfacemap(
+        image_path=image_path, mask_url=mask_url, sticker_url=sticker_url
+    )
+
+    assert isinstance(result1, ApiResponse)
+    assert isinstance(result2, ApiResponse)

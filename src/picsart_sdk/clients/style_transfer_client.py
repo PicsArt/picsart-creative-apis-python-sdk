@@ -23,6 +23,8 @@ class CommonStyleTransfer(ImageBaseClient):
             self._payload.setdefault(
                 "reference_image_url", request.reference_image.image_url
             )
+            if isinstance(self._files, dict):
+                self._files.pop("reference_image", None)
 
         if request.reference_image.image_path:
             self._payload = self._payload or {}
@@ -34,6 +36,7 @@ class CommonStyleTransfer(ImageBaseClient):
                     open(request.reference_image.image_path, "rb"),
                 ),
             )
+            self._payload.pop("reference_image_url", None)
 
         self._payload.update(request.get_dict())
 

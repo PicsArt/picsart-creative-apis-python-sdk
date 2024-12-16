@@ -21,6 +21,8 @@ class CommonSurfacemap(ImageBaseClient):
         if request.mask.image_url is not None:
             self._payload = self._payload or {}
             self._payload.setdefault("mask_url", request.mask.image_url)
+            if isinstance(self._files, dict):
+                self._files.pop("mask", None)
 
         if request.mask.image_path:
             self._payload = self._payload or {}
@@ -32,10 +34,13 @@ class CommonSurfacemap(ImageBaseClient):
                     open(request.mask.image_path, "rb"),
                 ),
             )
+            self._payload.pop("mask_url", None)
 
         if request.sticker.image_url is not None:
             self._payload = self._payload or {}
             self._payload.setdefault("sticker_url", request.sticker.image_url)
+            if isinstance(self._files, dict):
+                self._files.pop("sticker", None)
 
         if request.sticker.image_path:
             self._payload = self._payload or {}
@@ -47,6 +52,7 @@ class CommonSurfacemap(ImageBaseClient):
                     open(request.sticker.image_path, "rb"),
                 ),
             )
+            self._payload.pop("sticker_url", None)
 
         self._payload.update(request.get_dict())
 
