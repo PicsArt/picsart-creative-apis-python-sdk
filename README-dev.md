@@ -56,7 +56,7 @@ PICSART_API_KEY=<YOUR_API_KEY> poetry run pytest tests/
 
 ### Build the package
 
-1. Create a new virtual environment for building.
+1. Create and activate a new virtual environment for building. Eg: `python -m venv .venv && source .venv/bin/activate`
 2. Install the necessary dependencies from `pip install -r requirements-build.txt`
 3. Run `python -m build`
 4. Upload to pip
