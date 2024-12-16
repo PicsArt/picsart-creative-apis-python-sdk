@@ -29,7 +29,7 @@ class OutpaintingClient(OutpaintingCommon):
         negative_prompt: Optional[str] = None,
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
+        mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
         """
         Perform an outpainting operation on an image.

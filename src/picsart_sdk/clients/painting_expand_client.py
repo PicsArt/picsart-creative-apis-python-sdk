@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from picsart_sdk.api_responses.painting_response import PaintingApiResponse
 from picsart_sdk.clients.common_painting_client import CommonExpandClient
@@ -33,7 +33,7 @@ class PaintingExpandClient(CommonExpandClient):
         direction: Optional[str] = "center",
         count: Optional[int] = 4,
         output_format: Optional[PicsartImageFormat] = PicsartImageFormat.PNG,
-        mode: Optional[PaintingMode] = PaintingMode.SYNC,
+        mode: Union[Optional[PaintingMode], str] = PaintingMode.SYNC,
     ) -> PaintingApiResponse:
         """
         Expand an image by generating additional content based on a prompt, using an asynchronous HTTP client.
