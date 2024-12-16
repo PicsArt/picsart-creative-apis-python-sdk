@@ -59,6 +59,8 @@ Using asynchronous HTTP call
 
 .. code-block:: python
 
+    import asyncio
+
     import picsart_sdk
     from picsart_sdk import PicsartAPI
     from picsart_sdk.api_responses import ApiResponse
