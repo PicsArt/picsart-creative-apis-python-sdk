@@ -96,7 +96,9 @@ you can call :code:`remove_background` method.
 
 The image without background will be available in the Picsart CDN at the URL from :code:`response.data.url`.
 
-You can find an extensive list of code snippets in the :code:`examples` folder from the `GitHub repo <https://github.com/PicsArt/picsart-creative-apis-python-sdk>`_.
+.. note::
+
+    You can find an extensive list of code snippets in the :code:`examples` folder from the `GitHub repo <https://github.com/PicsArt/picsart-creative-apis-python-sdk>`_.
 
 Debugging
 ~~~~~~~~~
