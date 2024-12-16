@@ -27,22 +27,28 @@ If the `PICSART_API_KEY` environment variable is set, you can quickly create a c
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients import UploadClient
 from picsart_sdk import PicsartAPI
 
-upload_client = picsart_sdk.client(PicsartAPI.UPLOAD)
+upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
 ```
 
-**Option 2: Creating a Session Manually**
+**Option 2: Passing the PICSART_API_KEY manually**
 
-You can also create a session manually and pass the API key directly:
+You can also pass the API key directly to the API. 
+Manually passing the API key takes precedence over using the environment variable:
 
 ```python
 import picsart_sdk
+from picsart_sdk.clients import UploadClient
 from picsart_sdk import PicsartAPI
 
-session = picsart_sdk.Session(api_key="YOUR_API_KEY")
-upload_client = session.client(PicsartAPI.UPLOAD)
+upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD, api_key="YOUR-API-KEY")
 ```
+
+> **_NOTE:_** We recommend always using Python type hinting, such as 
+> `upload_client: UploadClient = picsart_sdk.client(...)`, 
+> to fully leverage IDE autocompletion and improve code readability.
 
 ### Features and Examples
 
@@ -51,8 +57,9 @@ upload_client = session.client(PicsartAPI.UPLOAD)
 ```python
 import picsart_sdk
 from picsart_sdk.api_responses import ApiResponse
+from picsart_sdk.clients import UploadClient
 
-upload_client = picsart_sdk.client("upload")
+upload_client: UploadClient = picsart_sdk.client("upload")
 
 response: ApiResponse = upload_client.upload_image(image_path="/path/to/image.jpg")
 print(response.data.url)
@@ -629,4 +636,3 @@ The SDK converts API errors into Python exceptions for easier debugging:
 - **ApiError**: Raised for non-20x HTTP responses.
 - **ApiAuthenticationError**: Raised for authentication failures.
 - **ValueError**: Raised for invalid payloads.
-
