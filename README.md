@@ -226,7 +226,7 @@ for item in response.data:
 ```python
 import picsart_sdk
 from picsart_sdk import PicsartAPI
-from picsart_sdk.clients import AiEffectsClient, AsyncAiEffectsClient
+from picsart_sdk.clients import AiEffectsClient
 from picsart_sdk.api_responses import ApiResponse
 
 client: AiEffectsClient = picsart_sdk.client(PicsartAPI.AI_EFFECTS)

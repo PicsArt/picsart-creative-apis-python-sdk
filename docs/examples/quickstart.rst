@@ -71,7 +71,10 @@ You can also pass the API key directly to the API client:
     from picsart_sdk import PicsartAPI
     from picsart_sdk.clients import RemoveBackgroundClient
 
-    client: RemoveBackgroundClient = picsart_sdk.client(PicsartAPI.REMOVE_BACKGROUND, api_key="YOUR_API_KEY")
+    client: RemoveBackgroundClient = picsart_sdk.client(
+        PicsartAPI.REMOVE_BACKGROUND,
+        api_key="YOUR_API_KEY"
+    )
 
 
 .. note::
@@ -92,3 +95,19 @@ you can call :code:`remove_background` method.
     print(response.data.url)
 
 The image without background will be available in the Picsart CDN at the URL from :code:`response.data.url`.
+
+Debugging
+~~~~~~~~~
+
+You can enable extra logging providing the following environment variables:
+
+* :code:`PICSART_SDK_LOGGING_LEVEL`: Controls the logging level. Possible values: :code:`CRITICAL`, :code:`ERROR`, :code:`WARNING`, :code:`INFO`, :code:`DEBUG`, :code:`NOTSET`. If :code:`PICSART_SDK_LOGGING_LEVEL` is not provided or contains an invalid value, logging will be disabled.
+* :code:`PICSART_SDK_LOG_HTTP_CALLS`: Enables logging of HTTP calls made to the Picsart API. Possible values: :code:`true` or :code:`false`.
+* :code:`PICSART_SDK_LOG_HTTP_CALLS_HEADERS`: Logs the HTTP headers used in API calls. Possible values: :code:`true` or :code:`false`. **Note**: Enabling this will log sensitive information, including the :code:`PICSART_API_KEY`.
+
+Other environment variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* :code:`PICSART_SDK_DEFAULT_HTTP_TIMEOUT_SECONDS`: Control the HTTP timeout in seconds for the API calls. These value is only for the client. If the timeout is happening in the backend infrastructure you can still get a timeout error.
+* :code:`PICSART_SDK_IMAGE_API_VERSION`: To control what version of the Picsart Image API to call. Default: :code:`1.0`.
+* :code:`PICSART_SDK_IMAGE_GENAI_API_VERSION`: To control what version of the Picsart GenAI API to call. Default: :code:`1.0`.
