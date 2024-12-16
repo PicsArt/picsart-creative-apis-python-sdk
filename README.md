@@ -162,7 +162,11 @@ response: ApiResponse = client.get_result(transaction_id=response.transaction_id
 print(response.data.url)
 ```
 
+<<<<<<< HEAD
 > To find additional code snippets, explore the [examples](./examples) folder.
+=======
+> To find additional code snippets, explore the `examples` folder.
+>>>>>>> 8276ebf (update doc)
 
 
 # HTTP Async Client
