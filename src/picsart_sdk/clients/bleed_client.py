@@ -19,7 +19,7 @@ class CommonBleedClient(GenAiBaseClient):
     def _endpoint(self) -> str:
         return "painting/bleed"
 
-    def set_payload(self, request):
+    def set_payload(self, request: BleedRequest):
         if request.image.image_url is not None:
             self._payload = self._payload or {}
             self._payload.setdefault("image_url", request.image.image_url)
