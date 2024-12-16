@@ -6,7 +6,7 @@ build-docs:
   stage: build
   image: python:3.9
   before_script:
-    - pip install -r requirements-docs.txt
+    - pip install -r requirements.txt -r requirements-docs.txt
   script:
     - cd docs
     - make clean && make html
