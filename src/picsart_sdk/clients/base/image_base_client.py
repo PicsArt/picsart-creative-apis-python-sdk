@@ -20,8 +20,15 @@ class ImageBaseClient(BaseClient, ABC):
         return self._version or PICSART_IMAGE_API_VERSION
 
     def set_payload(self, request):
+        """
+        Set the payload for the API HTTP request.
+
+        :param request: A dataclass implementing `BaseRequest`
+        """
         if request.image.image_url is not None:
             self._payload = self._payload or {}
+            if isinstance(self._files, dict):
+                self._files.pop("image", None)
             self._payload.setdefault("image_url", request.image.image_url)
 
         if request.image.image_path:
@@ -34,6 +41,7 @@ class ImageBaseClient(BaseClient, ABC):
                     open(request.image.image_path, "rb"),
                 ),
             )
+            self._payload.pop("image_url", None)
 
         self._payload.update(request.get_dict())
 
