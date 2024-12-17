@@ -113,5 +113,3 @@ Other environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * :code:`PICSART_SDK_DEFAULT_HTTP_TIMEOUT_SECONDS`: Control the HTTP timeout in seconds for the API calls. These value is only for the client. If the timeout is happening in the backend infrastructure you can still get a timeout error.
-* :code:`PICSART_SDK_IMAGE_API_VERSION`: To control what version of the Picsart Image API to call. Default: :code:`1.0`.
-* :code:`PICSART_SDK_IMAGE_GENAI_API_VERSION`: To control what version of the Picsart GenAI API to call. Default: :code:`1.0`.
