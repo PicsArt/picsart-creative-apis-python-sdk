@@ -246,3 +246,18 @@ The SDK converts API errors into Python exceptions for easier debugging:
 - **ApiError**: Raised for non-20x HTTP responses.
 - **ApiAuthenticationError**: Raised for authentication failures.
 - **ValueError**: Raised for invalid payloads.
+
+# License
+
+Picsart Creative APIs SDK is provided under the MIT license that can be found in the
+[LICENSE](./LICENSE) file.
+By using, distributing, or contributing to this project, you agree to
+the terms and conditions of this license.
+
+This project has some third-party dependencies, each of which may have independent licensing:
+- [httpx](https://github.com/projectdiscovery/httpx), ([MIT](https://github.com/projectdiscovery/httpx/blob/main/LICENSE.md)): Used as a http client
+
+# How to contribute?
+
+If you like Picsart Creative APIs SDK and would like to contribute to this open-source project, please check the [Contribution
+guide](./CONTRIBUTING.md).
