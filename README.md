@@ -56,10 +56,11 @@ upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD, api_key="YOU
 
 ```python
 import picsart_sdk
+from picsart_sdk import PicsartAPI
 from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.clients import UploadClient
 
-upload_client: UploadClient = picsart_sdk.client("upload")
+upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
 
 response: ApiResponse = upload_client.upload_image(image_path="/path/to/image.jpg")
 print(response.data.url)
@@ -137,7 +138,7 @@ response: ApiResponse = client.get_result(transaction_id=response.transaction_id
 print(response.data.url)
 ```
 
-> To find additional code snippets, explore the `examples` folder.
+> To find additional code snippets, explore the [examples](./examples) folder.
 
 
 # HTTP Async Client
