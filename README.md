@@ -84,6 +84,9 @@ from picsart_sdk.api_responses import ApiResponse
 from picsart_sdk.clients import UploadClient
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dd1b0ff (improve readme files)
 upload_client: UploadClient = picsart_sdk.client(PicsartAPI.UPLOAD)
 
 response: ApiResponse = upload_client.upload_image(image_path="/path/to/image.jpg")
@@ -163,10 +166,14 @@ print(response.data.url)
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 > To find additional code snippets, explore the [examples](./examples) folder.
 =======
 > To find additional code snippets, explore the `examples` folder.
 >>>>>>> 8276ebf (update doc)
+=======
+> To find additional code snippets, explore the [examples](./examples) folder.
+>>>>>>> dd1b0ff (improve readme files)
 
 
 # HTTP Async Client
