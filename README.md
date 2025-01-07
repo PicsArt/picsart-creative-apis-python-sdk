@@ -290,6 +290,7 @@ This project has some third-party dependencies, each of which may have independe
 
 If you like Picsart Creative APIs SDK and would like to contribute to this open-source project, please check the [Contribution
 guide](./CONTRIBUTING.md).
+<<<<<<< HEAD
 =======
 =======
 # PICSART CREATIVE APIS
@@ -983,3 +984,5 @@ Install packages necessary for generating `docs`:
 2. Install the necessary dependencies from `requirements-build.txt`
 3. Run `python -m build`
 >>>>>>> 7c2fecd (add code for building the package)
+=======
+>>>>>>> 2198cb4 (improve readme files)
