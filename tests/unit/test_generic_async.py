@@ -173,6 +173,7 @@ async def test_call_client_success(
     assert response.data.url == "https://example.com/image.png"
     assert response.data.id == "12345"
     assert response.inference_id is None
+
     client.http_client.post.assert_awaited_once()
 
 
