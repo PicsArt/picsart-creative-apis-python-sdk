@@ -46,7 +46,7 @@ If the environment variable isn't set, you will have to pass it programmatically
 Using Picsart Python SDK
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a Client
+Create a client
 ^^^^^^^^^^^^^^^
 
 **Option 1: Using environment variable for the API Key**
@@ -99,6 +99,23 @@ The image without background will be available in the Picsart CDN at the URL fro
 .. note::
 
     You can find an extensive list of code snippets in the :code:`examples` folder from the `GitHub repo <https://github.com/PicsArt/picsart-creative-apis-python-sdk>`_.
+
+Create an async client
+^^^^^^^^^^^^^^^^^^^^^^
+
+PicsartAPI supports the creation of async clients to perform non-blocking HTTP calls to the Picsart API. Async clients
+leverage Python's asyncio capabilities, enabling efficient handling of multiple requests concurrently.
+
+**How to Create an Async Client**
+
+To create an async client for any PicsartAPI service, follow these steps:
+
+Import the appropriate client class for the desired PicsartAPI service.
+Instantiate the client using the async factory method or constructor, depending on the implementation.
+
+You can find a detailed example of creating and using an async client in the
+`async_client.py <https://github.com/PicsArt/picsart-creative-apis-python-sdk/tree/main/examples/async_client.py>`_
+file located in the examples folder.
 
 Debugging
 ~~~~~~~~~
