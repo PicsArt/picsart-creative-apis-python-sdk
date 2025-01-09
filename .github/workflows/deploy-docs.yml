@@ -1,4 +1,4 @@
-name: Deploy Sphinx Docs to GitHub Pages
+name: Deploy Docs to GitHub Pages
 
 on:
   push:
@@ -23,6 +23,7 @@ jobs:
         pip install -r requirements-docs.txt
 
     - name: Build documentation
+      working-directory: docs
       run: make html
 
     - name: Deploy to GitHub Pages
