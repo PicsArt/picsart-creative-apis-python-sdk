@@ -23,13 +23,13 @@ Install Picsart Python SDK
 
 Install the latest `picsart-sdk` release via :command:`pip`::
 
-    pip install picsart-sdk
+    pip install git+https://github.com/PicsArt/picsart-creative-apis-python-sdk
 
 If your project requires a specific version of picsart-sdk, or has compatibility concerns with
 certain versions, you may provide constraints when installing::
 
     # Install picsart-sdk version 1.0 specifically
-    pip install picsart-sdk==1.0.0
+    pip install git+https://github.com/PicsArt/picsart-creative-apis-python-sdk@1.0.0
 
 .. note::
 
@@ -40,7 +40,7 @@ Configuration
 
 In order to use the Picsart Python SDK, you need to obtain an API KEY from `picsart.io <https://picsart.io/>`_ portal.
 
-The framework will automatically look for the API KEY in the `PICSART_API_KEY` environment variable.
+The framework will automatically look for the API KEY in the :code:`PICSART_API_KEY` environment variable.
 If the environment variable isn't set, you will have to pass it programmatically. Refer the section below.
 
 Using Picsart Python SDK
