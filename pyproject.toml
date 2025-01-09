@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "picsart-creative-apis-py-sdk"
-version = "1.0.0-beta-1"
+version = "1.0.0"
 description = "Picsart Creative APIs SDK. Includes helper methods and functions for Programmable Image APIs (e.g. Remove Background, Upscale, Enhance, Effects) and the GenAI APIs (e.g. Text2Image, Replace, Expand Image)."
 authors = ["PicsArt, Inc."]
 license = "MIT License"
