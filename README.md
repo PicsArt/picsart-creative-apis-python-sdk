@@ -16,7 +16,13 @@ Python 3.9 or higher
 Install the SDK via pip:
 
 ```bash
-pip install picsart-sdk
+pip install git+https://github.com/PicsArt/picsart-creative-apis-python-sdk 
+```
+
+Or if you want to install a specific version:
+
+```bash
+pip install git+https://github.com/PicsArt/picsart-creative-apis-python-sdk@1.0.0
 ```
 
 ### Create a Client
